@@ -1,0 +1,58 @@
+#!/bin/bash
+
+if [[ -d "$HOME/sky-ash/1-projects/dotfiles" ]]; then
+    DOTS="$HOME/sky-ash/1-projects/dotfiles"
+
+    make_home_dir() {
+    	mkdir -p $HOME/.config || true
+    	mkdir -p $HOME/.cache || true
+    	mkdir -p $HOME/.local/share/fonts || true
+    	mkdir -p $HOME/.local/share/icons || true
+    	mkdir -p $HOME/.local/share/wallpaper || true
+    	mkdir -p $HOME/.local/bin || true
+    }
+    
+    back_up_configure() {
+		rm -rf $HOME/.dotfiles_backup
+
+    	echo "\e[32mbacking up configuration files..."
+    	mkdir -p $HOME/.dotfiles_backup/.config
+    	cp -r $HOME/.config/{btop,catnap,cava,dunst,hypr,rofi,waybar,kitty} $HOME/.dotfiles_backup/.config
+    
+    	echo "\e[32mbacking up local files..."
+    	mkdir -p $HOME/.dotfiles_backup/.local/share
+    	mkdir -p $HOME/.dotfiles_backup/.local/bin
+    	cp -r $HOME/.local/share/{fonts,icons,wallpaper} $HOME/.dotfiles_backup/.local/share
+    	cp -r $HOME/.local/bin/* $HOME/.dotfiles_backup/.local/bin
+    
+    	echo "\e[32mbacking up launch-files..."
+    	cp -r $HOME/{.xinitrc,.bashrc,.bash_profile} $HOME/.dotfiles_backup
+    
+    	echo "\e[32mbackup finished - you can find your backups at \e[33m$HOME/.dotfiles_backup"
+    }
+
+    make_home_dir 2>/dev/null
+
+	back_up_configure
+
+	rm -rf $HOME/.config/{btop,catnap,cava,dunst,hypr,rofi,waybar,kitty}
+	rm -rf $HOME/.local/share/{fonts,icons,wallpaper}
+	rm -rf $HOME/.local/bin/*
+	rm -rf $HOME/{.xinitrc,.bashrc,.bash_profile}
+
+	echo "\e[32minstalling configuration files..."
+	cp -r $DOTS/home/.config/* $HOME/.config/
+	echo "\e[32mdone"
+
+	echo "\e[32minstalling local files..."
+	cp -r $DOTS/home/.local/share/* $HOME/.local/share/
+	cp -r $DOTS/home/.local/bin/* $HOME/.local/bin/
+	echo "\e[32mdone"
+
+	echo "\e[32minstalling launch-files..."
+	cp -r $DOTS/home/{.xinitrc,.bashrc,.bash_profile} $HOME/
+	echo "\e[32mdone"
+
+	echo "\e[32minstallation finished"
+
+fi

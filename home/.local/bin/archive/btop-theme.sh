@@ -1,0 +1,93 @@
+#!/bin/bash
+
+# Define file paths
+colors_file="/home/ashe/.cache/wal/colors"
+btop_config="/home/ashe/.config/btop/themes/wal.theme"
+
+# Read colors from file into an array
+mapfile -t colors < "$colors_file"
+
+# Cava Config
+config_text="""
+theme[main_bg]=''
+theme[main_fg]='${colors[7]}'
+theme[title]='${colors[7]}'
+
+# Highlight color for keyboard shortcuts
+theme[hi_fg]='${colors[2]}'
+
+# Background color of selected item in processes box
+theme[selected_bg]='${colors[8]}'
+
+# Foreground color of selected item in processes box
+theme[selected_fg]='${colors[2]}'
+
+# Color of inactive/disabled text
+theme[inactive_fg]='${colors[8]}'
+
+# Color of text appearing on top of graphs, i.e uptime and current network graph scaling
+theme[graph_text]='${colors[7]}'
+
+# Background color of the percentage meters
+theme[meter_bg]='${colors[8]}'
+
+# Misc colors for processes box including mini cpu graphs, details memory graph and details status text
+theme[proc_misc]='${colors[7]}'
+
+# CPU, Memory, Network, Proc box outline colors
+theme[cpu_box]='${colors[4]}' #Mauve
+theme[mem_box]='${colors[3]}' #Green
+theme[net_box]='${colors[5]}' #Maroon
+theme[proc_box]='${colors[2]}' #Blue
+
+# Box divider line and small boxes line color
+theme[div_line]='${colors[8]}'
+
+# Temperature graph color (Green -> Yellow -> Red)
+theme[temp_start]='${colors[3]}'
+theme[temp_mid]='${colors[2]}'
+theme[temp_end]='${colors[5]}'
+
+# CPU graph colors (Teal -> Lavender)
+theme[cpu_start]='${colors[4]}'
+theme[cpu_mid]='${colors[4]}'
+theme[cpu_end]='${colors[4]}'
+
+# Mem/Disk free meter (Mauve -> Lavender -> Blue)
+theme[free_start]='${colors[4]}'
+theme[free_mid]='${colors[4]}'
+theme[free_end]='${colors[2]}'
+
+# Mem/Disk cached meter (Sapphire -> Lavender)
+theme[cached_start]='${colors[4]}'
+theme[cached_mid]='${colors[2]}'
+theme[cached_end]='${colors[4]}'
+
+# Mem/Disk available meter (Peach -> Red)
+theme[available_start]='${colors[5]}'
+theme[available_mid]='${colors[5]}'
+theme[available_end]='${colors[5]}'
+
+# Mem/Disk used meter (Green -> Sky)
+theme[used_start]='${colors[3]}'
+theme[used_mid]='${colors[4]}'
+theme[used_end]='${colors[4]}'
+
+# Download graph colors (Peach -> Red)
+theme[download_start]='${colors[5]}'
+theme[download_mid]='${colors[5]}'
+theme[download_end]='${colors[5]}'
+
+# Upload graph colors (Green -> Sky)
+theme[upload_start]='${colors[3]}'
+theme[upload_mid]='${colors[4]}'
+theme[upload_end]='${colors[4]}'
+
+# Process box color gradient for threads, mem and cpu usage (Sapphire -> Mauve)
+theme[process_start]='${colors[4]}'
+theme[process_mid]='${colors[4]}'
+theme[process_end]='${colors[4]}'
+"""
+
+# Write the cava config to file
+echo "$config_text" > "$btop_config"
