@@ -24,55 +24,54 @@ theme[meter_bg]="${colors[8]}"
 theme[proc_misc]="${colors[7]}"
 
 # CPU, Memory, Network, Proc box outline colors
-theme[cpu_box]="${colors[4]}" #Mauve
-theme[mem_box]="${colors[3]}" #Green
-theme[net_box]="${colors[5]}" #Maroon
-theme[proc_box]="${colors[2]}" #Blue
+theme[mem_box]="${colors[3]}" 
+theme[net_box]="${colors[5]}" 
+theme[proc_box]="${colors[2]}" 
 
 # Box divider line and small boxes line color
 theme[div_line]="${colors[8]}"
 
-# Temperature graph color (Green -> Yellow -> Red)
+# Temperature graph color
 theme[temp_start]="${colors[3]}"
 theme[temp_mid]="${colors[2]}"
 theme[temp_end]="${colors[5]}"
 
-# CPU graph colors (Teal -> Lavender)
+# CPU graph colors
 theme[cpu_start]="${colors[4]}"
 theme[cpu_mid]="${colors[4]}"
 theme[cpu_end]="${colors[4]}"
 
-# Mem/Disk free meter (Mauve -> Lavender -> Blue)
+# Mem/Disk free meter
 theme[free_start]="${colors[4]}"
 theme[free_mid]="${colors[4]}"
 theme[free_end]="${colors[2]}"
 
-# Mem/Disk cached meter (Sapphire -> Lavender)
+# Mem/Disk cached meter
 theme[cached_start]="${colors[4]}"
 theme[cached_mid]="${colors[2]}"
 theme[cached_end]="${colors[4]}"
 
-# Mem/Disk available meter (Peach -> Red)
+# Mem/Disk available meter
 theme[available_start]="${colors[5]}"
 theme[available_mid]="${colors[5]}"
 theme[available_end]="${colors[5]}"
 
-# Mem/Disk used meter (Green -> Sky)
+# Mem/Disk used meter 
 theme[used_start]="${colors[3]}"
 theme[used_mid]="${colors[4]}"
 theme[used_end]="${colors[4]}"
 
-# Download graph colors (Peach -> Red)
+# Download graph colors
 theme[download_start]="${colors[5]}"
 theme[download_mid]="${colors[5]}"
 theme[download_end]="${colors[5]}"
 
-# Upload graph colors (Green -> Sky)
+# Upload graph colors 
 theme[upload_start]="${colors[3]}"
 theme[upload_mid]="${colors[4]}"
 theme[upload_end]="${colors[4]}"
 
-# Process box color gradient for threads, mem and cpu usage (Sapphire -> Mauve)
+# Process box color gradient for threads, mem and cpu usage
 theme[process_start]="${colors[4]}"
 theme[process_mid]="${colors[4]}"
 theme[process_end]="${colors[4]}"

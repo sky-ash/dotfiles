@@ -1,0 +1,9 @@
+[Added Associations]
+inode/directory=vscodium.desktop;
+image/png=imv.desktop;
+application/pdf=firefox.desktop;obsidian.desktop;
+application/rdf+xml=vscodium.desktop;
+
+[Default Applications]
+image/png=imv.desktop
+application/pdf=firefox.desktop
