@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Define file paths
-colors_file="/home/ashe/.cache/wal/colors"
-cava_config="/home/ashe/.config/cava/config"
+colors_file="~/.cache/wal/colors"
+cava_config="~/.config/cava/config"
 
 # Read colors from file into an array
 mapfile -t colors < "$colors_file"

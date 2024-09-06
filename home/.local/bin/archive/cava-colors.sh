@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # colors path
-cfg="/home/ashe/.config/cava/config"
-colors="/home/ashe/.cache/colors/"
+cfg="~/.config/cava/config"
+colors="~/.cache/colors/"
 
 # Loop through each file in the colors
 for file in "$colors"*

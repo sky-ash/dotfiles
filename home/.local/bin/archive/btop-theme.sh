@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Define file paths
-colors_file="/home/ashe/.cache/wal/colors"
-btop_config="/home/ashe/.config/btop/themes/wal.theme"
+colors_file="~/.cache/wal/colors"
+btop_config="~/.config/btop/themes/wal.theme"
 
 # Read colors from file into an array
 mapfile -t colors < "$colors_file"
