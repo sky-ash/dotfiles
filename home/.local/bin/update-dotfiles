@@ -1,7 +1,7 @@
 #!/bin/bash
 
-if [[ -d "$HOME/sky-ash/1-projects/dotfiles" ]]; then
-    DOTS="$HOME/sky-ash/1-projects/dotfiles"
+if [[ -d "$HOME/dotfiles" ]]; then
+    DOTS="$HOME/dotfiles"
 
     make_home_dir() {
     	mkdir -p $HOME/.config || true

@@ -28,6 +28,7 @@ echo "$btop_text" > "$btop_config"
 # Reload configs
 pkill -USR2 cava
 pkill -USR2 btop
+pkill -USR2 waybar
 
 # Firefox Theme
 pywalfox update 
