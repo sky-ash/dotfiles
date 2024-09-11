@@ -1,43 +1,45 @@
+@import "wal.css";
+
 * {
     border: none;
     border-radius: 0;
-    font-family: Noto Sans Mono;
+    font-family: JetBrainsMono Nerd Font;
     font-weight: bold;
     font-size: 14px;
     min-height: 0;
 }
 
 window#waybar {
-    background: rgba(0, 0, 0, 0);
-    color: #ffffff;
+    background: alpha(@background, 0);
+    color: alpha(@foreground, 0);
 }
 
 #workspaces button {
     padding: 5px;
-    color: #a5adcb;
+    color: alpha(@foreground, 0.5);
     margin-right: 5px;
 }
 
 #workspaces button.active {
-    color: #cad3f5;
+    color: @foreground;
 }
 
 #workspaces button.focused {
-    color: #cad3f5;
-    background: #181926;
-    border-radius: 10px;
+    color: @foreground;
+    background: alpha(@foreground, 0.75);
+    border-radius: 3px;
 }
 
 #workspaces button.urgent {
-    color: #cad3f5;
-    background: #181926;
-    border-radius: 10px;
+    color: @foreground;
+    background: alpha(@foreground, 0.75);
+    border-radius: 3px;
 }
 
 #workspaces button:hover {
-    background: #181926;
-    color: #cad3f5;
-    border-radius: 10px;
+    background: @foreground;
+    color: alpha(@foreground, 0.75);
+    border-radius: 3px;
 }
 
 #custom-language,
@@ -53,53 +55,53 @@ window#waybar {
 #workspaces,
 #tray,
 #backlight {
-    background: #24273a;
+    background: alpha(@foreground, 0.75);
     padding: 0px 15px;
     margin: 3px 0px;
     margin-top: 9px;
-    border: 0px solid #cad3f5;
+    border: 0px solid @foreground;
 }
 
 #workspaces {
-    background: #24273a;
-    border-radius: 10px;
+    background: alpha(@foreground, 0.75);
+    border-radius: 3px;
     margin-left: 10px;
     padding-right: 0px;
     padding-left: 5px;
 }
 
 #custom-syncdots {
-    color: #cad3f5;
-    border-radius: 10px 0 0 10px;
+    color: @foreground;
+    border-radius: 3px 0 0 3px;
     border-left: 0px;
     border-right: 0px;
     margin-left: 10px;
 }
 
 #window {
-    color: #cad3f5;
-    border-radius: 10px;
+    color: @foreground;
+    border-radius: 3px;
     margin-left: 0px;
     margin-right: 0px;
 }
 
 #clock {
-    color: #cad3f5;
-    border-radius: 10px;
+    color: @foreground;
+    border-radius: 3px;
     border-left: 0px;
     border-right: 0px;
     margin-left: 10px;
 }
 
 #network {
-    color: #cad3f5;
+    color: @foreground;
     border-left: 0px;
     border-right: 0px;
 }
 
 #battery {
-    color: #cad3f5;
-    border-radius: 0 10px 10px 0;
+    color: @foreground;
+    border-radius: 0 3px 3px 0;
     margin-right: 10px;
     border-left: 0px;
 }

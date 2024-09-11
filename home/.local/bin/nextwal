@@ -9,29 +9,43 @@ wal -i "${HOME}/.local/share/wallpaper/" --iterative -q -n
 colors_file="${HOME}/.cache/wal/colors"
 mapfile -t colors < "$colors_file"
 
+
 # Define file paths
 cava_config="${HOME}/.config/cava/config"
 cava_template="${HOME}/.local/bin/resources/cava_config"
+
 btop_config="${HOME}/.config/btop/themes/wal.theme"
 btop_template="${HOME}/.local/bin/resources/btop_config"
+
 
 # Cava Config
 cava_text=$(cat "$cava_template")
 cava_text=$(eval "echo \"$cava_text\"")
 echo "$cava_text" > "$cava_config"
 
+
 # Btop Config
 btop_text=$(cat "$btop_template")
 btop_text=$(eval "echo \"$btop_text\"")
 echo "$btop_text" > "$btop_config"
+
+
+# Waybar Config (copy wal colors)
+colors_waybar="${HOME}/.cache/wal/colors-waybar.css"
+waybar_destination="${HOME}/.config/waybar/wal.css"
+
+cp "$colors_waybar" "$waybar_destination"
+
 
 # Reload configs
 pkill -USR2 cava
 pkill -USR2 btop
 pkill -USR2 waybar
 
+
 # Firefox Theme
 pywalfox update 
+
 
 # Set Wallpaper
 swaybg -i "$(< "${HOME}/.cache/wal/wal")" --mode=fill
