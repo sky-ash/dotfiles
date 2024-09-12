@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [[ -d "$HOME/dotfiles" ]]; then
+    DOTS="$HOME/dotfiles"
+
+	config_dots=$(ls -d $DOTS/home/.config/*)
+	local_dots=$(ls $DOTS/home/.local/)
+
+	home_files=$(ls -a $DOTS/home/)
+	home_files=$(echo $home_files | sed 's/\.config//g' | sed 's/\.local//g')
+
+	mkdir -p $DOTS/config_copy
+	rm -rf $(echo "$config_dots" | sed "s|$DOTS/home/|$DOTS/|g")
+	cp -r $config_dots $DOTS/config_copy/
+
+fi
