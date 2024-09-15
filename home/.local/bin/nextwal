@@ -25,11 +25,11 @@ btop_text=$(cat "$btop_template")
 btop_text=$(eval "echo \"$btop_text\"")
 echo "$btop_text" > "$btop_config"
 
-# Waybar Config (copy wal colors)
-colors_waybar="${HOME}/.cache/wal/colors-waybar.css"
-waybar_destination="${HOME}/.config/waybar/wal.css"
-
-cp "$colors_waybar" "$waybar_destination"
+## Waybar Config (copy wal colors)
+#colors_waybar="${HOME}/.cache/wal/colors-waybar.css"
+#waybar_destination="${HOME}/.config/waybar/wal.css"
+#
+#cp "$colors_waybar" "$waybar_destination"
 
 # Reload configs
 pkill -USR2 cava
