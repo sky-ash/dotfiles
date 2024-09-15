@@ -5,7 +5,7 @@ if [[ -d "$HOME/dotfiles" ]]; then
 
     make_home_dir() {
     	mkdir -p $HOME/.config || true
-    	mkdir -p $HOME/.cache || true
+    	#mkdir -p $HOME/.cache/syncdots || true
     	mkdir -p $HOME/.local/share || true
 		mkdir -p $HOME/.local/bin || true
     }
@@ -27,8 +27,10 @@ if [[ -d "$HOME/dotfiles" ]]; then
     make_home_dir 2>/dev/null
 	back_up_configure
 
+	# cp -r $HOME/.config/waybar/wal.css $HOME/home/.cache/syncdots/waybar/wal.css 
 	rm -rf $HOME/.config/{btop,catnap,cava,dunst,hypr,kitty,rofi,waybar}
 	cp -r $DOTS/home/.config/* $HOME/.config/
+	# cp -r $HOME/home/.cache/syncdots/waybar/wal.css $HOME/.config/waybar/wal.css
 
 	rm -rf $HOME/.local/share/{fonts,icons,wallpaper}
 	rm -rf $HOME/.local/bin/*
