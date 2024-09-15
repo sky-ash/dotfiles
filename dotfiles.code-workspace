@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../.cache/wal"
+		},
+		{
+			"path": "../.config"
+		}
+	],
+	"settings": {}
+}
