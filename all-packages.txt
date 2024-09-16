@@ -7,6 +7,8 @@ bluez-utils
 brightnessctl
 btop
 catnap-git
+catppuccin-cursors-macchiato
+catppuccin-gtk-theme-macchiato
 cava
 chromium
 clang
@@ -17,6 +19,7 @@ efibootmgr
 ffmpegthumbnailer
 file-roller
 firefox
+gimp
 git
 grimblast-git
 grub
@@ -39,6 +42,8 @@ nomachine
 nwg-look
 obs-studio
 obsidian
+papirus-folders-catppuccin-git
+papirus-icon-theme
 peaclock
 pipewire-alsa
 polkit-kde-agent
@@ -52,6 +57,7 @@ qt6-wayland
 raw-thumbnailer
 rofi-lbonn-wayland-only-git
 sddm-git
+sddm-theme-catppuccin-git
 signal-desktop
 spicetify-cli
 spotify

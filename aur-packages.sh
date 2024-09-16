@@ -12,7 +12,7 @@ if ! pacman -Qq yay &>/dev/null; then
 fi
 
 # List of packages to install
-packages=$(cat aur-packages.txt)
+packages=$(cat all-packages.txt)
 
 # Install packages using yay
 yay -S --noconfirm --needed $packages

@@ -1,16 +1,28 @@
 #!/bin/bash
 
-if [[ -d "$HOME/dotfiles" ]]; then
-    DOTS="$HOME/dotfiles"
+repo=$(pwd)
+dotfiles="$HOME/dotfiles"
 
-	config_dots=$(ls -d $DOTS/home/.config/*)
-	local_dots=$(ls $DOTS/home/.local/)
+echo "repo: $repo"
+echo "dotfiles: $dotfiles"
 
-	home_files=$(ls -a $DOTS/home/)
+if [[ -d "$dotfiles" ]]; then
+	echo "dotfiles directory already exists"
+else
+	echo "else"
+	# cp -r $repo $dotfiles
+fi
+
+if [[ -d "$dotfiles" ]]; then
+
+	config_dots=$(ls -d $dotfiles/home/.config/*)
+	local_dots=$(ls -d $dotfiles/home/.local/*)
+
+	home_files=$(ls -a $dotfiles/home/)
 	home_files=$(echo $home_files | sed 's/\.config//g' | sed 's/\.local//g')
 
-	mkdir -p $DOTS/config_copy
-	rm -rf $(echo "$config_dots" | sed "s|$DOTS/home/|$DOTS/|g")
-	cp -r $config_dots $DOTS/config_copy/
+	#mkdir -p $DOTS/config_copy
+	#rm -rf $(echo "$config_dots" | sed "s|$DOTS/home/|$DOTS/|g")
+	#cp -r $config_dots $DOTS/config_copy/
 
 fi
