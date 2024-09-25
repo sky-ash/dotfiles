@@ -1,8 +1,18 @@
 # Dotfiles
 
+## Disclaimer
+> these are my personal dotfiles. 
+
+if you are thinking about installing them, keep in mind:
+- they are not designed to be installed on other systems. 
+- they are designed along my personal preferences, including things like my directory-structure, aur packages etc. 
+- they are always a work in progress, constantly evolving and rarely error-free. 
+> you are welcome to use my configs or scripts as a reference for your own :)
+
+
 ## Overview
 --------------------------------------------
-|Left Column        | | Right Column        |
+| | | |
 |-------------------|-|---------------------|
 | wm                |:| hyprland            |
 | terminal          |:| kitty               |
@@ -48,5 +58,3 @@ To install these dotfiles on your system, follow these steps:
     ```bash
     ./install.sh
     ```
-
-    This script will create symbolic links for the dotfiles in your home directory.
