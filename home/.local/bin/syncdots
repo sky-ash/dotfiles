@@ -21,7 +21,7 @@ if [[ -d "$HOME/dotfiles" ]]; then
     	cp -r $HOME/.local/share/{fonts,icons,wallpaper} $HOME/.dotfiles_backup/.local/share
     	cp -r $HOME/.local/bin/* $HOME/.dotfiles_backup/.local/bin
     
-    	cp -r $HOME/{.bash_profile,.bashrc,.gtkrc-2.0,.xinitrc} $HOME/.dotfiles_backup
+    	cp -r $HOME/{.bashrc,.xinitrc} $HOME/.dotfiles_backup
     }
 
     make_home_dir 2>/dev/null
@@ -37,7 +37,7 @@ if [[ -d "$HOME/dotfiles" ]]; then
 	cp -r $DOTS/home/.local/share/* $HOME/.local/share/
 	cp -r $DOTS/home/.local/bin/* $HOME/.local/bin/
 
-	rm -rf $HOME/{.bash_profile,.bashrc,.gtkrc-2.0,.xinitrc}
-	cp -r $DOTS/home/{.bash_profile,.bashrc,.gtkrc-2.0,.xinitrc} $HOME/
+	rm -rf $HOME/{.bashrc,.xinitrc}
+	cp -r $DOTS/home/{.bashrc,.xinitrc} $HOME/
 
 fi

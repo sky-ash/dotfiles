@@ -1,0 +1,9 @@
+base
+base-devel
+grub
+linux
+linux-firmware
+networkmanager
+efibootmgr
+
+yay -S --noconfirm 

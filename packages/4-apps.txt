@@ -1,0 +1,17 @@
+bitwarden
+firefox
+imv
+mpv
+mullvad-vpn-bin
+nomachine
+thunar
+
+signal-desktop
+spotify
+veracrypt
+vscodium
+vscodium-marketplace
+
+gimp
+discord
+obsidian

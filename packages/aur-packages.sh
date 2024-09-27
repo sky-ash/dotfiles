@@ -12,9 +12,9 @@ if ! pacman -Qq yay &>/dev/null; then
 fi
 
 # List of packages to install
-packages=$(cat packages/packages.txt)
-apps=$(cat packages/apps.txt)
+packages=$(cat packages.txt)
+apps=$(cat apps.txt)
 
 # Install packages using yay
-yay -S --noconfirm --needed $packages $apps
+yay -S --noconfirm --needed 
 yay -Syyu --noconfirm

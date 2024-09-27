@@ -21,16 +21,15 @@
     },
     "custom/syncdots": {
         "format": "💫 {}",   
-        "interval": 7200,                     // every two hours
-        "on-click": "~/.config/waybar/scripts/syncdots.sh", // update system
+        "on-click": "~/.local/bin/syncdots",  // update system
         "signal": 8
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "ᯤ {essid} ({signalStrength}%)",
-        "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
+        "format-wifi": "  {essid} ({signalStrength}%)",
+        "format-ethernet": " {ipaddr}/{cidr} (",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
+        "format-linked": "{ifname} (No IP)",
         "format-disconnected": "Disconnected ⚠",
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },

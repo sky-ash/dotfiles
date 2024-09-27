@@ -1,0 +1,19 @@
+nano
+git
+kitty
+
+hyprutils-git
+hyprlock-git
+hyprshot-git
+hypridle-git
+
+#bluetooth (blueberry)
+brightnessctl
+copyq
+dunst
+
+
+ffmpegthumbnailer
+file-roller
+raw-thumbnailer
+gvfs
