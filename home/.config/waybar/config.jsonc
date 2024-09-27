@@ -20,14 +20,14 @@
         "format": "{}"
     },
     "custom/syncdots": {
-        "format": "💫 {}",   
+        "format": "󱑡 {}",   
         "on-click": "~/.local/bin/syncdots",  // update system
         "signal": 8
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "  {essid} ({signalStrength}%)",
-        "format-ethernet": " {ipaddr}/{cidr} (",
+        "format-wifi": "󰖩 {essid} ({signalStrength}%)",
+        "format-ethernet": "󰈀 {ipaddr}/{cidr}",
         "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
         "format-linked": "{ifname} (No IP)",
         "format-disconnected": "Disconnected ⚠",
@@ -60,9 +60,9 @@
             "warning": 30,
             "critical": 20
         },
-        "format": "🔋{capacity}%",
-        "format-charging": "⚡{capacity}%",
-        "format-plugged": "🔌{capacity}%",
-        "format-alt": "{time} 🔋"
+        "format": "󱊢 {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󱰼 {capacity}%",
+        "format-alt": "󱊢 {time}"
     }
 }
