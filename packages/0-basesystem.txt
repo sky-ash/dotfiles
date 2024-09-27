@@ -5,5 +5,3 @@ linux
 linux-firmware
 networkmanager
 efibootmgr
-
-yay -S --noconfirm 

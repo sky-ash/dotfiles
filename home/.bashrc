@@ -9,6 +9,7 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
 
+alias y='yay -S --noconfirm'
 alias yayyy='yay -Syyu --noconfirm'
 alias yeet='yay -Rcns'
 alias neo='neo-matrix'

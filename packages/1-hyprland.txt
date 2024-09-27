@@ -10,11 +10,23 @@ polkit-kde-agent
 wayland-git
 hyprland-git
 
-yay -S --noconfirm --asdeps qt6-wayland qt5-wayland xdg-desktop-portal-hyprland-git wayland-git hyprutils-git 
-yay -S --noconfirm --asexplicit 
-hyprland-git kitty-git hyprshot-git 
-hypridle-git hyprlock-git hyprpaper-git 
-hyprcursor-git waybar-git 
+
+yay -S --noconfirm --asdeps qt6-wayland qt5-wayland xdg-desktop-portal-hyprland-git wayland-git
+hyprlang-git
+hyprutils-git 
+
+
+hyprland-git
+kitty-git
+hyprshot-git 
+hypridle-git
+hyprlock-git
+hyprpaper-git 
+hyprcursor-git
+waybar-git 
 sddm-git 
 
-&& yay -S --noconfirm --needed polkit-kde-agent pipewire-alsa xorg-xrandr xorg-xinit git nano && yay -Syyu --noconfirm 
+polkit-kde-agent
+pipewire-alsa
+xorg-xrandr
+xorg-xinit
