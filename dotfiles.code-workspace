@@ -1,14 +1,25 @@
 {
-	"folders": [
-		{
-			"path": "."
-		},
-		{
-			"path": "../.cache/wal"
-		},
-		{
-			"path": "../.config"
-		}
-	],
-	"settings": {}
+    "folders": [
+        {
+            "path": "."
+        },
+        {
+            "path": "../.dotfiles_backup"
+        },
+        {
+            "path": "../.config"
+        },
+        {
+            "path": "../.vscode-oss"
+        },
+        {
+            "path": "../.cache"
+        },
+        {
+            "path": "../.mozilla"
+        },
+        {
+            "path": "../.local"
+        }
+    ]
 }
