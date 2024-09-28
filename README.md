@@ -8,6 +8,7 @@ if you are thinking about installing them, keep in mind:
 - they are designed along my personal preferences, including things like my directory-structure, monitor config, aur packages etc. 
 - they are always a work in progress, constantly evolving and rarely error-free. 
 - (if you clone this directory, it will include a large amount of wallpapers which i was too lazy to backup elsewhere. sorry not sorry)
+ - currently in the process of moving my wallpaper collection somewhere else. however, you might still clone my active wallpaper rotation until i have implemented a different way to handle them.
 > you are welcome to use my configs or scripts as a reference for your own :)
 
 ## features
