@@ -37,21 +37,38 @@ yay -S --noconfirm --needed $packages1 $packages2 $wallpaper $packages3 $package
 
 update() {
 	dir=$1
+	echo "update function called on $dir"
+
+	echo "copying $HOME/$dir to $backup/"
 	cp -r $HOME/$dir $backup/
+	echo "finished copying $HOME/$dir to $backup/"
+
+	echo "now iterating over $dots/$dir"
 	for f in $(ls -A $dots/$dir); do
+		echo "removing $HOME/$dir/$f, then copying $dots/$dir/$f to $HOME/$dir/"
+
 		rm -rf $HOME/$dir/$f
 		cp -r $dots/$dir/$f $HOME/$dir/
 	done
+
+	echo "finished updating $dir"
 }
 
 for f in $(ls -A $dots); do
+
+	echo "checking $f"
 	if [[ -f $f ]]; then
+		echo "$f is a file"
 		cp -r $HOME/$f $backup/
 		rm -rf $HOME/$f
 		cp -r $dots/$f $HOME/
+	else
+		echo "skipping: $f is a directory."
 	fi
 done
 
 update .config
 update .local/bin
 update .local/share
+
+echo "Installation complete."
