@@ -85,6 +85,6 @@ done
 
 update .config
 update .local/bin
-#update .local/share
+update .local/share
 
 echo "Installation complete."
