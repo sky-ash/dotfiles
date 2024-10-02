@@ -49,11 +49,11 @@ fi
 
 update() {
 	dir=$1
-	echo "update function called on $dir\n"
+	echo -e "update function called on $dir\n"
 
 	echo "backing up $dir (copying from ~/ to $backup"
 	cp -r $HOME/$dir $backup/
-	echo "finished copying ~/$dir to $backup\n"
+	echo -e "finished copying ~/$dir to $backup\n"
 
 	echo "now iterating over $dots/$dir"
 	for f in $(ls -A $dots/$dir); do
@@ -64,27 +64,27 @@ update() {
 		cp -r $dots/$dir/$f $HOME/$dir/
 	done
 
-	echo "finished updating $dir\n"
+	echo -e "finished updating $dir\n"
 }
 
 
-echo "iterating over $dots to find files to copy to home-directory\n"
+echo -e "iterating over $dots to find files to copy to home-directory\n"
 for f in $(ls -A $dots); do
 
 	echo "CHECKING $f:"
 	if [[ -f $dots/$f ]]; then
 
-		echo "$f is a file. copying to home-directory.\n"
+		echo -e "$f is a file. copying to home-directory.\n"
 		cp -r $HOME/$f $backup/
 		rm -rf $HOME/$f
 		cp -r $dots/$f $HOME/
 	else
-		echo "skipping: $f is a directory.\n"
+		echo -e "skipping: $f is a directory.\n"
 	fi
 done
 
 update .config
 update .local/bin
-update .local/share
+#update .local/share
 
 echo "Installation complete."
