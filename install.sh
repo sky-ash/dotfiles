@@ -50,8 +50,8 @@ for f in $(ls -A $dots); do
 		rm -rf $HOME/$f
 		cp -r $dots/$f $HOME/
 	fi
-
-	update .config
-	update .local/bin
-	update .local/share
 done
+
+update .config
+update .local/bin
+update .local/share
