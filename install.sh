@@ -32,7 +32,8 @@ packages8="neo-matix-git peaclock-git"
 yay -S --noconfirm --needed $packages1 $packages2 $wallpaper $packages3 $packages7    #     $packages8    #  $packages5 $packages6 $thunar
 
 
-backup_and_update(dir) {
+update() {
+	dir=$1
 	for f in $(ls -A $dots/$dir); do
 		mkdir -p $backup/$dir
 		mv -v $HOME/$dir/$f $backup/$dir
@@ -46,7 +47,7 @@ for f in $(ls -A $dots); do
 		cp -r $dots/$f $HOME/
 	fi
 
-	backup_and_update .config
-	backup_and_update .local/bin
-	backup_and_update .local/share
+	update .config
+	update .local/bin
+	update .local/share
 done
