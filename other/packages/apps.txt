@@ -1,6 +1,0 @@
-spotify
-spicetify-cli
-steam
-signal-desktop
-obs-studio
-obsidian

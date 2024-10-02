@@ -1,80 +1,52 @@
 #!/bin/bash
 
-DOTS=$(pwd)
+mkdir -p ~/.cache/dotfiles
 
-make_home_dir() {
-	mkdir -p $HOME/.config || true
-	mkdir -p $HOME/.cache || true
-	mkdir -p $HOME/.local/share/fonts || true
-	mkdir -p $HOME/.local/share/icons || true
-	mkdir -p $HOME/.local/share/wallpaper || true
-	mkdir -p $HOME/.local/bin || true
+dots=$(pwd)/dots
+echo "$dots" > ~/.cache/dotfiles/dots
+
+backup=$HOME/.dots_backup
+
+# Check if yay is installed
+if ! pacman -Qq yay &>/dev/null; then
+    # Install yay
+    cd ~
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    makepkg -si
+    cd ..
+    yay -Syu --noconfirm
+fi
+
+# List of packages to install
+packages1="wayland wireplumber pipewire-alsa hyprland xorg-xinit xdg-desktop-portal-hyprland-git copyq dunst polkit-kde-agent kitty-git"
+packages2="waybar-git rofi-lbonn-wayland-only-git sddm-git hyprlock-git hyprshot-git" # hyprcursor-git 
+wallpaper="swaybg-git" # hyprpaper-git 
+packages3="brightnessctl playerctl python-pywal python-pywalfox btop-git catnap-git cava-git ttf-jetbrains-mono-nerd ttf-material-design-icons-git"
+thunar="file-roller raw-thumbnailer gvfs thunar thunar-volman thunar-archive-manager ffmpegthumbnailer tumbler usbutils"
+packages5="firefox imv mpv nano blueberry vscodium vscodium-marketplace"
+packages6="discord gimp intellij-idea-ultimate-edition mullvad-vpn-bin nano obs-studio obsidian rstudio-desktop-bin signal-desktop spotify bitwarden nomachine veracrypt"
+packages7="qt5-wayland qt6-wayland"
+packages8="neo-matix-git peaclock-git"
+
+yay -S --noconfirm --needed $packages1 $packages2 $wallpaper $packages3 $packages7    #     $packages8    #  $packages5 $packages6 $thunar
+
+
+backup_and_update(dir) {
+	for f in $(ls -A $dots/$dir); do
+		mkdir -p $backup/$dir
+		mv -v $HOME/$dir/$f $backup/$dir
+		cp -r $dots/$dir/$f $HOME/$dir/
+	done
 }
 
-back_up_configure() {
-	echo "\e[32mbacking up configuration files..."
-	mkdir -p $HOME/.dotfiles_backup/.config
-	mv -v $HOME/.config/{btop,catnap,cava,dunst,hypr,rofi,waybar,kitty} $HOME/.dotfiles_backup/.config
-
-	echo "\e[32mbacking up local files..."
-	mkdir -p $HOME/.dotfiles_backup/.local/share
-	mkdir -p $HOME/.dotfiles_backup/.local/bin
-	mv -v $HOME/.local/share/{fonts,icons,wallpaper} $HOME/.dotfiles_backup/.local/share
-	mv -v $HOME/.local/bin/* $HOME/.dotfiles_backup/.local/bin
-
-	echo "\e[32mbacking up launch-files..."
-	mv -v $HOME/{.xinitrc,.bashrc,.bash_profile} $HOME/.dotfiles_backup
-
-	echo "\e[32mbackup finished - you can find your backups at \e[33m$HOME/.dotfiles_backup"
-}
-
-echo "\e[32mpreparing directories..."
-make_home_dir 2>/dev/null
-
-echo "\e[31mWARNING: Is the dotfiles-folder at \e[33m$(pwd)? \e[32m(y/N)"
-read input
-if [[ "$input" == "y" ]] || [[ "$input" == "Y" ]]; then
-	if [[ -d "$HOME/.dotfiles_backup" ]]; then
-		echo ""
-		echo "\e[31mWARNING: There seems to already be a backup at \e[33m'$HOME/.dotfiles_backup'"
-		echo "\e[33mDo you wanna overwrite it \e[32m(y/N)?"
-		read input
-		if [[ "$input" == "y" ]] || [[ "$input" == "Y" ]]; then
-			rm -rf "$HOME/.dotfiles_backup"
-			echo "\e[32mpreparing backup..."
-    		back_up_configure
-		else
-			echo "\e[31mplease delete \e[33m$HOME/.dotfiles_backup \e[31mmanually before installing"
-			echo "\e[32minstallation aborted"
-			exit
-		fi
-	else
-		back_up_configure
+for f in $(ls -A $dots); do
+	if [[ -f $f ]]; then
+		mv -v $HOME/$f $backup
+		cp -r $dots/$f $HOME/
 	fi
 
-	# echo "\e[32minstalling fonts..."
-	# ln -sv $DOTS/home/.local/fonts $HOME/.local/share/fonts/10_hyprdots_fonts
-	# echo "\e[32mdone"
-
-	echo "\e[32minstalling configuration files..."
-	cp -r $DOTS/home/.config/{btop,catnap,cava,dunst,hypr,rofi,waybar,kitty} $HOME/.config/
-	echo "\e[32mdone"
-
-	echo "\e[32minstalling local files..."
-	cp -r $DOTS/home/.local/share/{fonts,icons,wallpaper} $HOME/.local/share/
-	cp -r $DOTS/home/.local/bin/* $HOME/.local/bin/
-	echo "\e[32mdone"
-
-	echo "\e[32minstalling launch-files..."
-	cp -r $DOTS/home/{.xinitrc,.bashrc,.bash_profile} $HOME/
-	echo "\e[32mdone"
-
-	echo "\e[32minstallation finished"
-
-else
-
-	echo "\e[32mplease cd into the dotfiles-directory and run this script again"
-	echo "\e[32minstallation aborted"
-	exit
-
-fi
+	backup_and_update .config
+	backup_and_update .local/bin
+	backup_and_update .local/share
+done

@@ -14,11 +14,10 @@ alias yayyy='yay -Syyu --noconfirm'
 alias yeet='yay -Rcns'
 alias neo='neo-matrix'
 
-
-
-
 # Alternative (blocks terminal for 0-3ms)
 cat ~/.cache/wal/sequences
 
 # To add support for TTYs this line can be optionally added.
 source ~/.cache/wal/colors-tty.sh
+
+export R_LIBS_USER=~/.rpackages
