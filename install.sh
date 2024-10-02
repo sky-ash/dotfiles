@@ -6,7 +6,10 @@ dots=$(pwd)/dots
 echo "$dots" > ~/.cache/dotfiles/dots
 
 backup=$HOME/.dots_backup
+rm -rf $backup
+mkdir -p $backup
 
+# Update system
 # Check if yay is installed
 if ! pacman -Qq yay &>/dev/null; then
     # Install yay
@@ -34,16 +37,17 @@ yay -S --noconfirm --needed $packages1 $packages2 $wallpaper $packages3 $package
 
 update() {
 	dir=$1
+	cp -r $HOME/$dir $backup/
 	for f in $(ls -A $dots/$dir); do
-		mkdir -p $backup/$dir
-		mv -v $HOME/$dir/$f $backup/$dir
+		rm -rf $HOME/$dir/$f
 		cp -r $dots/$dir/$f $HOME/$dir/
 	done
 }
 
 for f in $(ls -A $dots); do
 	if [[ -f $f ]]; then
-		mv -v $HOME/$f $backup
+		cp -r $HOME/$f $backup/
+		rm -rf $HOME/$f
 		cp -r $dots/$f $HOME/
 	fi
 
