@@ -1,0 +1,7 @@
+base
+base-devel
+efibootmgr
+grub
+linux
+linux-firmware
+networkmanager
