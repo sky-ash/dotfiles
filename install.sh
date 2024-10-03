@@ -1,80 +1,89 @@
 #!/bin/bash
 
-DOTS=$(pwd)
+mkdir -p ~/.cache/dotfiles
 
-make_home_dir() {
-	mkdir -p $HOME/.config || true
-	mkdir -p $HOME/.cache || true
-	mkdir -p $HOME/.local/share/fonts || true
-	mkdir -p $HOME/.local/share/icons || true
-	mkdir -p $HOME/.local/share/wallpaper || true
-	mkdir -p $HOME/.local/bin || true
-}
+pwd=$(pwd)
+dots=$pwd/dots
+echo "$dots" > ~/.cache/dotfiles/dots
 
-back_up_configure() {
-	echo "\e[32mbacking up configuration files..."
-	mkdir -p $HOME/.dotfiles_backup/.config
-	mv -v $HOME/.config/{btop,catnap,cava,dunst,hypr,rofi,waybar,kitty} $HOME/.dotfiles_backup/.config
+backup=$HOME/.dots_backup
+rm -rf $backup
+mkdir -p $backup
 
-	echo "\e[32mbacking up local files..."
-	mkdir -p $HOME/.dotfiles_backup/.local/share
-	mkdir -p $HOME/.dotfiles_backup/.local/bin
-	mv -v $HOME/.local/share/{fonts,icons,wallpaper} $HOME/.dotfiles_backup/.local/share
-	mv -v $HOME/.local/bin/* $HOME/.dotfiles_backup/.local/bin
-
-	echo "\e[32mbacking up launch-files..."
-	mv -v $HOME/{.xinitrc,.bashrc,.bash_profile} $HOME/.dotfiles_backup
-
-	echo "\e[32mbackup finished - you can find your backups at \e[33m$HOME/.dotfiles_backup"
-}
-
-echo "\e[32mpreparing directories..."
-make_home_dir 2>/dev/null
-
-echo "\e[31mWARNING: Is the dotfiles-folder at \e[33m$(pwd)? \e[32m(y/N)"
-read input
-if [[ "$input" == "y" ]] || [[ "$input" == "Y" ]]; then
-	if [[ -d "$HOME/.dotfiles_backup" ]]; then
-		echo ""
-		echo "\e[31mWARNING: There seems to already be a backup at \e[33m'$HOME/.dotfiles_backup'"
-		echo "\e[33mDo you wanna overwrite it \e[32m(y/N)?"
-		read input
-		if [[ "$input" == "y" ]] || [[ "$input" == "Y" ]]; then
-			rm -rf "$HOME/.dotfiles_backup"
-			echo "\e[32mpreparing backup..."
-    		back_up_configure
+check_install_yay() {
+	if ! pacman -Qq yay &>/dev/null; then
+		echo "Yay is required to install packages. Checking if git is installed..."
+		if ! pacman -Qq git &>/dev/null; then
+			echo "Git is not installed. Installing git..."
+			sudo pacman -S git --noconfirm
+			echo "Git has been installed."
 		else
-			echo "\e[31mplease delete \e[33m$HOME/.dotfiles_backup \e[31mmanually before installing"
-			echo "\e[32minstallation aborted"
-			exit
+			echo "Git is already installed."
 		fi
-	else
-		back_up_configure
+		
+		echo "Proceeding with yay installation..."
+		cd ~
+		git clone https://aur.archlinux.org/yay.git
+		cd yay
+		makepkg -si
+		cd ..
+		yay -Syu --noconfirm
 	fi
+}
 
-	# echo "\e[32minstalling fonts..."
-	# ln -sv $DOTS/home/.local/fonts $HOME/.local/share/fonts/10_hyprdots_fonts
-	# echo "\e[32mdone"
+update() {
+	dir=$1
+	echo -e "update function called on $dir\n"
 
-	echo "\e[32minstalling configuration files..."
-	cp -r $DOTS/home/.config/{btop,catnap,cava,dunst,hypr,rofi,waybar,kitty} $HOME/.config/
-	echo "\e[32mdone"
+	echo "backing up $dir (copying from ~/ to $backup"
+	cp -r $HOME/$dir $backup/
+	echo -e "finished copying ~/$dir to $backup\n"
 
-	echo "\e[32minstalling local files..."
-	cp -r $DOTS/home/.local/share/{fonts,icons,wallpaper} $HOME/.local/share/
-	cp -r $DOTS/home/.local/bin/* $HOME/.local/bin/
-	echo "\e[32mdone"
+	echo "now iterating over $dots/$dir"
+	for f in $(ls -A $dots/$dir); do
+		echo "removing $f from ~/$dir"
+		rm -rf $HOME/$dir/$f
+		
+		echo "copying $f... from $dots/$dir to ~/$dir"
+		cp -r $dots/$dir/$f $HOME/$dir/
+	done
 
-	echo "\e[32minstalling launch-files..."
-	cp -r $DOTS/home/{.xinitrc,.bashrc,.bash_profile} $HOME/
-	echo "\e[32mdone"
+	echo -e "finished updating $dir\n"
+}
 
-	echo "\e[32minstallation finished"
+# List of packages to install
+deps=$(cat $pwd/.install/deps.txt)
 
+# Check if yay is installed
+check_install_yay
+
+# Install dependencies
+echo "install dependencies with yay? (y/n)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+	echo "Installing packages with yay..."
+	yay -S --noconfirm --needed $deps
 else
-
-	echo "\e[32mplease cd into the dotfiles-directory and run this script again"
-	echo "\e[32minstallation aborted"
-	exit
-
+	echo "WARNING: SKIPPING DEPENDENCY INSTALLATION."
 fi
+
+echo -e "iterating over $dots to find files to copy to home-directory\n"
+for f in $(ls -A $dots); do
+
+	echo "CHECKING $f:"
+	if [[ -f $dots/$f ]]; then
+
+		echo -e "$f is a file. copying to home-directory.\n"
+		cp -r $HOME/$f $backup/
+		rm -rf $HOME/$f
+		cp -r $dots/$f $HOME/
+	else
+		echo -e "skipping: $f is a directory.\n"
+	fi
+done
+
+update .config
+update .local/bin
+update .local/share
+
+echo "Installation complete."

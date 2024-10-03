@@ -1,0 +1,32 @@
+#!/bin/bash 
+
+
+# COLORS
+# wal
+wal -i "${HOME}/.local/share/wallpaper/" --iterative -q -n
+
+# Read colors from file into an array
+mapfile -t colors < "${HOME}/.cache/wal/colors"
+
+# Define file paths
+cava_config="${HOME}/.config/cava/config"
+btop_config="${HOME}/.config/btop/themes/wal.theme"
+
+# Cava Config
+cava=$(cat "${HOME}/.config/cava/template")
+cava=$(eval "echo \"$cava\"")
+echo "$cava" > "$cava_config"
+
+# Btop Config
+btop=$(cat "${HOME}/.config/btop/themes/wal.template")
+btop=$(eval "echo \"$btop\"")
+echo "$btop" > "$btop_config"
+
+# Reload configs
+pkill -USR2 cava
+pkill -USR2 btop
+pkill -USR2 waybar
+pywalfox update 
+
+# Set Wallpaper
+swaybg -i "$(< "${HOME}/.cache/wal/wal")" --mode=fill

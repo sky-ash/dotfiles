@@ -1,0 +1,24 @@
+#!/bin/bash
+
+dots=$(cat ~/.cache/dotfiles/dots)
+
+backup=$HOME/.dots_backup
+
+backup_and_update(dir) {
+	for f in $(ls -A $dots/$dir); do
+		mkdir -p $backup/$dir
+		mv -v $HOME/$dir/$f $backup/$dir
+		cp -r $dots/$dir/$f $HOME/$dir/
+	done
+}
+
+for f in $(ls -A $dots); do
+	if [[ -f $f ]]; then
+		mv -v $HOME/$f $backup
+		cp -r $dots/$f $HOME/
+	fi
+
+	backup_and_update .config
+	backup_and_update .local/bin
+	backup_and_update .local/share
+done
