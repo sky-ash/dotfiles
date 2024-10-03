@@ -2,18 +2,26 @@
 
 mkdir -p ~/.cache/dotfiles
 
-dots=$(pwd)/dots
+pwd=$(pwd)
+dots=$pwd/dots
 echo "$dots" > ~/.cache/dotfiles/dots
 
 backup=$HOME/.dots_backup
 rm -rf $backup
 mkdir -p $backup
 
-# Update system
-# Check if yay is installed
 check_install_yay() {
 	if ! pacman -Qq yay &>/dev/null; then
-		# Install yay
+		echo "Yay is required to install packages. Checking if git is installed..."
+		if ! pacman -Qq git &>/dev/null; then
+			echo "Git is not installed. Installing git..."
+			sudo pacman -S git --noconfirm
+			echo "Git has been installed."
+		else
+			echo "Git is already installed."
+		fi
+		
+		echo "Proceeding with yay installation..."
 		cd ~
 		git clone https://aur.archlinux.org/yay.git
 		cd yay
@@ -22,30 +30,6 @@ check_install_yay() {
 		yay -Syu --noconfirm
 	fi
 }
-
-check_install_yay
-
-# List of packages to install
-packages1="wayland wireplumber pipewire-alsa hyprland xorg-xinit xdg-desktop-portal-hyprland-git copyq dunst polkit-kde-agent kitty-git"
-packages2="waybar-git rofi-lbonn-wayland-only-git sddm-git hyprlock-git hyprshot-git" # hyprcursor-git 
-wallpaper="swaybg-git" # hyprpaper-git 
-packages3="brightnessctl playerctl python-pywal python-pywalfox btop-git catnap-git cava-git ttf-jetbrains-mono-nerd ttf-material-design-icons-git"
-thunar="file-roller raw-thumbnailer gvfs thunar thunar-volman thunar-archive-manager ffmpegthumbnailer tumbler usbutils"
-packages5="firefox imv mpv nano blueberry vscodium vscodium-marketplace"
-packages6="discord gimp intellij-idea-ultimate-edition mullvad-vpn-bin nano obs-studio obsidian rstudio-desktop-bin signal-desktop spotify bitwarden nomachine veracrypt"
-packages7="qt5-wayland qt6-wayland"
-packages8="neo-matix-git peaclock-git"
-
-echo "Would you like to install packages with yay? (y/n)"
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-	echo "Installing packages with yay..."
-	yay -S --noconfirm --needed $packages1 $packages2 $wallpaper $packages3 $packages7    #     $packages8    #  $packages5 $packages6 $thunar
-else 
-	echo "Skipping package installation."
-fi
-
-
 
 update() {
 	dir=$1
@@ -67,6 +51,21 @@ update() {
 	echo -e "finished updating $dir\n"
 }
 
+# List of packages to install
+deps=$(cat $pwd/.install/deps.txt)
+
+# Check if yay is installed
+check_install_yay
+
+# Install dependencies
+echo "install dependencies with yay? (y/n)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+	echo "Installing packages with yay..."
+	yay -S --noconfirm --needed $deps
+else
+	echo "WARNING: SKIPPING DEPENDENCY INSTALLATION."
+fi
 
 echo -e "iterating over $dots to find files to copy to home-directory\n"
 for f in $(ls -A $dots); do
