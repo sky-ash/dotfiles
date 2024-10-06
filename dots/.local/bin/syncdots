@@ -3,22 +3,28 @@
 dots=$(cat ~/.cache/dotfiles/dots)
 
 backup=$HOME/.dots_backup
+rm -rf $backup
+mkdir -p $backup
 
-backup_and_update(dir) {
+update() {
+	dir=$1
+
+	cp -r $HOME/$dir $backup/
+
 	for f in $(ls -A $dots/$dir); do
-		mkdir -p $backup/$dir
-		mv -v $HOME/$dir/$f $backup/$dir
+		rm -rf $HOME/$dir/$f
 		cp -r $dots/$dir/$f $HOME/$dir/
 	done
 }
 
 for f in $(ls -A $dots); do
-	if [[ -f $f ]]; then
-		mv -v $HOME/$f $backup
+	if [[ -f $dots/$f ]]; then
+		cp -r $HOME/$f $backup/
+		rm -rf $HOME/$f
 		cp -r $dots/$f $HOME/
 	fi
-
-	backup_and_update .config
-	backup_and_update .local/bin
-	backup_and_update .local/share
 done
+
+update .config
+update .local/bin
+update .local/share
