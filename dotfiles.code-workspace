@@ -4,22 +4,19 @@
             "path": "."
         },
         {
-            "path": "../.dotfiles_backup"
+            "path": "../../.config"
         },
         {
-            "path": "../.config"
+            "path": "../../.vscode-oss"
         },
         {
-            "path": "../.vscode-oss"
+            "path": "../../.cache"
         },
         {
-            "path": "../.cache"
+            "path": "../../.mozilla"
         },
         {
-            "path": "../.mozilla"
-        },
-        {
-            "path": "../.local"
+            "path": "../../.local"
         }
     ]
 }
