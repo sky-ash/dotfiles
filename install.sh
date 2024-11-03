@@ -3,7 +3,7 @@
 mkdir -p ~/.cache/dotfiles
 
 pwd=$(pwd)
-dots=$pwd/dots
+dots="$pwd/dots"
 echo "$dots" > ~/.cache/dotfiles/dots
 
 backup=$HOME/.dots_backup
@@ -33,26 +33,26 @@ check_install_yay() {
 
 update() {
 	dir=$1
-	echo -e "update function called on $dir\n"
+	echo -e "update function called on '$dir\n'"
 
-	echo "backing up $dir (copying from ~/ to $backup"
-	cp -r $HOME/$dir $backup/
-	echo -e "finished copying ~/$dir to $backup\n"
+	echo "backing up '$dir' (copying from ~/ to '$backup'"
+	cp -r "$HOME/$dir" "$backup/"
+	echo -e "finished copying '~/$dir' to '$backup\n'"
 
-	echo "now iterating over $dots/$dir"
-	for f in $(ls -A $dots/$dir); do
-		echo "removing $f from ~/$dir"
-		rm -rf $HOME/$dir/$f
+	echo "now iterating over '$dots/$dir'"
+	for f in $(ls -A "$dots/$dir"); do
+		echo "removing '$f' from '~/$dir'"
+		rm -rf "$HOME/$dir/$f"
 		
-		echo "copying $f... from $dots/$dir to ~/$dir"
-		cp -r $dots/$dir/$f $HOME/$dir/
+		echo "copying '$f'... from '$dots/$dir' to '~/$dir'"
+		cp -r "$dots/$dir/$f" "$HOME/$dir/"
 	done
 
-	echo -e "finished updating $dir\n"
+	echo -e "finished updating '$dir\n'"
 }
 
 # List of packages to install
-deps=$(cat $pwd/.install/deps.txt)
+deps=$(cat "$pwd/.install/deps.txt")
 
 # Check if yay is installed
 check_install_yay
@@ -67,18 +67,18 @@ else
 	echo "WARNING: SKIPPING DEPENDENCY INSTALLATION."
 fi
 
-echo -e "iterating over $dots to find files to copy to home-directory\n"
-for f in $(ls -A $dots); do
+echo -e "iterating over '$dots' to find files to copy to home-directory\n"
+for f in $(ls -A "$dots"); do
 
 	echo "CHECKING $f:"
-	if [[ -f $dots/$f ]]; then
+	if [[ -f "$dots/$f" ]]; then
 
-		echo -e "$f is a file. copying to home-directory.\n"
-		cp -r $HOME/$f $backup/
-		rm -rf $HOME/$f
-		cp -r $dots/$f $HOME/
+		echo -e "'$f' is a file. copying to home-directory.\n"
+		cp -r "$HOME/$f" "$backup/"
+		rm -rf "$HOME/$f"
+		cp -r "$dots/$f" "$HOME/"
 	else
-		echo -e "skipping: $f is a directory.\n"
+		echo -e "skipping: '$f' is a directory.\n"
 	fi
 done
 
