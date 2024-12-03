@@ -58,14 +58,14 @@ window#waybar {
     background: alpha(@background, 0.8);
     padding: 0px 15px;
     margin: 3px 0px;
-    margin-top: 9px;
+    margin-top: 5px;
     border: 0px solid @background;
 }
 
 #workspaces {
     background: alpha(@background, 0.8);
     border-radius: 3px;
-    margin-left: 10px;
+    margin-left: 5px;
     padding-right: 0px;
     padding-left: 5px;
 }
@@ -75,7 +75,7 @@ window#waybar {
     border-radius: 3px 0 0 3px;
     border-left: 0px;
     border-right: 0px;
-    margin-left: 10px;
+    margin-left: 5px;
 }
 
 #window {
@@ -102,6 +102,6 @@ window#waybar {
 #battery {
     color: alpha(@foreground, 0.75);
     border-radius: 0 3px 3px 0;
-    margin-right: 10px;
+    margin-right: 5px;
     border-left: 0px;
 }

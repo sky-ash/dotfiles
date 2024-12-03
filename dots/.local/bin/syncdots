@@ -1,16 +1,17 @@
 #!/bin/bash
 
 dots=$(cat ~/.cache/dotfiles/dots)
-
 backup=$HOME/.dots_backup
 rm -rf $backup
-mkdir -p $backup
+
+do_backup = false
 
 update() {
 	dir=$1
-
-	cp -r $HOME/$dir $backup/
-
+	if do_backup; then
+		mkdir -p $backup
+		cp -r $HOME/$dir $backup/
+	fi
 	for f in $(ls -A $dots/$dir); do
 		rm -rf $HOME/$dir/$f
 		cp -r $dots/$dir/$f $HOME/$dir/
@@ -19,7 +20,10 @@ update() {
 
 for f in $(ls -A $dots); do
 	if [[ -f $dots/$f ]]; then
-		cp -r $HOME/$f $backup/
+		if do_backup; then
+			mkdir -p $backup
+			cp $HOME/$f $backup/
+		fi
 		rm -rf $HOME/$f
 		cp -r $dots/$f $HOME/
 	fi
