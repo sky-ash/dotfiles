@@ -4,9 +4,10 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: JetBrainsMono Nerd Font;
-    font-weight: bold;
+    font-family: Noto Sans; /*JetBrains Mono Nerd Font;*/
+    font-weight: 600;
     font-size: 14px;
+    font-style: italic;
     min-height: 0;
 }
 
@@ -53,19 +54,31 @@ window#waybar {
 #pulseaudio,
 #network,
 #workspaces,
-#tray,
+#tray
 #backlight {
     background: alpha(@background, 0.8);
     padding: 0px 15px;
     margin: 3px 0px;
-    margin-top: 5px;
+    margin-top: 9px;
     border: 0px solid @background;
 }
+
+/*
+#custom-home {
+    background: alpha(@background, 0.75);
+    border-radius: 3px 0 0 3px;
+    border-left: 0px;
+    border-right: 0px;
+
+    margin-left: 9px;
+    margin-right: 9px;
+}
+    */
 
 #workspaces {
     background: alpha(@background, 0.8);
     border-radius: 3px;
-    margin-left: 5px;
+    margin-left: 9px;
     padding-right: 0px;
     padding-left: 5px;
 }
@@ -75,7 +88,8 @@ window#waybar {
     border-radius: 3px 0 0 3px;
     border-left: 0px;
     border-right: 0px;
-    margin-left: 5px;
+    margin-left: 9px;
+    margin-right: 9px;
 }
 
 #window {
@@ -90,7 +104,7 @@ window#waybar {
     border-radius: 3px;
     border-left: 0px;
     border-right: 0px;
-    margin-left: 10px;
+    margin-left: 0px;
 }
 
 #network {
@@ -102,6 +116,6 @@ window#waybar {
 #battery {
     color: alpha(@foreground, 0.75);
     border-radius: 0 3px 3px 0;
-    margin-right: 5px;
+    margin-right: 9px;
     border-left: 0px;
 }

@@ -4,27 +4,28 @@ dots=$(cat ~/.cache/dotfiles/dots)
 backup=$HOME/.dots_backup
 rm -rf $backup
 
-do_backup = false
+#do_backup = false
 
 update() {
 	dir=$1
-	if do_backup; then
-		mkdir -p $backup
-		cp -r $HOME/$dir $backup/
-	fi
+	echo "Running update() function on:     $dir"
+	#if do_backup; then
+	#	mkdir -p $backup
+	#	cp -r $HOME/$dir $backup/
+	#fi
 	for f in $(ls -A $dots/$dir); do
-		rm -rf $HOME/$dir/$f
+		echo "cp -r $dots/$dir/$f $HOME/$dir/"
 		cp -r $dots/$dir/$f $HOME/$dir/
 	done
 }
 
 for f in $(ls -A $dots); do
 	if [[ -f $dots/$f ]]; then
-		if do_backup; then
-			mkdir -p $backup
-			cp $HOME/$f $backup/
-		fi
-		rm -rf $HOME/$f
+		#if do_backup; then
+		#	mkdir -p $backup
+		#	cp $HOME/$f $backup/
+		#fi
+		echo "cp $dots/$f $HOME/"
 		cp -r $dots/$f $HOME/
 	fi
 done

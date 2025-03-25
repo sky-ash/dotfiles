@@ -6,19 +6,26 @@
     "exclusive": true,
     "passthrough": false,
     "height": 0,
-    "modules-left": [
-        "hyprland/workspaces"
-    ],
-    "modules-center": ["clock"],
     "modules-right": [
-        "custom/syncdots",
-        "network",
-        "battery"
+        "clock",
+        "custom/syncdots"
+        //"battery",
+        //"network"
+    ],
+    "modules-center": ["hyprland/window"],
+    "modules-left": [
+        "custom/home", 
+        "hyprland/workspaces"
     ],
 
     "hyprland/window": {
         "format": "{}"
     },
+    //"custom/home": {
+    //    "format": "{whoami} {}",
+    //    "on-click": "exec kitty"
+    //
+    //},
     "custom/syncdots": {
         "format": "󱑡 {}",   
         "on-click": "~/.local/bin/syncdots",  // update system
