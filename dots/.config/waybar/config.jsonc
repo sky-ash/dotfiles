@@ -31,6 +31,17 @@
         "on-click": "~/.local/bin/syncdots",  // update system
         "signal": 8
     },
+    "custom/pipewire": {
+    "format": "{icon}",
+    "return-type": "json",
+    "signal": 8,
+    "interval": "once",
+    "format-icons": {
+        "mute": "",
+        "default": ["", "", "", ""],
+    },
+    "exec": "pw-volume status"
+    },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
         "format-wifi": "󰖩 {essid} ({signalStrength}%)",
