@@ -45,7 +45,7 @@
     },
 
     "custom/syncdots": {
-        "format": "󱑡 {}",   
+        "format": "󱑡 ",   
         "on-click": "~/.local/bin/syncdots",  // update system
         "signal": 8
     },
