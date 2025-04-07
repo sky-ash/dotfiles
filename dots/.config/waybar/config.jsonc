@@ -6,42 +6,52 @@
     "exclusive": true,
     "passthrough": false,
     "height": 0,
+
+
+
+
+    "modules-left": [
+        //"custom/home", 
+        "hyprland/workspaces", "custom/vol"
+    ],
+
+    "modules-center": ["hyprland/window"],
+
     "modules-right": [
-        "clock",
-        "custom/syncdots"
+        "clock", "custom/syncdots"
         //"battery",
         //"network"
     ],
-    "modules-center": ["hyprland/window"],
-    "modules-left": [
-        "custom/home", 
-        "hyprland/workspaces"
-    ],
+
 
     "hyprland/window": {
         "format": "{}"
     },
+
     //"custom/home": {
     //    "format": "{whoami} {}",
     //    "on-click": "exec kitty"
     //
     //},
+
     "custom/syncdots": {
         "format": "󱑡 {}",   
         "on-click": "~/.local/bin/syncdots",  // update system
         "signal": 8
     },
+
     "custom/pipewire": {
-    "format": "{icon}",
-    "return-type": "json",
-    "signal": 8,
-    "interval": "once",
-    "format-icons": {
-        "mute": "",
-        "default": ["", "", "", ""],
+        "format": "{icon}",
+        "return-type": "json",
+        "signal": 8,
+        "interval": "once",
+        "format-icons": {
+            "mute": "",
+            "default": ["", "", "", ""],
+        },
+        "exec": "pw-volume status"
     },
-    "exec": "pw-volume status"
-    },
+
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
         "format-wifi": "󰖩 {essid} ({signalStrength}%)",
@@ -51,6 +61,7 @@
         "format-disconnected": "Disconnected ⚠",
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
+
     "hyprland/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
@@ -69,9 +80,11 @@
             "10": []
         }
     },
+
     "clock": {
         "format": "{:%a, %d. %b - %H:%M}"
     },
+
     "battery": {
         "states": {
             "good": 95,
@@ -83,4 +96,6 @@
         "format-plugged": "󱰼 {capacity}%",
         "format-alt": "󱊢 {time}"
     }
+    
+
 }
