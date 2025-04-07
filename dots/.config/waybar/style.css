@@ -11,10 +11,22 @@
     min-height: 0;
 }
 
+
+
 window#waybar {
     background: alpha(@background, 0);
     color: alpha(@foreground, 0);
 }
+
+#backlight {
+    background: alpha(@background, 0.8);
+    padding: 0px 15px;
+    margin: 3px 0px;
+    margin-top: 9px;
+    border: 0px solid @background;
+}
+
+
 
 #workspaces button {
     padding: 5px;
@@ -43,38 +55,6 @@ window#waybar {
     border-radius: 3px;
 }
 
-#custom-language,
-#custom-updates,
-#custom-syncdots,
-#custom-caffeine,
-#custom-weather,
-#window,
-#clock,
-#battery,
-#pulseaudio,
-#network,
-#workspaces,
-#tray
-#backlight {
-    background: alpha(@background, 0.8);
-    padding: 0px 15px;
-    margin: 3px 0px;
-    margin-top: 9px;
-    border: 0px solid @background;
-}
-
-/*
-#custom-home {
-    background: alpha(@background, 0.75);
-    border-radius: 3px 0 0 3px;
-    border-left: 0px;
-    border-right: 0px;
-
-    margin-left: 9px;
-    margin-right: 9px;
-}
-    */
-
 #workspaces {
     background: alpha(@background, 0.8);
     border-radius: 3px;
@@ -83,14 +63,11 @@ window#waybar {
     padding-left: 5px;
 }
 
-#custom-syncdots {
-    color: alpha(@foreground, 0.75);
-    border-radius: 3px 0 0 3px;
-    border-left: 0px;
-    border-right: 0px;
-    margin-left: 9px;
-    margin-right: 9px;
-}
+
+
+
+
+
 
 #window {
     color: alpha(@foreground, 0.75);
@@ -107,15 +84,59 @@ window#waybar {
     margin-left: 0px;
 }
 
+
+/*
 #network {
     color: alpha(@foreground, 0.75);
     border-left: 0px;
     border-right: 0px;
 }
+*/
 
+
+/*
 #battery {
     color: alpha(@foreground, 0.75);
     border-radius: 0 3px 3px 0;
     margin-right: 9px;
     border-left: 0px;
 }
+*/
+
+
+#custom-syncdots {
+    color: alpha(@foreground, 0.75);
+    border-radius: 3px 0 0 3px;
+    border-left: 0px;
+    border-right: 0px;
+    margin-left: 9px;
+    margin-right: 9px;
+}
+
+
+/*
+#custom-language,
+#custom-updates,
+#custom-syncdots,
+#custom-caffeine,
+#custom-weather,
+#window,
+#clock,
+#battery,
+#pulseaudio,
+#network,
+#workspaces,
+#tray
+*/
+
+/*
+#custom-home {
+    background: alpha(@background, 0.75);
+    border-radius: 3px 0 0 3px;
+    border-left: 0px;
+    border-right: 0px;
+
+    margin-left: 9px;
+    margin-right: 9px;
+}
+    */
