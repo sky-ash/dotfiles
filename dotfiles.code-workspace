@@ -1,22 +1,16 @@
 {
-    "folders": [
-        {
-            "path": "."
-        },
-        {
-            "path": "../../.config"
-        },
-        {
-            "path": "../../.vscode-oss"
-        },
-        {
-            "path": "../../.cache"
-        },
-        {
-            "path": "../../.mozilla"
-        },
-        {
-            "path": "../../.local"
-        }
-    ]
+	"folders": [
+		{
+			"name": "dotfiles",
+			"path": "."
+		},
+		{
+			"name": "elis-dotfiles",
+			"path": "../elis-dotfiles"
+		},
+		{
+			"path": "../../.cache/wal"
+		}
+	],
+	"settings": {}
 }
