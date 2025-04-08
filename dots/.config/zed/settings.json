@@ -1,0 +1,411 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+
+{
+    // SKYLERS SETTINGS (drafted from default)
+
+    // 1. PREDICTION, COMPLETION, ASSISTANT
+    "features": {
+        "edit_prediction_provider": "zed" // change this to github copilot completions?
+    },
+
+    "show_completions_on_input": true,
+    "show_completion_documentation": true, // Whether to display inline and alongside documentation for items in the completions menu
+
+    "assistant": {
+        "version": "2", // Version of this setting.
+        "enabled": true, // Whether the assistant is enabled.
+        "button": true, // Whether to show the assistant panel button in the status bar.
+        "dock": "left", // Where to dock the assistant panel. Can be 'left', 'right' or 'bottom'.
+        "default_width": 640, // Default width when the assistant is docked to the left or right.
+        "default_height": 320, // Default height when the assistant is docked to the bottom.
+
+        // MODEL SETTINGS
+        "default_model": {
+            // model when creating new chats
+            "provider": "copilot_chat", // provider
+            "model": "gpt-4o" // model
+        },
+        "editor_model": {
+            // model for applying edits from the assistant
+            "provider": "zed.dev", // provider
+            "model": "claude-3-5-sonnet-latest" // model
+        },
+        "default_profile": "code-writer",
+        "profiles": {
+            "read-only": {
+                "name": "Read-only",
+                "tools": {
+                    "diagnostics": true,
+                    "fetch": true,
+                    "list-directory": true,
+                    "now": true,
+                    "path-search": true,
+                    "read-file": true,
+                    "regex-search": true,
+                    "thinking": true
+                }
+            },
+            "code-writer": {
+                "name": "Code Writer",
+                "tools": {
+                    "bash": true,
+                    "copy-path": true,
+                    "create-file": true,
+                    "delete-path": true,
+                    "diagnostics": true,
+                    "find-replace-file": true,
+                    "edit-files": false,
+                    "fetch": true,
+                    "list-directory": true,
+                    "move-path": true,
+                    "now": true,
+                    "path-search": true,
+                    "read-file": true,
+                    "regex-search": true,
+                    "thinking": true
+                }
+            }
+        },
+        "notify_when_agent_waiting": true
+    },
+
+    // 2. DEFAULT
+    "telemetry": {
+        // turn off telemetry
+        "diagnostics": false, // Send debug info like crash reports.
+        "metrics": false // Send anonymized usage data like what languages you're using Zed with.
+    },
+    "auto_install_extensions": {
+        "html": true
+    },
+
+    // 3. EDITOR SETTINGS
+
+    // Keybinds
+    "base_keymap": "VSCode",
+    "vim_mode": false,
+    "middle_click_paste": false, // middle-click paste on linux. -> disabled because i regularly do that by accident and not once used it intentionally.
+
+    // Theme
+    "theme": {
+        "mode": "system",
+        "light": "One Dark",
+        "dark": "One Dark"
+    },
+
+    // Coding Look & Feel
+    "hard_tabs": false, // Whether to indent lines using tab characters, as opposed to multiple spaces.
+    "tab_size": 4, // How many columns a tab should occupy.
+
+    "buffer_line_height": "comfortable",
+    "unnecessary_code_fade": 0.3,
+
+    // Signatures & Definitions
+    "auto_signature_help": false, // Show method signatures in the editor, when inside parentheses.
+    "show_signature_help_after_edits": false, // Whether to show the signature help after completion or a bracket pair inserted. (If `auto_signature_help` is enabled, this setting will be treated as enabled also.)
+    "go_to_definition_fallback": "find_all_references", // What to do when go to definition yields no results.
+
+    // Active Pane
+    "active_pane_modifiers": {
+        // leave all of these default, doesn't look like promising settings
+        "magnification": 1.0, // The factor to grow the active pane by. Defaults to 1.0 which gives the same size as all other panes.
+        "border_size": 0.0, // Inset border size of the active pane, in pixels.
+        "inactive_opacity": 1.0 // Opacity of the inactive panes. 0 means transparent, 1 means opaque. Values are clamped to the [0.0, 1.0] range.
+    },
+
+    // 4. FONT SETTINGS
+    // UI Fonts
+    "ui_font_family": "Zed Plex Sans",
+    "ui_font_size": 16,
+
+    // Buffer (Editor) Font Settings
+    "buffer_font_size": 17.0,
+    "buffer_font_weight": 400,
+    "buffer_font_family": "Zed Plex Mono",
+    "buffer_font_features": {
+        // Disable ligatures:
+        // "calt": false
+    },
+
+    // 5. CURSER SETTINGS
+    "cursor_blink": true,
+    "cursor_shape": "underline",
+    //      `bar`       : vertical line before the following character;
+    //      `block`     : surrounding the following character
+    //      `underline` : under the following character
+    //      `hollow`    : box around the following character
+
+    // 6. AUTOMATIC EDITOR BEHAVIOR
+    // Autoclose -> works on `[`, `{` and `"`
+    // single quote `'` and normal braces `(` don't seem to work
+    "use_autoclose": true, // when typing, autocloses and sets cursor in between
+    "use_auto_surround": true, // on selected text, encloses
+
+    "auto_indent_on_paste": true, // indentation of pasted content should be adjusted based on the context
+
+    // TOOLBAR RELATED SETTINGS
+    "toolbar": {
+        "breadcrumbs": true, // Whether to show breadcrumbs.
+        "quick_actions": true, // Whether to show quick action buttons.
+        "selections_menu": true // Whether to show the Selections menu in the editor toolbar
+    },
+
+    // SCROLLBAR RELATED SETTINGS
+    "scrollbar": {
+        // When to show the scrollbar in the editor.
+        // This setting can take four values:
+        //
+        // 1. Show the scrollbar if there's important information or
+        //    follow the system's configured behavior (default):
+        //   "auto"
+        // 2. Match the system's configured behavior:
+        //    "system"
+        // 3. Always show the scrollbar:
+        //    "always"
+        // 4. Never show the scrollbar:
+        //    "never"
+        "show": "auto",
+        // Whether to show cursor positions in the scrollbar.
+        "cursors": true,
+        // Whether to show git diff indicators in the scrollbar.
+        "git_diff": true,
+        // Whether to show buffer search results in the scrollbar.
+        "search_results": true,
+        // Whether to show selected text occurrences in the scrollbar.
+        "selected_text": true,
+        // Whether to show selected symbol occurrences in the scrollbar.
+        "selected_symbol": true,
+        // Which diagnostic indicators to show in the scrollbar:
+        //  - "none" or false: do not show diagnostics
+        //  - "error": show only errors
+        //  - "warning": show only errors and warnings
+        //  - "information": show only errors, warnings, and information
+        //  - "all" or true: show all diagnostics
+        "diagnostics": "all",
+        // Forcefully enable or disable the scrollbar for each axis
+        "axes": {
+            // When false, forcefully disables the horizontal scrollbar. Otherwise, obey other settings.
+            "horizontal": true,
+            // When false, forcefully disables the vertical scrollbar. Otherwise, obey other settings.
+            "vertical": true
+        }
+    },
+
+    // EDITOR GUTTER SETTINGS
+    "gutter": {
+        // Whether to show line numbers in the gutter.
+        "line_numbers": true,
+        // Whether to show code action buttons in the gutter.
+        "code_actions": true,
+        // Whether to show runnables buttons in the gutter.
+        "runnables": true,
+        // Whether to show breakpoints in the gutter.
+        "breakpoints": true,
+        // Whether to show fold buttons in the gutter.
+        "folds": true
+    },
+
+    // INDENTATION GUIDES SETTINGS
+    "indent_guides": {
+        // Whether to show indent guides in the editor.
+        "enabled": true,
+        // The width of the indent guides in pixels, between 1 and 10.
+        "line_width": 1,
+        // The width of the active indent guide in pixels, between 1 and 10.
+        "active_line_width": 2,
+        // Determines how indent guides are colored.
+        // This setting can take the following three values:
+        //
+        // 1. "disabled"
+        // 2. "fixed"
+        // 3. "indent_aware"
+        "coloring": "indent_aware",
+        // Determines how indent guide backgrounds are colored.
+        // This setting can take the following two values:
+        //
+        // 1. "disabled"
+        // 2. "indent_aware"
+        "background_coloring": "disabled"
+    },
+
+    // PROJECT PANEL SETTINGS
+    "project_panel": {
+        "button": true, // show the project panel button in the status bar
+        "default_width": 360, // Default width of the project panel.
+        "dock": "right", // where to dock project panel: 'left' or 'right'
+        // Spacing between worktree entries in the project panel. Can be 'comfortable' or 'standard'.
+        "entry_spacing": "comfortable",
+        // Whether to show file icons in the project panel.
+        "file_icons": true,
+        // Whether to show folder icons or chevrons for directories in the project panel.
+        "folder_icons": true,
+        // Whether to show the git status in the project panel.
+        "git_status": true,
+        // Amount of indentation for nested items.
+        "indent_size": 25,
+
+        // Whether to reveal it in the project panel automatically,
+        // when a corresponding project entry becomes active.
+        // Gitignored entries are never auto revealed.
+        "auto_reveal_entries": true,
+        // Whether to fold directories automatically and show compact folders
+        // (e.g. "a/b/c" ) when a directory has only one subdirectory inside.
+        "auto_fold_dirs": true,
+        // Scrollbar-related settings
+        "scrollbar": {
+            // When to show the scrollbar in the project panel.
+            // This setting can take five values:
+            //
+            // 1. null (default): Inherit editor settings
+            // 2. Show the scrollbar if there's important information or
+            //    follow the system's configured behavior (default):
+            //   "auto"
+            // 3. Match the system's configured behavior:
+            //    "system"
+            // 4. Always show the scrollbar:
+            //    "always"
+            // 5. Never show the scrollbar:
+            //    "never"
+            "show": null
+        },
+        // Which files containing diagnostic errors/warnings to mark in the project panel.
+        // This setting can take the following three values:
+        //
+        // 1. Do not mark any files:
+        //    "off"
+        // 2. Only mark files with errors:
+        //    "errors"
+        // 3. Mark files with errors and warnings:
+        //    "all"
+        "show_diagnostics": "all",
+        "indent_guides": {
+            // indent guides in the project panel
+            "show": "always" // `always` or `never`
+        }
+    },
+
+    "outline_panel": {
+        // Whether to show the outline panel button in the status bar
+        "button": true,
+        // Default width of the outline panel.
+        "default_width": 300,
+        // Where to dock the outline panel. Can be 'left' or 'right'.
+        "dock": "left",
+        // Whether to show file icons in the outline panel.
+        "file_icons": true,
+        // Whether to show folder icons or chevrons for directories in the outline panel.
+        "folder_icons": true,
+        // Whether to show the git status in the outline panel.
+        "git_status": true,
+        // Amount of indentation for nested items.
+        "indent_size": 20,
+        // Whether to reveal it in the outline panel automatically,
+        // when a corresponding outline entry becomes active.
+        // Gitignored entries are never auto revealed.
+        "auto_reveal_entries": true,
+        // Whether to fold directories automatically
+        // when a directory has only one directory inside.
+        "auto_fold_dirs": true,
+        // Settings related to indent guides in the outline panel.
+        "indent_guides": {
+            // When to show indent guides in the outline panel.
+            // This setting can take two values:
+            //
+            // 1. Always show indent guides:
+            //    "always"
+            // 2. Never show indent guides:
+            //    "never"
+            "show": "always"
+        },
+        // Scrollbar-related settings
+        "scrollbar": {
+            // When to show the scrollbar in the project panel.
+            // This setting can take five values:
+            //
+            // 1. null (default): Inherit editor settings
+            // 2. Show the scrollbar if there's important information or
+            //    follow the system's configured behavior (default):
+            //   "auto"
+            // 3. Match the system's configured behavior:
+            //    "system"
+            // 4. Always show the scrollbar:
+            //    "always"
+            // 5. Never show the scrollbar:
+            //    "never"
+            "show": null
+        }
+    },
+    "collaboration_panel": {
+        "button": false, // Whether to show the collaboration panel button in the status bar.
+        "dock": "left", // 'left' or 'right'.
+        "default_width": 240 // Default width of the collaboration panel.
+    },
+    "chat_panel": {
+        // When to show the chat panel button in the status bar.
+        // Can be 'never', 'always', or 'when_in_call',
+        // or a boolean (interpreted as 'never'/'always').
+        "button": "when_in_call",
+        // Where to the chat panel. Can be 'left' or 'right'.
+        "dock": "right",
+        // Default width of the chat panel.
+        "default_width": 240
+    },
+    "git_panel": {
+        // Whether to show the git panel button in the status bar.
+        "button": true,
+        // Where to show the git panel. Can be 'left' or 'right'.
+        "dock": "left",
+        // Default width of the git panel.
+        "default_width": 360,
+        // Style of the git status indicator in the panel.
+        //
+        // Default: icon
+        "status_style": "icon",
+        // What branch name to use if init.defaultBranch
+        // is not set
+        //
+        // Default: main
+        "fallback_branch_name": "main",
+
+        "scrollbar": {
+            // When to show the scrollbar in the git panel.
+            //
+            // Default: inherits editor scrollbar settings
+            "show": null
+        }
+    },
+    "message_editor": {
+        // Whether to automatically replace emoji shortcodes with emoji characters.
+        // For example: typing `:wave:` gets replaced with `👋`.
+        "auto_replace_emoji_shortcode": true
+    },
+    "notification_panel": {
+        // Whether to show the notification panel button in the status bar.
+        "button": true,
+        // Where to dock the notification panel. Can be 'left' or 'right'.
+        "dock": "right",
+        // Default width of the notification panel.
+        "default_width": 380
+    },
+
+    // The settings for slash commands.
+    "slash_commands": {
+        // Settings for the `/docs` slash command.
+        "docs": {
+            // Whether `/docs` is enabled.
+            "enabled": false
+        },
+        // Settings for the `/project` slash command.
+        "project": {
+            // Whether `/project` is enabled.
+            "enabled": false
+        }
+    }
+}

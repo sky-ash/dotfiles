@@ -1,0 +1,60 @@
+@import "../../.cache/wal/colors-waybar.css";
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: Noto Sans; /*JetBrains Mono Nerd Font;*/
+    font-weight: 600;
+    font-size: 14px;
+    font-style: italic;
+    min-height: 0;
+}
+
+window#waybar {
+    background: alpha(@background, 0);
+    color: alpha(@foreground, 0);
+}
+
+
+#workspaces, #window, #clock, #custom-syncdots {
+    color: alpha(@foreground, 0.75);
+    background: alpha(@background, 0.8);
+    border: 0px solid @background;
+    border-radius: 3px;
+    padding: 0px 15px;
+    margin: 9px;
+    margin-bottom: 0px;
+}
+
+
+#workspaces button {
+    padding: 5px;
+    color: alpha(@foreground, 0.75);
+    margin-right: 5px;
+}
+
+#workspaces button.active {
+    color: alpha(@foreground, 1);
+}
+
+#workspaces button.focused {
+    color: alpha(@foreground, 0.75);
+    background: alpha(@background, 0.8);
+}
+
+#workspaces button.urgent {
+    color: alpha(@foreground, 0.75);
+    background: alpha(@background, 0.8);
+    border-radius: 3px;
+}
+
+#workspaces button:hover {
+    color: alpha(@background, 0.75);
+    border-radius: 3px;
+}
+
+#workspaces {
+    padding-right: 0px;
+    padding-left: 5px;
+}
+

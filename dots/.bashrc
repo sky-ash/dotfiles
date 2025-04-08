@@ -21,7 +21,7 @@ alias neo='neo-matrix'
 source ~/.cache/wal/colors-tty.sh
 
 # for R (Studio)
-export R_LIBS_USER=~/.rpackages
+#export R_LIBS_USER=~/.rpackages
 
 # for hadoop setup
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
+#export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
