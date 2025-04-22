@@ -3,3 +3,5 @@ dotfiles.code-workspace
 
 .vscode
 .zed
+
+*-gtk-theme/
