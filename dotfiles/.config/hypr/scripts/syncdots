@@ -2,60 +2,9 @@
 
 backup=$HOME/dotfiles/backup.latest/
 rm -rf $backup
-mkdir -p $backup
-
-pwd=$(pwd)
-dotfiles="$pwd"
-echo "$dotfiles" > ~/.config/dotfiles/repositoryLocalPath.cache
 
 
-
-####################################################################################
-####################################################################################
-####################################################################################
-
-
-
-
-check_install_yay() {
-	if ! pacman -Qq yay &>/dev/null; then
-		echo "Yay is required to install packages. Checking if git is installed..."
-		if ! pacman -Qq git &>/dev/null; then
-			echo "Git is not installed. Installing git..."
-			sudo pacman -S git --noconfirm
-			echo "Git has been installed."
-		else
-			echo "Git is already installed."
-		fi
-		
-		echo "Proceeding with yay installation..."
-		cd ~
-		git clone https://aur.archlinux.org/yay.git
-		cd yay
-		makepkg -si
-		cd ..
-		yay -Syu --noconfirm
-	fi
-}
-
-
-
-
-# List of packages to install
-dependencies=$(cat "$dotfiles/dependencies.csv")
-
-# Check if yay is installed
-check_install_yay
-
-# Install dependencies
-echo "install dependencies with yay? (y/n)"
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-	echo "Installing packages with yay..."
-	yay -S --noconfirm --needed $dependencies
-else
-	echo "WARNING: SKIPPING DEPENDENCY INSTALLATION."
-fi
+dotfiles=$(cat ~/.config/dotfiles/repositoryLocalPath.cache)
 
 
 
@@ -63,7 +12,6 @@ fi
 ####################################################################################
 ####################################################################################
 ####################################################################################
-
 
 
 
@@ -114,9 +62,6 @@ copy_files_to_home() {
 		fi
 	done
 }
-
-
-
 
 update_config
 copy_wallpaper_folder

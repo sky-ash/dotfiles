@@ -1,5 +1,4 @@
 *.code-workspace
-dotfiles.code-workspace
 
 .vscode
 .zed

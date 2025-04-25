@@ -3,7 +3,7 @@
 
 # COLORS
 # wal
-wal -i "${HOME}/.local/share/wallpaper/" --iterative -q -n
+wal -i "${HOME}/.wallpaper" --iterative -q -n
 
 # Read colors from file into an array
 mapfile -t colors < "${HOME}/.cache/wal/colors"
