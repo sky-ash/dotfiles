@@ -6,6 +6,8 @@ mkdir -p $backup
 
 pwd=$(pwd)
 dotfiles="$pwd"
+
+mkdir -p ~/.config/dotfiles
 echo "$dotfiles" > ~/.config/dotfiles/repositoryLocalPath.cache
 
 
@@ -22,7 +24,7 @@ check_install_yay() {
 		echo "Yay is required to install packages. Checking if git is installed..."
 		if ! pacman -Qq git &>/dev/null; then
 			echo "Git is not installed. Installing git..."
-			sudo pacman -S git --noconfirm
+			dependenciessudo pacman -S git --noconfirm
 			echo "Git has been installed."
 		else
 			echo "Git is already installed."
@@ -33,7 +35,7 @@ check_install_yay() {
 		git clone https://aur.archlinux.org/yay.git
 		cd yay
 		makepkg -si
-		cd ..
+		cd ..dependencies
 		yay -Syu --noconfirm
 	fi
 }
@@ -42,7 +44,7 @@ check_install_yay() {
 
 
 # List of packages to install
-dependencies=$(cat "$dotfiles/dependencies.csv")
+dependencies=$(cat ~/.config/dotfiles/dependencies.csv)
 
 # Check if yay is installed
 check_install_yay
