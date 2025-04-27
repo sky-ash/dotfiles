@@ -12,7 +12,7 @@
 
     "modules-left": [ "hyprland/workspaces" ],
     "modules-center": [ "hyprland/window" ],
-    "modules-right": [ "clock", "custom/syncdots"],
+    "modules-right": [ "clock"],
 
 
     "hyprland/workspaces": {
@@ -42,16 +42,7 @@
 
     "clock": {
         "format": "{:%a, %d. %b - %H:%M}"
-    },
-
-    "custom/syncdots": {
-        "format": "󱑡 ",   
-        "on-click": "~/.local/bin/syncdots",  // update system
-        "signal": 8
-    },
-
-
-
+    }
 
 
     /*

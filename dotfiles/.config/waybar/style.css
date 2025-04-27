@@ -16,7 +16,7 @@ window#waybar {
 }
 
 
-#workspaces, #window, #clock, #custom-syncdots {
+#workspaces, #window, #clock {
     color: alpha(@foreground, 0.75);
     background: alpha(@background, 0.8);
     border: 0px solid @background;
