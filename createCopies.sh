@@ -1,21 +1,16 @@
 #!/bin/bash
 
-# createSymlinks.sh
-# This script creates symbolic links of the specified files and directories.
-
-# Usage: 
-# 1. (uncomment the files/directories you want to create symlinks for)
-# 2. ./createSymlinks.sh 
+# createCopies.sh
 
 pwd=$(pwd)
 dotfiles="$pwd/dotfiles"
 configs="$dotfiles/.config/"
 
-# link wallpaper folder to ~/.wallpaper
+# cp wallpaper folder to ~/.wallpaper
 if [ -d ~/.wallpaper ]; then
     rm -rf ~/.wallpaper
 fi
-ln -sf $dotfiles/wallpaper ~/.wallpaper
+cp -r $dotfiles/wallpaper ~/.wallpaper
 
 # folders in $configs for ~/.config/
 
@@ -42,12 +37,12 @@ for folder in "${folder_names[@]}"; do
         rm -rf ~/.config/$folder
     fi
 
-    ln -sf $configs/$folder ~/.config/$folder
+    cp -r $configs/$folder ~/.config/$folder
 done
 
 
 # dotfiles for /home/user/ (.xinitrc, .bashrc, .bash_profile, .gitconfig)
-ln -sf $dotfiles/.xinitrc ~/.xinitrc
-ln -sf $dotfiles/.bashrc ~/.bashrc
-ln -sf $dotfiles/.bash_profile ~/.bash_profile
-ln -sf $dotfiles/.gitconfig ~/.gitconfig
+cp -r $dotfiles/.xinitrc ~/.xinitrc
+cp -r $dotfiles/.bashrc ~/.bashrc
+cp -r $dotfiles/.bash_profile ~/.bash_profile
+cp -r $dotfiles/.gitconfig ~/.gitconfig
