@@ -1,10 +1,10 @@
 #!/bin/bash
 
-backup=$HOME/dotfiles/backup.latest/
+backup="$HOME/dotfiles/backup.latest/"
 rm -rf $backup
 
 
-dotfiles=$(cat ~/.config/dotfiles/repositoryLocalPath.cache)
+dotfiles="$HOME/dotfiles/"
 
 
 

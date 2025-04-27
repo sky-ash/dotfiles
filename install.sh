@@ -23,8 +23,8 @@ check_install_yay() {
 	if ! pacman -Qq yay &>/dev/null; then
 		echo "Yay is required to install packages. Checking if git is installed..."
 		if ! pacman -Qq git &>/dev/null; then
-			echo "Git is not installed. Installing git..."
-			dependenciessudo pacman -S git --noconfirm
+			echo "Git ixs not installed. Installing git..."
+			sudo pacman -S git --noconfirm
 			echo "Git has been installed."
 		else
 			echo "Git is already installed."
@@ -36,7 +36,7 @@ check_install_yay() {
 		cd yay
 		makepkg -si
 		cd ..dependencies
-		yay -Syu --noconfirm
+		yay -Syyu --noconfirm
 	fi
 }
 
