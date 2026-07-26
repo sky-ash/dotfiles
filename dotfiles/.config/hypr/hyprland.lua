@@ -54,10 +54,11 @@ hl.on("hyprland.start", function ()
 
     --  # AUTOSTART PROGRAMS
     hl.exec_cmd("waybar")
-    hl.exec_cmd("mullvad-vpn") -- (on workspace 10 pls?)
+    --hl.exec_cmd("mullvad-vpn") -- (on workspace 10 pls?)
     --hl.exec_cmd("hyprshade")
 
-
+    -- instead of launching mullvad-gui, establish a connection via cli command (turn on or off via waybar)
+    hl.exec_cmd("mullvad connect")
     -- # SET CURSOR THEME (maybe move to "env vars" section?)
     hl.exec_cmd("hyprctl setcursor Vimix-cursors 36")
 end)
@@ -407,7 +408,7 @@ hl.bind("SUPER + ALT + Space", hl.dsp.exec_cmd(next_keyboard_layout))
 
 -- # SCRIPTS
 hl.bind("CTRL + ALT + N", hl.dsp.exec_cmd(next_wallpaper))
-hl.bind("CTRL + ALT + U", hl.dsp.exec_cmd(sync_config_folders))
+--hl.bind("CTRL + ALT + U", hl.dsp.exec_cmd(sync_config_folders))
 
 
 -- # ================= #
