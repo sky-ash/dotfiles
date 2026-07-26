@@ -454,7 +454,7 @@ hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = tr
 
 -- # WINDOW MANAGEMENT
 hl.bind("ALT + Space", hl.dsp.window.float({ action = "toggle" }))
-local closeWindowBind = hl.bind("SUPER + C", hl.dsp.window.close())
+local closeWindowBind = hl.bind("SUPER + S", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
 
 -- # SWITCH FOCUSED WINDOW
