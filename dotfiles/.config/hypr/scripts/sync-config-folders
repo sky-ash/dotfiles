@@ -1,0 +1,34 @@
+config=$HOME/.config/
+dotfiles=$HOME/Desktop/dotfiles/dotfiles/.config/
+
+#config_folders=(btop catnap cava dunst era hypr kitty waybar)
+config_folders=(hypr)
+
+# delete config folders in home/.config and create symlinks from the dotfiles/.config to home/.config
+for folder in ${config_folders[@]}; do
+    echo "checking $folder:"
+    if [[ -d "$config/$folder" ]]; then
+        echo -e "'$folder' is a diretory. deleting and creating symlink to dotfiles.\n"
+        rm -rf "$config/$folder"
+        cp -r "$dotfiles/$folder/" "$config/"
+    else
+        echo -e "skipping: '$folder' is not a directory.\n"
+    fi
+done
+
+
+#files=(.bashrc .bach_profile .gitconfig .xinitrc)
+#
+## delete files in home and create symlinks from the dotfiles to home
+#for file in ${files[@]}; do
+#    echo "checking $file:"
+#    if [[ -f "$HOME/$file" ]]; then
+#        echo -e "'$file' is a file. deleting and creating symlink to dotfiles.\n"
+#        rm -rf "$HOME/$file"
+#        cp -r "$dotfiles/$file" "$HOME/$file"
+#    else
+#        echo -e "skipping: '$file' is not a file.\n"
+#    fi
+#done
+
+hyprctl reload

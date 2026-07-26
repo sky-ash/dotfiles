@@ -1,0 +1,30 @@
+/*
+ * Reduce Brightness
+ *
+ * Darken the display by reducing brightness uniformly.
+ * Useful for nighttime use to reduce eye strain.
+ */
+
+#version 300 es
+precision highp float;
+
+in vec2 v_texcoord;
+uniform sampler2D tex;
+out vec4 fragColor;
+
+/**
+ * Brightness reduction factor.
+ * Lower values = darker screen.
+ *
+ * @min 0.0
+ * @max 1.0
+ */
+const float Brightness = float({{#nc}}{{brightness}} ? 0.5{{/nc}});
+
+void main() {
+    vec4 pixColor = texture(tex, v_texcoord);
+    vec3 color = pixColor.rgb * Brightness;
+    fragColor = vec4(color, pixColor.a);
+}
+
+// vim: ft=glsl

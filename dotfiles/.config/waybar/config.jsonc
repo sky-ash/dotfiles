@@ -1,0 +1,302 @@
+{
+    "layer": "bottom",
+    "position": "top",
+    //"mod": "dock",
+    "gtk-layer-shell": true,
+    "exclusive": true,
+    "passthrough": false,
+
+    "height": 0, //24
+    //"spacing": 6,
+    //"margin-left": 15,
+    //"margin-right": 15,
+    //"margin-top": 6,
+    //"margin-bottom": -6,
+
+
+
+
+    "modules-left": [ /* "group/arch", "pulseaudio/slider", "pulseaudio", "hyprland/mode", */ "hyprland/workspaces" ],
+    "modules-center": ["hyprland/window"], 
+    "modules-right": [ /* "group/song", "group/dashboard", */ "clock", "custom/vpn"],
+
+    // COPYQ TRAY
+    "tray": {
+        "icon-size": 16,
+        "spacing": 8
+    },
+
+    // Add this module definition to your config.jsonc:
+    "custom/vpn": {
+        "exec": "~/.config/waybar/scripts/vpn_simple.sh",
+        "return-type": "json",
+        "interval": 5,
+        "on-click": "~/.config/waybar/scripts/vpn_simple.sh --toggle"
+    },
+
+
+
+
+    //// CUSTOM VPN MODULE FOR MULLVAD-VPN
+    //"custom/vpn": {
+    //    "format": "VPN: {icon}",
+    //    "format-icons": ["", ""],
+    //    "exec": "$HOME/.config/waybar/scripts/vpn_module.sh",
+    //    "actions": {
+    //        "on-click": "$HOME/.config/waybar/scripts/vpn_module.sh --toggle-connection &",
+    //        "on-click-right": "$HOME/.config/waybar/scripts/vpn_module.sh --location-menu &",
+    //    }//,
+    //    //"interval": 5
+    //},
+
+
+
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "on-click": "activate",
+        //"format": "{icon}",
+        "persistent_workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [],
+            "6": [],
+            "7": [],
+            "8": [],
+            "9": [],
+            "10": []
+        }
+    },
+
+
+    "hyprland/window": {
+        "format": "{initialTitle}",
+        "icon": true
+    },
+
+
+    "clock": {
+        "format": "{:%y/%m/%d - %H:%M (%a, %d. %b)}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    	"calendar": {
+            "mode": "month",
+            "mode-mon-col": 4,
+            /*"weeks-pos": "right",*/
+            "on-scroll": 1,
+            "format": {
+                "today": "<span color='#E45DFF'><b>{}</b></span>"
+                /*"weeks": "<span color='#8000ff'><b>{}</b></span>"*/
+            }
+        },
+
+        "actions": {
+            "on-click-right": "mode",
+            "on-scroll-up": "shift_down",
+            "on-scroll-down": "shift_up"
+        }
+    },
+
+    /////////////////////////////////////////////////////////
+
+    "cpu": {
+        "format": "CPU: {usage}% {icon}",
+	    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+        "interval": 1,
+
+        "on-click": "kitty -e 'btop'"
+    },
+
+    "memory": {
+        "format": "RAM: {percentage}% ",
+        "interval": 5,
+
+        "on-click": "kitty -e 'btop'"
+    },
+
+    "pulseaudio": {
+        "format": "{volume}%",
+        "format-bluetooth": "B-{volume}%",
+        "format-muted": "<i>muted</i>",
+        "format-icons": {
+            "alsa_output.pci-0000_00_1f.3.analog-stereo": "",
+            "alsa_output.pci-0000_00_1f.3.analog-stereo-muted": "",
+            "headphones": "",
+            "handsfree": "",
+            "headset": "",
+            "phone": "",
+            "phone-muted": "",
+            "portable": "",
+            "car": "",
+            "default": ["", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+
+    "pulseaudio/slider": {
+    "min": 0,
+    "max": 100,
+    "orientation": "horizontal"
+    },
+
+    /////////////////////////////////////////////////////////
+
+
+    //"custom/syncdots": {
+    //    "format": "󱑡 ",   
+    //    "on-click": "~/.local/bin/syncdots",  // update system
+    //    "signal": 8
+    //},
+
+
+
+
+
+    /*
+
+    "custom/pipewire": {
+        "format": "{icon}",
+        "return-type": "json",
+        "signal": 8,
+        "interval": "once",
+        "format-icons": {
+            "mute": "",
+            "default": ["", "", "", ""],
+        },
+        "exec": "pw-volume status"
+    },
+
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "󰖩 {essid} ({signalStrength}%)",
+        "format-ethernet": "󰈀 {ipaddr}/{cidr}",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
+        "format-linked": "{ifname} (No IP)",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 20
+        },
+        "format": "󱊢 {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󱰼 {capacity}%",
+        "format-alt": "󱊢 {time}"
+    }
+
+    */
+
+
+
+
+    /////////////////////////////////////////////////////////
+
+    "group/arch": {
+        "orientation": "horizontal",
+        	"drawer": {
+                "transition-duration": 500,
+		        "transition-left-to-right": true
+	    },
+        "modules": [
+            "image",
+            "custom/poweroff",
+            "custom/reboot",
+            "custom/logout",
+            "custom/suspend",
+            "custom/lockscreen"
+        ]
+    },
+
+    "custom/poweroff": {
+        "format": "⏻",
+        "on-click": "~/scripts/waybar/poweroff_waybar.sh",
+        "tooltip-format": "Poweroff"
+    },
+    
+    "custom/reboot": {
+        "format": "↺",
+        "on-click": "~/scripts/waybar/reboot_waybar.sh",
+        "tooltip-format": "Reboot"
+    },
+    
+
+    "custom/logout": {
+        "format": "←",
+        "on-click": "~/scripts/waybar/logout_waybar.sh",
+        "tooltip-format": "Logout"
+    },
+    
+    "custom/suspend": {
+        "format": "🌙",
+        "on-click": "~/scripts/waybar/suspend_waybar.sh",
+        "tooltip-format": "Suspend"
+    },
+    
+    "custom/lockscreen": {
+        "format": "🔒",
+        "on-click": "hyprlock",
+        "tooltip-format": "Lock screen"
+    },
+        
+
+    "image": {
+        "path": "/home/michele/.config/waybar/assets/archlinux_white.png",
+        "size": 20
+    },
+
+    "group/song": {
+        "orientation": "horizontal",
+        	"drawer": {
+                "transition-duration": 300,
+		        "transition-left-to-right": false,
+                "click-to-reveal": true
+	    },
+        "modules": [
+            "custom/song",
+            "custom/songlength"
+        ]
+    },
+
+    ///////////////////////////////////////////////////////
+
+    "group/dashboard": {
+        "orientation": "horizontal",
+        	"drawer": {
+                "transition-duration": 300,
+		        "transition-left-to-right": false
+	    },
+        "modules": [
+            "custom/dashboard",
+            "custom/sysupdate",
+            "custom/nightshift"
+        ]
+    },
+
+    "custom/dashboard": {
+        "format": "☰",
+        "tooltip": false
+    },
+
+    "custom/sysupdate": {
+        "exec": "cat ~/.local/share/myutils/sysupdate/lastsysup.txt",
+        "interval": 1,
+        "format": "",
+        "tooltip-format": "Last system-update: {}",
+        "on-click": "kitty --title 'sysupdate' -e ~/scripts/sysupdate.sh"
+    },
+
+    "custom/nightshift": {
+        "exec": "~/scripts/waybar/nightshift_waybar.sh",
+        "interval": 1,
+        "on-click": "~/scripts/nightshift.sh",
+        "return-type": "json"
+    }
+    
+
+}
