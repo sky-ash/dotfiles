@@ -146,8 +146,8 @@ hl.config({
         border_size = 7,
 
         col = {
-            active_border   = 0x05ffffff   --{ colors = {"rgba(33ccffee)", "rgba(00ff99ee)"}, angle = 45 },
-            inactive_border = 0x37373737,
+            active_border   = 0x05ffffff,   --{ colors = {"rgba(33ccffee)", "rgba(00ff99ee)"}, angle = 45 },
+            inactive_border = 0x37373737
         },
 
         -- gaps_workspaces = 0
@@ -172,7 +172,7 @@ hl.config({
 
         shadow = {
             enabled      = true,
-            offset       = 0 0
+            offset       = { 0, 0 },
             range        = 17,
             render_power = 4,
             color        = 0xff000000,
@@ -185,8 +185,8 @@ hl.config({
             passes    = 3,
             --vibrancy  = 0.1696,
 
-            new_optimizations = true
-            ignore_opacity = false
+            new_optimizations = true,
+            ignore_opacity = false,
             popups = true
         },
     },
@@ -462,11 +462,13 @@ hl.bind("SUPER + right", hl.dsp.focus({ direction = "right" }))
 hl.bind("SUPER + up",    hl.dsp.focus({ direction = "up" }))
 hl.bind("SUPER + down",  hl.dsp.focus({ direction = "down" }))
 
+--[[
 -- # RESIZE WINDOW
 bind = SHIFT SUPER, left, resizeactive, -60 0
 bind = SHIFT SUPER, right, resizeactive, 60 0
 bind = SHIFT SUPER, up, resizeactive, 0 -60
 bind = SHIFT SUPER, down, resizeactive, 0 60
+]]
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 hl.bind("SUPER + mouse:272", hl.dsp.window.drag(),   { mouse = true })
