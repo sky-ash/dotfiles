@@ -17,6 +17,12 @@ if you are thinking about installing them, keep in mind:
  - currently in the process of moving my wallpaper collection somewhere else. however, you might still clone my active wallpaper rotation until i have implemented a different way to handle them.
 > you are welcome to use my configs or scripts as a reference for your own :)
 
+## Planned/To-Do/Ideas
+
+- [ ] Waybar Sound-Output Switcher & Volume Settings
+- [ ] Waybar Bluetooth Tray
+
+
 ## features
 - trying to adhere to a minimalistic aesthetic
 - shortcut to iterate through wallpapers and automatically update color-scheme using pywal
