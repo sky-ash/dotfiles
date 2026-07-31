@@ -1,3 +1,6 @@
+# currently facing issue that shaders in ~/.config/hypr/shaders/ dont seem to be recognized. 
+# instead only /usr/share/hyprshade/shaders is taken into account.  
+
 [[shades]]
 name = "vibrance"
 default = true  # will be activated when no other shader is scheduled
