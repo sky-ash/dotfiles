@@ -3,25 +3,8 @@
 
 
 
---[[    # ======== #
-        # MONITORS #
-        # ======== #    ]]
-
--- ULTRAWIDE (21:9) MONITOR CENTER
-hl.monitor({
-    output   = "HDMI-A-1",
-    mode     = "3440x1440", -- ? "3440x1440@144"
-    position = "0x0",
-    scale    = "1",
-})
-
--- 16:9 MONITOR TO THE LEFT
-hl.monitor({
-    output   = "HDMI-A-2",
-    mode     = "1920x1080", -- ? "1920x1080@60"
-    position = "-1920x0",
-    scale    = "1",
-})
+require("hyprland/monitors")
+require("hyprland/programs_and_utils")
 
 
 
@@ -51,113 +34,8 @@ end)
 
 
 
---[[    # ========= #
-        # VARIABLES #
-        # ========= #       ]]
-
--- "DEFAULT PROGRAMS"
-local term      = "kitty"
-local files     = "nautilus"
-local browser   = "firefox"
-local code      = "code"
-local pw        = "bitwarden-desktop"
-
--- UTILS
-local lockscreen                    = "hyprlock"
-local rofi                          = "killall rofi || rofi -show drun -theme ~/.config/rofi/rofi.conf"
-local screenshot_selected_region    = "mkdir -p ~/Pictures/Screenshots && hyprshot -m region -o ~/Pictures/Screenshots -f 'screenshot-'$(date +%Y%m%d-%H%M%S).png"
-local next_keyboard_layout          = "hyprctl switchxkblayout current next"
-
--- SCRIPTS
-local next_wallpaper                = "${HOME}/.config/hypr/scripts/next-wallpaper-and-colorscheme"
-local sync_config_folders           = "${HOME}/.config/hypr/scripts/sync-config-folders"
-
-
-
---[[    # ============= #
-        # LOOK AND FEEL #
-        # ============= #       ]]
-
-hl.config({
-
-    -- ##################### --
-    -- GAPS, BORDER, GENERAL --
-    -- ##################### --
-
-    general = {
-        gaps_in  = 5,
-        gaps_out = 9,
-
-        border_size = 7,
-        resize_on_border = false,           -- resize windows by clicking and dragging on borders and gaps (off, resizing done with SUPER key instead)
-        col = {
-            active_border   = 0x05ffffff,
-            inactive_border = 0x37373737
-        },
-
-        allow_tearing = false,
-        layout = "dwindle",
-    },
-
-    -- ################## --
-    -- WINDOW DECORATIONS --
-    -- ################## --
-
-    decoration = {
-
-        -- ROUNDING
-        rounding       = 0,
-
-        -- OPACITY
-        active_opacity   = 1.0,
-        inactive_opacity = 1.0,
-        fullscreen_opacity = 1.0,
-        
-        -- SHADOW
-        shadow = {
-            enabled      = true,
-            offset       = { 0, 0 },
-            range        = 17,
-            render_power = 4,
-            color        = 0xff000000,
-        },
-
-        -- BLUR
-        blur = {
-            enabled   = true,
-            size      = 5,
-            passes    = 3,
-            new_optimizations = true,
-            ignore_opacity = false,
-            popups = true
-        },
-    },
-
-    animations = {
-        enabled = true,
-    },
-})
-
-
-
-hl.bind("SHIFT + SUPER + right",    hl.dsp.window.resize({ x = 10, y = 0, relative = true}), { repeating = true })
-hl.bind("SHIFT + SUPER + left",     hl.dsp.window.resize({ x = -10, y = 0, relative = true}), { repeating = true })
-
---[[    # ========= #
-        # ANIMATION #
-        # ========= #       ]]
-
-hl.curve("overshot",    { type = "bezier", points = { {0.05, 0.9},  {0.1, 1.05}     } })
-hl.curve("smoothOut",   { type = "bezier", points = { {0.36, 0},    {0.66, -0.56}   } })
-hl.curve("smoothIn",    { type = "bezier", points = { {0.25, 1},    {0.5, 1}        } })
-
-hl.animation({ leaf = "windows",        enabled = true,  speed = 5,     bezier = "overshot",    style = "slide" })
-hl.animation({ leaf = "windowsOut",     enabled = true,  speed = 4,     bezier = "smoothOut",   style = "slide" })
-hl.animation({ leaf = "windowsMove",    enabled = true,  speed = 4,     bezier = "default" })
-hl.animation({ leaf = "border",         enabled = true,  speed = 10,    bezier = "default" })
-hl.animation({ leaf = "fade",           enabled = true,  speed = 10,    bezier = "smoothIn" })
-hl.animation({ leaf = "fadeDim",        enabled = true,  speed = 10,    bezier = "smoothIn" })
-hl.animation({ leaf = "workspaces",     enabled = true,  speed = 6,     bezier = "default" })
+require("hyprland/looks")
+require("hyprland/animations")
 
 
 
@@ -216,64 +94,7 @@ hl.config({
 
 
 
---[[    # =============================== #
-        # BINDS: PROGRAMS, UTILS, SCRIPTS #
-        # =============================== #       ]]
-
--- LAUNCH PROGRAMS
-hl.bind("SUPER + Q", hl.dsp.exec_cmd(term))
-hl.bind("SUPER + W", hl.dsp.exec_cmd(browser))
-hl.bind("SUPER + E", hl.dsp.exec_cmd(files))
-hl.bind("SUPER + C", hl.dsp.exec_cmd(code))
-hl.bind("SUPER + B", hl.dsp.exec_cmd(pw))
-
--- UTILS
-hl.bind("SUPER + L", hl.dsp.exec_cmd(lockscreen))
-hl.bind("SUPER + Space", hl.dsp.exec_cmd(rofi))
-hl.bind("CTRL + Space", hl.dsp.exec_cmd(screenshot_selected_region))
-hl.bind("SUPER + ALT + Space", hl.dsp.exec_cmd(next_keyboard_layout))
-
--- SCRIPTS
-hl.bind("CTRL + ALT + N", hl.dsp.exec_cmd(next_wallpaper))
---hl.bind("CTRL + ALT + U", hl.dsp.exec_cmd(sync_config_folders))
-
-
-
---[[    # ===================================== #
-        # BINDS: WORKSPACES & WINDOW MANAGEMENT #
-        # ===================================== #        ]]
-
--- WINDOW MANAGEMENT
-hl.bind("ALT + Space", hl.dsp.window.float({ action = "toggle" }))
-local closeWindowBind = hl.bind("SUPER + S", hl.dsp.window.close())
---closeWindowBind:set_enabled(false)
-
--- SWITCH FOCUSED WINDOW
-hl.bind("SUPER + left",  hl.dsp.focus({ direction = "left" }))
-hl.bind("SUPER + right", hl.dsp.focus({ direction = "right" }))
-hl.bind("SUPER + up",    hl.dsp.focus({ direction = "up" }))
-hl.bind("SUPER + down",  hl.dsp.focus({ direction = "down" }))
-
--- RESIZE WINDOW
-hl.bind("SHIFT + SUPER + right",    hl.dsp.window.resize({ x = 10, y = 0, relative = true}), { repeating = true })
-hl.bind("SHIFT + SUPER + left",     hl.dsp.window.resize({ x = -10, y = 0, relative = true}), { repeating = true })
-hl.bind("SHIFT + SUPER + up",       hl.dsp.window.resize({ x = 0, y = 10, relative = true}), { repeating = true })
-hl.bind("SHIFT + SUPER + down",     hl.dsp.window.resize({ x = 0, y = -10, relative = true}), { repeating = true })
-
--- MOVE AND RESIZE WINDOWS WITH MOUSE BUTTONS
-hl.bind("SUPER + mouse:272", hl.dsp.window.drag(),   { mouse = true })
-hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })
-
--- SWITCH WORKSPACE AND MOVE WINDOW TO WORKSPACE (1-10)
-for i = 1, 10 do
-    local key = i % 10 -- 10 maps to key 0
-    hl.bind("SUPER + " .. key,             hl.dsp.focus({ workspace = i}))
-    hl.bind("SUPER + SHIFT + " .. key,     hl.dsp.window.move({ workspace = i }))
-end
-
--- SCROLL THROUGH WORKSPACES
-hl.bind("SUPER + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
-hl.bind("SUPER + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
+require("hyprland/binds")
 
 
 
