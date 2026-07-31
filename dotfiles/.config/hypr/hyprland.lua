@@ -142,7 +142,6 @@ hl.config({
 
 hl.bind("SHIFT + SUPER + right",    hl.dsp.window.resize({ x = 10, y = 0, relative = true}), { repeating = true })
 hl.bind("SHIFT + SUPER + left",     hl.dsp.window.resize({ x = -10, y = 0, relative = true}), { repeating = true })
-hl
 
 --[[    # ========= #
         # ANIMATION #
