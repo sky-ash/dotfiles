@@ -42,3 +42,7 @@ echo -e "restarting waybar:\n"
 killall waybar
 nohup waybar > /dev/null 2>&1 &
 echo -e "waybar running.\n"
+
+# reload swaync config and css
+swaync-client -R
+swaync-client -rs

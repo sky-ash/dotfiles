@@ -5,7 +5,7 @@
     border-radius: 0; /* 0; */
     font-family: Noto Sans; /*JetBrains Mono Nerd Font;*/
     font-weight: 700;
-    font-size: 11pt;
+    font-size: 12pt;
     font-style: italic;
     min-height: 0;
 }
@@ -15,6 +15,14 @@ window#waybar {
     color: alpha(@foreground, 0);
 }
 
+#custom-nc {
+    background: alpha(@background, 0.8);
+    border-radius: 3px;
+    padding: 0px 15px;
+    margin: 9px;
+    margin-bottom: 0px;
+    color: alpha(@foreground, 1);
+}
 
 #custom-vpn {
     background: alpha(@background, 0.8);
