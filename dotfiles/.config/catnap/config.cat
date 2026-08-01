@@ -1,0 +1,103 @@
+;   /\_/\   config.cat
+;  ( o.o )  sky's catnap configuration file
+;   > ^ <
+
+import "distros.cat"
+
+; == Appearance ===========================================================
+; layout:       inline | art_on_top | stats_on_top
+; border_style: single | dashed     | dotted        | double    | none
+
+$layout             = "inline"
+$border_style       = "single"
+$border_color       = $white
+
+
+; == Settings =============================================================
+$distroid           = ""                                                    ; Overwrite the distroid. Empty => Use autodetect
+$stats_margin_top   = 0                                                     ; Blank lines above the stat block. Useful with art_on_top or stats_on_top
+$graph_width        = 10                                                    ; Default bar width for graph stats (override per stat with graph_width=N)
+$location           = "Stuttgart"                                           ; City name for the weather stat. Leave empty to disable
+
+
+; == Stat list ============================================================
+; graph_style: blocks | ascii | dots | thin | pacman | precise (default)
+
+$stats = [
+    
+; -- Hardware -------------------------------------------------------------
+
+    @{  
+        id="cpu"            name="cpu"              icon=''    
+        color=$red                                                      }
+    @{  
+        id="disk_0"         name="disk"             icon=''    
+        color=$green        graph_color_fg=$green    
+        graph=true          graph_style="thin"      graph_width=16      }
+    @{  
+        id="disk_1"         name="disk"             icon=''    
+        color=$yellow       graph_color_fg=$yellow    
+        graph=true          graph_style="thin"      graph_width=16      }
+    @{  
+        id="memory"         name="memory"           icon=''    
+        color=$blue         graph_color_fg=$blue    
+        graph=true          graph_style="thin"      graph_width=11      }
+
+    @{  id="separator"  }
+
+; -- Software -------------------------------------------------------------
+
+    @{
+        id="distro"         name="distro"           icon=''
+        color=$magenta                                                  }
+    @{
+        id="desktop"        name="desktop"          icon=''
+        color=$cyan                                                     }
+    @{
+        id="packages"       name="packages"         icon=''
+        color=$red                                                      }   ; slow on large installs
+    @{
+        id="shell"          name="shell"            icon='󰞷'
+        color=$green                                                    }
+    
+    @{  id="separator"  }
+
+; -- Misc -----------------------------------------------------------------
+
+    @{
+        id="uptime"         name="uptime"           icon=''
+        color=$yellow                                                   }
+    @{
+        id="weather"        name="weather"          icon=''
+        color=$blue                                                     }   ; slow, needs curl and an emoji font
+    @{
+        id="colors"         name="colors"           icon=''
+        color=$magenta      symbol='●'                                  }
+
+; -- Turned off (commented out) -------------------------------------------
+
+;   @{
+;       id="username"       name="user"             icon=''
+;       color=$green                                                    }
+;   @{
+;       id="hostname"       name="hostname"         icon=''
+;       color=$cyan                                                     }
+;   @{  
+;       id="gpu"            name="gpu"              icon='󰋩'    
+;       color=$red                                                      }   ; slow on some systems
+;   @{
+;       id="kernel"         name="kernel"           icon=''
+;       color=$magenta                                                  }
+;   @{
+;       id="terminal"       name="term"             icon=''
+;       color=$yellow                                                   }
+;   @{
+;       id="cpu_usage"      name="cpu load"         icon=''
+;       color=$yellow       graph_color_fg=$yellow
+;       graph=true          graph_style="dots"                          }
+;   @{
+;       id="battery"        name="battery"          icon=''
+;       color=$cyan         graph_color_fg=$cyan
+;       graph=true          graph_style="thin"                          }
+
+]
