@@ -35,15 +35,19 @@ if you are thinking about installing them, keep in mind:
 - shortcut to update .config folder from changes in dotfiles folder (for development)
 
 ### shortcuts
-| Utility | Shortcut |
-|-|-|
-| menu (rofi) | SUPER + Space |
-| terminal (kitty) | SUPER + Q |
-| file manager (thunar) | SUPER + E |
-| firefox | SUPER + W |
-| vscodium | SUPER + C |
-| sync dotfiles-folder to system | CTRL + ALT + N |
-| next wallpaper + color-update | CTRL + ALT + U |
+| Utility                       | Shortcut              |
+|-------------------------------|-----------------------|
+| menu (rofi)                   | SUPER + Space         |
+| terminal (kitty)              | SUPER + Q             |
+| file manager (nautilus)       | SUPER + E             |
+| firefox                       | SUPER + W             |
+| vscodium                      | SUPER + C             |
+| close active window           | SUPER + S             |
+| floating/tiling toggle        | ALT + Space           |
+| screenshot (area)             | CTRL + Space          |
+| switch kb layout              | SUPER + ALT + Space   |
+| sync dotfiles (copyconfig.sh) | CTRL + ALT + U        |
+| next wallpaper + color-update | CTRL + ALT + N        |
 
 
 ### overview

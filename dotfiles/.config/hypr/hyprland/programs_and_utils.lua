@@ -17,4 +17,4 @@ global next_keyboard_layout          = "hyprctl switchxkblayout current next"
 
 -- SCRIPTS
 global next_wallpaper                = "${HOME}/.config/hypr/scripts/next-wallpaper-and-colorscheme"
-global sync_config_folders           = "${HOME}/.config/hypr/scripts/sync-config-folders"
+global copy_config                   = "${HOME}/.config/hypr/scripts/copyconfig.sh"

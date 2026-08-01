@@ -17,7 +17,7 @@ hl.bind("SUPER + ALT + Space", hl.dsp.exec_cmd(next_keyboard_layout))
 
 -- SCRIPTS
 hl.bind("CTRL + ALT + N", hl.dsp.exec_cmd(next_wallpaper))
---hl.bind("CTRL + ALT + U", hl.dsp.exec_cmd(sync_config_folders))
+hl.bind("CTRL + ALT + U", hl.dsp.exec_cmd(copy_config))
 
 
 
