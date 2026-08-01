@@ -6,7 +6,7 @@ hl.on("hyprland.start", function ()
 
     -- HYPRLAND STARTUP SEQUENCE
     hl.exec_cmd("copyq --start-server")
-    hl.exec_cmd("dunst")
+    hl.exec_cmd("swaync")
     hl.exec_cmd("hypridle")
     hl.exec_cmd("${HOME}/.config/hypr/scripts/xdg-portal-hyprland")
     hl.exec_cmd("/usr/lib/polkit-kde-authentication-agent-1")
