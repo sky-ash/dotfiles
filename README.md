@@ -53,8 +53,8 @@ if you are thinking about installing them, keep in mind:
 | wm                |:| hyprland            |
 | terminal          |:| kitty               |
 | bar               |:| waybar              |
-| notifications     |:| dunst               |
-| file manager      |:| thunar              |
+| notifications     |:| swaync              |
+| file manager      |:| nautilus            |
 | launcher          |:| rofi                |
 | browser           |:| firefox             |
 | shell             |:| bash                |

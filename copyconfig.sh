@@ -3,7 +3,7 @@ dotfiles=$HOME/Desktop/dotfiles/dotfiles/
 dotfiles_config=$HOME/Desktop/dotfiles/dotfiles/.config/
 
 
-config_folders=(btop catnap cava dunst era hypr kitty nwg-look rofi waybar)
+config_folders=(btop catnap cava era hypr kitty nwg-look rofi swaync waybar)
 #config_folders=(hypr)
 
 # delete config folders in home/.config and copy folders from dotfiles/.config/ to ~/.config/
