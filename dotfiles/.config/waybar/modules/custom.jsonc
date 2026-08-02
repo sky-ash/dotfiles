@@ -17,11 +17,17 @@
     "tooltip": false
 },
 
-// NOTE: deprecated, as the on-click script doesn't exist anymore
-"custom/syncdots": {
-    "format": "󱑡 ",   
-    "on-click": "~/.local/bin/syncdots",  // update system
-    "signal": 8
+"custom/weather": {
+    "format": "{}",
+    "format-alt": "{alt}: {}",
+    "format-alt-click": "click",
+    "interval": 3600,
+    "return-type": "json",
+    "exec": "~/.config/waybar/scripts/weather.py",
+    //"exec": "~/.config/waybar/scripts/custom_reference/Weather.sh",
+    //"exec": "~/.config/waybar/scripts/custom_reference/Weather.py",
+    "exec-if": "ping wttr.in -c1",
+    "tooltip" : true,
 },
 
 "custom/pipewire": {
@@ -36,7 +42,22 @@
     "exec": "pw-volume status"
 },
 
-    "custom/poweroff": {
+"custom/lockscreen": {
+    "format": "🔒",
+    "on-click": "hyprlock",
+    "tooltip-format": "Lock screen"
+},
+
+// NOTE: deprecated, as the on-click script doesn't exist anymore
+"custom/syncdots": {
+    "format": "󱑡 ",   
+    "on-click": "~/.local/bin/syncdots",  // update system
+    "signal": 8
+},
+
+// NOTE: on-click scripts non-existent in current version.
+//       these custom modules are merely placeholders
+"custom/poweroff": {
     "format": "⏻",
     "on-click": "~/scripts/waybar/poweroff_waybar.sh",
     "tooltip-format": "Poweroff"
@@ -59,12 +80,6 @@
     "format": "🌙",
     "on-click": "~/scripts/waybar/suspend_waybar.sh",
     "tooltip-format": "Suspend"
-},
-
-"custom/lockscreen": {
-    "format": "🔒",
-    "on-click": "hyprlock",
-    "tooltip-format": "Lock screen"
 },
 
 }
