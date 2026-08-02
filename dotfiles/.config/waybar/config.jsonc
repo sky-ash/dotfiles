@@ -24,18 +24,21 @@
         //"group/arch", 
         //"pulseaudio/slider", 
         //"pulseaudio", 
-        //"hyprland/mode", 
-        "hyprland/workspaces" 
+        //"hyprland/mode",
+        
+        "custom/weather", 
+        "clock", 
+        "hyprland/window"
     ],
 
     "modules-center": [
-        "hyprland/window"
+        "hyprland/workspaces"
     ], 
 
     "modules-right": [
         //"group/song", 
         //"group/dashboard",
-        "clock", 
+        //"clock", 
         "custom/vpn", 
         "custom/nc"
     ],
