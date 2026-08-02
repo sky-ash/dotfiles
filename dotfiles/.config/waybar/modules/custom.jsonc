@@ -4,10 +4,10 @@
 {
 
 "custom/vpn": {
-    "exec": "~/.config/waybar/scripts/vpn_simple.sh",
+    "exec": "~/.config/waybar/scripts/vpn_module.sh",
     "return-type": "json",
     "interval": 5,
-    "on-click": "~/.config/waybar/scripts/vpn_simple.sh --toggle"
+    "on-click": "~/.config/waybar/scripts/vpn_module.sh --toggle"
 },
 
 "custom/nc": {
