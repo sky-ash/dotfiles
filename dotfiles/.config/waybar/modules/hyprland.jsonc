@@ -1,0 +1,99 @@
+//* --- hyprland waybar modules --- *//
+
+{
+// HYPRLAND WORKSPACES.
+// CIRCLES Style
+"hyprland/workspaces": {
+	"active-only": false,
+    "all-outputs": true, 
+    "format": "{icon}",
+    //"show-special": false,
+    "on-click": "activate",
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1",
+    "persistent-workspaces": {
+        "1": [],
+        "2": [],
+        "3": [],
+        "4": [],
+        "5": [],
+        "6": [],
+        "7": [],
+        "8": [],
+        "9": [],
+        "10": []
+    },
+    "format-icons": {
+      "active": "",
+      "default": "",
+	},  
+},
+
+// ROMAN Numerals style
+"hyprland/workspaces#roman": {
+	"active-only": false,
+    "all-outputs": true, 
+    "format": "{icon}",
+    //"show-special": false,
+    "on-click": "activate",
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1",
+    "persistent-workspaces":{
+        "1": [],
+        "2": [],
+        "3": [],
+        "4": [],
+        "5": [],
+        "6": [],
+        "7": [],
+        "8": [],
+        "9": [],
+        "10": []
+    },
+    "format-icons": {
+      "1": "I",
+      "2": "II",
+      "3": "III",
+      "4": "IV",
+      "5": "V",
+      "6": "VI",
+      "7": "VII",
+      "8": "VIII",
+      "9": "IX",
+      "10": "X",
+    },
+},
+
+// HYPRLAND WINDOW TITLE DISPLAY
+"hyprland/window": {
+    "format": "{initialTitle}",
+    "icon": true,
+    "separate-outputs": true,
+
+    "max-length": 40,
+    //"offscreen-css" : true,
+    //"offscreen-css-text": "(inactive)",
+    // "rewrite": {
+    //      "(.*) — Mozilla Firefox": " $1",
+    //      "(.*) - fish": "> [$1]",
+    //  "(.*) - zsh": "> [$1]",
+    //  "(.*) - kitty": "> [$1]",
+    //},
+},
+
+// KEYBOARD LANGUAGE
+"hyprland/language": {
+    "format": "Lang: {}",
+    "format-en": "US",
+    "format-tr": "Korea",
+    "keyboard-name": "at-translated-set-2-keyboard",
+    "on-click": "hyprctl switchxkblayout $SET_KB next"
+},
+
+// ?
+"hyprland/submap": {
+    "format": "<span style=\"italic\">  {}</span>", // Icon: expand-arrows-alt
+    "tooltip": false,
+},
+
+}

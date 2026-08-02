@@ -1,0 +1,70 @@
+//* --- custom waybar modules --- *//
+// my own custom modules
+
+{
+
+"custom/vpn": {
+    "exec": "~/.config/waybar/scripts/vpn_simple.sh",
+    "return-type": "json",
+    "interval": 5,
+    "on-click": "~/.config/waybar/scripts/vpn_simple.sh --toggle"
+},
+
+"custom/nc": {
+    "on-click": "swaync-client -t -sw",
+    "icon": true,
+    "format": "󰍜",
+    "tooltip": false
+},
+
+// NOTE: deprecated, as the on-click script doesn't exist anymore
+"custom/syncdots": {
+    "format": "󱑡 ",   
+    "on-click": "~/.local/bin/syncdots",  // update system
+    "signal": 8
+},
+
+"custom/pipewire": {
+    "format": "{icon}",
+    "return-type": "json",
+    "signal": 8,
+    "interval": "once",
+    "format-icons": {
+        "mute": "",
+        "default": ["", "", "", ""],
+    },
+    "exec": "pw-volume status"
+},
+
+    "custom/poweroff": {
+    "format": "⏻",
+    "on-click": "~/scripts/waybar/poweroff_waybar.sh",
+    "tooltip-format": "Poweroff"
+},
+
+"custom/reboot": {
+    "format": "↺",
+    "on-click": "~/scripts/waybar/reboot_waybar.sh",
+    "tooltip-format": "Reboot"
+},
+
+
+"custom/logout": {
+    "format": "←",
+    "on-click": "~/scripts/waybar/logout_waybar.sh",
+    "tooltip-format": "Logout"
+},
+
+"custom/suspend": {
+    "format": "🌙",
+    "on-click": "~/scripts/waybar/suspend_waybar.sh",
+    "tooltip-format": "Suspend"
+},
+
+"custom/lockscreen": {
+    "format": "🔒",
+    "on-click": "hyprlock",
+    "tooltip-format": "Lock screen"
+},
+
+}

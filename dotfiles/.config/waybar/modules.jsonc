@@ -1,0 +1,15 @@
+//* --- all waybar modules --- *//
+
+{
+
+    "include": [
+        "~/.config/waybar/modules/default.jsonc",
+        "~/.config/waybar/modules/hyprland.jsonc",
+        "~/.config/waybar/modules/custom.jsonc",
+        "~/.config/waybar/modules/custom_reference.jsonc",
+        "~/.config/waybar/modules/groups.jsonc",
+        "~/.config/waybar/modules/seperators.jsonc",
+        "~/.config/waybar/modules/vertical.jsonc",
+    ]
+
+}
