@@ -1,84 +1,89 @@
 # dotfiles
 
-> [!NOTE]  
-> README is outdated and belongs to a previous version of the dotfiles. may contain some inaccuracies. 
+> [!WARNING]  
+> *[copyconfig.sh](dotfiles/.config/hypr/scripts/copyconfig.sh)* (**CTRL + ALT + U**) only works if this dotfiles repository sits in `~/Desktop/`. 
+> The source path is hardcoded into the script.
 
+<a name="install-warning"></a>
 > [!CAUTION]
-> BASH SCRIPTS MUST BE RE-EVALUALTED - EXECUTE AT OWN RISK ([install](install.sh), [symlinks](symlinks.sh) and [systemsetup](systemsetup.sh))
+> **[install](install.sh)** & **[systemsetup](systemsetup.sh)** ARE OUTDATED. 
+> USE WITH CAUTION
 
 ## disclaimer
 > these are my personal dotfiles. 
 
 if you are thinking about installing them, keep in mind:
-- they are not designed to be installed on other systems. 
+- they are not (yet) designed to be installed on other systems. 
 - they are designed along my personal preferences, including things like my directory-structure, monitor config, aur packages etc. 
 - they are always a work in progress, constantly evolving and rarely error-free. 
-- (if you clone this directory, it will include a large amount of wallpapers which i was too lazy to backup elsewhere. sorry not sorry)
- - currently in the process of moving my wallpaper collection somewhere else. however, you might still clone my active wallpaper rotation until i have implemented a different way to handle them.
+
+> [!NOTE]
 > you are welcome to use my configs or scripts as a reference for your own :)
 
-## Planned/To-Do/Ideas
+## ideas & to-do
 
-- [ ] Waybar Sound-Output Switcher & Volume Settings
-- [ ] Waybar Bluetooth Tray
+### planned utilits 
+- [ ] sound output device switcher
+- [ ] volume slider
+- [ ] bluetooth
+    - [ ] on/off switch
+    - [ ] connect/disconnect known devices
+    - [ ] scan for new devices 
+- [ ] SwayNC
+    - [ ] fit height to screen
+    - [ ] slide-in animation
+- [ ] wallpaper-selector (instead of just iteration)
+- [ ] waybar
+    - [ ] fix workspace-permanence for hyprland workspaces
+    - [ ] weather module
+    - [ ] active keyboard layout display (& switcher)
+    - [ ] power-menu (shutdown, reboot, logout) 
+        - [ ] set up a proper utility like wlogout
+    - [ ] brightness slider (dim screen)
+    - [ ] blue light filter switch
+        - [ ] & intensity slider?
+    - [ ] spotify/media module
+        - [ ] currently playing
+        - [ ] pause/prev/next
 
+### needs aesthetics upgrade
+- [ ] hyprlock
+- [ ] session manager (ly)
+    - [ ] adjust for ultrawide monitor (renders in top-left 1920x1080)
+
+### repository maintenance
+- [x] update [README.md](README.md)
+    - [ ] add images
+- [ ] revamp [install.sh](install.sh)
 
 ## features
 - trying to adhere to a minimalistic aesthetic
 - shortcut to iterate through wallpapers and automatically update color-scheme using pywal
- - also update firefox colors with pywalfox
- - (vscodium colors through marketplace extension)
-- scripts to automatically update configs with pywal colors for: 
- - cava
- - btop
-- translucent waybar colors
-- shortcut to update .config folder from changes in dotfiles folder (for development)
+    - includes custom scripts to automatically update colors for **cava** and **btop** without restarting the terminal
+    - third-party extensions to use pywal color-scheme in
+        - firefox: [Pywalfox](https://addons.mozilla.org/en-US/firefox/addon/pywalfox/)
+        - vscode/vscodium: [Wal Theme](https://marketplace.visualstudio.com/items?itemName=dlasagno.wal-theme) 
 
-### shortcuts
-| Utility                       | Shortcut              |
-|-------------------------------|-----------------------|
-| menu (rofi)                   | SUPER + Space         |
-| terminal (kitty)              | SUPER + Q             |
-| file manager (nautilus)       | SUPER + E             |
-| firefox                       | SUPER + W             |
-| vscodium                      | SUPER + C             |
-| close active window           | SUPER + S             |
-| floating/tiling toggle        | ALT + Space           |
-| screenshot (area)             | CTRL + Space          |
-| switch kb layout              | SUPER + ALT + Space   |
-| sync dotfiles (copyconfig.sh) | CTRL + ALT + U        |
-| next wallpaper + color-update | CTRL + ALT + N        |
+### keyboard shortcuts
 
-
-### overview
---------------------------------------------
-| | | |
-|-------------------|-|---------------------|
-| wm                |:| hyprland            |
-| terminal          |:| kitty               |
-| bar               |:| waybar              |
-| notifications     |:| swaync              |
-| file manager      |:| nautilus            |
-| launcher          |:| rofi                |
-| browser           |:| firefox             |
-| shell             |:| bash                |
-| music player      |:| spotify             |
-| video player      |:| mpv                 |
-| image viewer      |:| imv                 |
-| fetch             |:| catnap              |
-| lockscreen        |:| hyprlock            |
-| wallpaper         |:| swaybg              |
-| color-theme       |:| pywal               |
-| audio-visualizer  |:| cava                |
-| code-editor       |:| vscodium            |
-| clipboard-manager |:| copyq               |
-| vpn               |:| mullvad             |
-| cursor-theme      |:| vimix               |
-| icon-theme        |:| papirus             |
-| font              |:| jetbrains mono      |
-
+| Shortcut              | Utility/Program                   |
+|-----------------------|-----------------------------------|
+| SUPER + Space         | app-launcher (rofi)               |
+| SUPER + Q             | terminal (kitty)                  |
+| SUPER + E             | file manager (nautilus)           |
+| SUPER + W             | browser (firefox)                 |
+| SUPER + C             | vscode                            |
+| SUPER + S             | kill active window                |
+| ALT + Space           | toggle floating/tiling            |
+| CTRL + Space          | screenshot selected area          |
+| SUPER + ALT + Space   | cycle keyboard layout             |
+| CTRL + ALT + N        | next wallpaper + color update     |
+| CTRL + ALT + U        | update .config (`copyconfig.sh`)  |
 
 ## installation
+
+> [!CAUTION]
+> RUN AT OWN RISK, [SEE ABOVE](#install-warning)
 
 1. clone the repository:
 
@@ -97,3 +102,13 @@ if you are thinking about installing them, keep in mind:
     ```bash
     ./install.sh
     ```
+
+### alternative install for current-state compatibility
+
+```bash
+mkdir -p ~/Desktop/
+git clone https://github.com/sky-ash/dotfiles.git ~/Desktop/
+cd ~/.config/
+mkdir -p btop catnap cava era hypr kitty nwg-look rofi swaync waybar
+~/Desktop/dotfiles/dotfiles/.config/hypr/scripts/copyconfig.sh
+```
