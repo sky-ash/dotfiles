@@ -4,7 +4,6 @@
   "positionY": "top",
 	"cssPriority": "user",
 
-  // Control Center (Settings Buttons)
   "control-center-width": 380,
   "control-center-height": 860, 
   "control-center-margin-top": 2,
@@ -12,7 +11,6 @@
   "control-center-margin-right": 1,
   "control-center-margin-left": 0,
 
-  // NOTIFICATIONS
   "notification-window-width": 400,
   "notification-icon-size": 48,
   "notification-body-image-height": 160,
@@ -43,14 +41,13 @@
     }
   },
 
-  // WIDGETS
   "widgets": [
-    "label",        // ? (does this define the labels of the control center buttons?)
-    "buttons-grid", // Control Center Buttons
-    "mpris",        // Media Control
-    "title",        // Notifications & Clear-Button
-    "dnd",          // Do Not Distrub Switch
-    "notifications" // List of Notifications
+    "label",       
+    "buttons-grid",
+    "mpris",       
+    "title",       
+    "dnd",         
+    "notifications"
   ],
   "widget-config": {
     "title": {
