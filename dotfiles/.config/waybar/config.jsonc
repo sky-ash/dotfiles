@@ -6,36 +6,28 @@
     "layer": "bottom",
     //"mod": "dock",
     "exclusive": true,
-    "passthrough": false,
-    
+    "passthrough": false,    
     "position": "top",
-    
-    //"spacing": 6,
-    "height": 0, //24
-    //"margin-left": 15,
-    //"margin-right": 15,
-    //"margin-top": 6,
-    //"margin-bottom": -6,
-    
     //"gtk-layer-shell": true,  // is this deprecated? can't find in the wiki
     //"ipc": true,
 
+    "spacing": 11,
+    "margin-left": 7,
+    "margin-right": 7,
+    "margin-top": 3,
+    "margin-bottom": -5,
+
     "modules-left": [ 
-        //"group/arch", 
-        //"pulseaudio/slider", 
-        //"pulseaudio", 
-        //"hyprland/mode", 
-        "hyprland/workspaces" 
+        "group/weatherclock",
+        "hyprland/window",
     ],
 
     "modules-center": [
-        "hyprland/window"
+        "hyprland/workspaces"
     ], 
 
     "modules-right": [
-        //"group/song", 
-        //"group/dashboard",
-        "clock", 
+        "wireplumber",
         "custom/vpn", 
         "custom/nc"
     ],

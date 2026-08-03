@@ -2,6 +2,15 @@
 
 {
 
+"group/weatherclock": {
+    "orientation": "horizontal",
+    "modules": [
+        "custom/weather",
+        "custom/separator#blank_2",
+        "clock"
+    ]
+},
+
 "group/motherboard": {
     "orientation": "horizontal",
     "modules": [
@@ -9,22 +18,6 @@
       "memory",
       "temperature",
       "disk",
-      ]	
-},
-  
-"group/laptop": {
-    "orientation": "horizontal",
-    "modules": [
-      "backlight",
-      "battery",
-      ]	
-},
-  
-"group/audio": {
-    "orientation": "horizontal",
-    "modules": [
-      "pulseaudio",
-      "pulseaudio#microphone",
       ]	
 },
 
