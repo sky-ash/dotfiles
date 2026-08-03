@@ -24,7 +24,7 @@ if you are thinking about installing them, keep in mind:
 
 ### planned utilits 
 - [ ] sound output device switcher
-- [ ] volume slider
+- [x] ~~volume slider~~ on-scroll volume change
 - [ ] bluetooth
     - [ ] on/off switch
     - [ ] connect/disconnect known devices
@@ -34,8 +34,8 @@ if you are thinking about installing them, keep in mind:
     - [ ] slide-in animation
 - [ ] wallpaper-selector (instead of just iteration)
 - [ ] waybar
-    - [ ] fix workspace-permanence for hyprland workspaces
-    - [ ] weather module
+    - [x] fix workspace-permanence for hyprland workspaces
+    - [x] weather module
     - [ ] active keyboard layout display (& switcher)
     - [ ] power-menu (shutdown, reboot, logout) 
         - [ ] set up a proper utility like wlogout
