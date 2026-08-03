@@ -1,29 +1,17 @@
 @import "../../.cache/wal/colors-waybar.css";
 
+
+/* GENERAL */
+
 * {
     font-family: JetBrains Mono Nerd Font;
     font-size: 101%;
     font-weight: bold;
-    /*font-style: italic;*/
     font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
-    
     padding: 1px;
-    
     border: none;
     border-radius: 3px; 
-    min-height: 0;
-    
     color: alpha(@foreground, 1);
-
-    /* default visual settings for all unstyled modules */
-    /*
-    padding: 0px 15px;
-    margin: 9px;
-    margin-bottom: 0px;
-    background: alpha(@background, 0.8);
-    color: alpha(@foreground, 1);
-    border-radius: 3px;
-    */
 }
 
 window#waybar {
@@ -31,29 +19,53 @@ window#waybar {
     color: alpha(@foreground, 0);
 }
 
-#custom-weather {
+
+/* === MODULES LEFT === */
+
+/* WEATHER + CLOCK GROUP */
+#weatherclock {
     background: alpha(@background, 0.8);
-    padding: 0px 15px;
-    margin: 9px;
-    margin-bottom: 0px;
+    padding: 0px 11px; /* no padding top & bottom; 11px padding left & right */
+
+    /* border: 3px solid rgba(255, 0, 132, 0.8); */ /* bright pink border for testing */
+}
+
+#weatherclock #custom-weather,
+#weatherclock #clock {
+    padding: 0px;
+}
+
+/* ACTIVE WINDOW NAME */
+#window {
+    background: alpha(@background, 0.8);
+    padding: 0px 11px; /* no padding top & bottom; 11px padding left & right */
+    
+    /* border: 3px solid rgba(255, 0, 132, 0.8); */
+}
+
+
+/* === MODULES RIGHT === */
+
+/* VOLUME (WIREPLUMBER) */
+#wireplumber {
+    background: alpha(@background, 0.8);
+    padding: 0px 11px; /* no padding top & bottom; 11px padding left & right */
 
     /*border: 3px solid rgba(255, 0, 132, 0.8); */ /* bright pink border for testing */
 }
 
-#custom-nc {
+/* COPY CONFIG */
+#custom-copyconfig {
     background: alpha(@background, 0.8);
-    padding: 0px 15px;
-    margin: 9px;
-    margin-bottom: 0px;
+    padding: 0px 11px; /* no padding top & bottom; 11px padding left & right */
 
     /*border: 3px solid rgba(255, 0, 132, 0.8); */ /* bright pink border for testing */
 }
 
+/* VPN */
 #custom-vpn {
     background: alpha(@background, 0.8);
-    padding: 0px 15px;
-    margin: 9px;
-    margin-bottom: 0px;
+    padding: 0px 11px; /* no padding top & bottom; 11px padding left & right */
 
     /*border: 3px solid rgba(255, 0, 132, 0.8); */ /* bright pink border for testing */
 }
@@ -70,22 +82,30 @@ window#waybar {
     color: alpha(@foreground, 1);
 }
 
-
-
-#workspaces, #window, #clock, #custom-syncdots {
+/* SWAYNC MENU */
+#custom-nc {
     background: alpha(@background, 0.8);
-    padding: 0px 15px;
-    margin: 9px;
-    margin-bottom: 0px;
+    padding: 0px 11px; /* no padding top & bottom; 11px padding left & right */
 
     /*border: 3px solid rgba(255, 0, 132, 0.8); */ /* bright pink border for testing */
 }
 
 
+/* === MODULES CENTER === */
+
+/* WORKSPACES */
+#workspaces {
+    background: alpha(@background, 0.8);
+    padding-right: 5px;
+    padding-left: 5px;
+
+    /*border: 3px solid rgba(255, 0, 132, 0.8); */ /* bright pink border for testing */
+}
+
+/* WORKSPACE BUTTON SETTINGS */
 #workspaces button {
     padding: 5px;
     color: alpha(@foreground, 0.6);
-    margin-right: 5px;
 }
 
 #workspaces button.active {
@@ -94,22 +114,12 @@ window#waybar {
 
 #workspaces button.focused {
     color: alpha(@foreground, 0.1);
-    background: alpha(@background, 0.8);
 }
 
 #workspaces button.urgent {
     color: alpha(@foreground, 0.75);
-    background: alpha(@background, 0.8);
-    border-radius: 3px;
 }
 
 #workspaces button:hover {
     color: alpha(@foreground, 1);
-    border-radius: 3px;
 }
-
-#workspaces {
-    padding-right: 0px;
-    padding-left: 5px;
-}
-
