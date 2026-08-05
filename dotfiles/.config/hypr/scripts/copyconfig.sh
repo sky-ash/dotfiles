@@ -46,3 +46,6 @@ echo -e "waybar running.\n"
 # reload swaync config and css
 swaync-client -R
 swaync-client -rs
+
+# reload wallpaper (next in iteration) and update color-scheme
+~/.config/hypr/scripts/next-wallpaper-and-colorscheme

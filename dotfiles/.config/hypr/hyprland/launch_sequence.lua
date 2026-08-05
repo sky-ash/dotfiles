@@ -20,4 +20,6 @@ hl.on("hyprland.start", function ()
     -- SET CURSOR THEME 
     hl.exec_cmd("hyprctl setcursor Vimix-cursors 36")       -- (maybe move to "env vars" section?)
 
+    -- WALLPAPER AND COLORSCHEME
+    hl.exec_cmd("~/.config/hypr/scripts/next-wallpaper-and-colorscheme")
 end)

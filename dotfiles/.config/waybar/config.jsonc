@@ -12,14 +12,14 @@
     //"ipc": true,
 
     "spacing": 11,
-    "margin-left": 7,
-    "margin-right": 7,
+    "margin-left": 5,
+    "margin-right": 5,
     "margin-top": 3,
-    "margin-bottom": -5,
+    "margin-bottom": -3,
 
     "modules-left": [ 
         "group/weatherclock",
-        "hyprland/window",
+        "hyprland/window"
     ],
 
     "modules-center": [
@@ -28,6 +28,7 @@
 
     "modules-right": [
         "wireplumber",
+        "mpris",
         "custom/vpn", 
         "custom/nc"
     ],

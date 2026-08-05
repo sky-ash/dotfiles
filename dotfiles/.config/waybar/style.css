@@ -10,7 +10,7 @@
     font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
     padding: 1px;
     border: none;
-    border-radius: 3px; 
+    border-radius: 13px; 
     color: alpha(@foreground, 1);
 }
 
@@ -28,6 +28,7 @@ window#waybar {
     padding: 0px 11px; /* no padding top & bottom; 11px padding left & right */
 
     /* border: 3px solid rgba(255, 0, 132, 0.8); */ /* bright pink border for testing */
+    border: 2px solid alpha(@color1, 0.8);
 }
 
 #weatherclock #custom-weather,
@@ -41,6 +42,7 @@ window#waybar {
     padding: 0px 11px; /* no padding top & bottom; 11px padding left & right */
     
     /* border: 3px solid rgba(255, 0, 132, 0.8); */
+    border: 2px solid alpha(@color1, 0.8);
 }
 
 
@@ -52,14 +54,15 @@ window#waybar {
     padding: 0px 11px; /* no padding top & bottom; 11px padding left & right */
 
     /*border: 3px solid rgba(255, 0, 132, 0.8); */ /* bright pink border for testing */
+    border: 2px solid alpha(@color1, 0.8);
 }
 
-/* COPY CONFIG */
-#custom-copyconfig {
+/* MPRIS */
+#mpris {
     background: alpha(@background, 0.8);
     padding: 0px 11px; /* no padding top & bottom; 11px padding left & right */
 
-    /*border: 3px solid rgba(255, 0, 132, 0.8); */ /* bright pink border for testing */
+    border: 2px solid alpha(@color1, 0.8);
 }
 
 /* VPN */
@@ -68,6 +71,7 @@ window#waybar {
     padding: 0px 11px; /* no padding top & bottom; 11px padding left & right */
 
     /*border: 3px solid rgba(255, 0, 132, 0.8); */ /* bright pink border for testing */
+    border: 2px solid alpha(@color1, 0.8);
 }
 
 #custom-vpn.connected {
@@ -88,6 +92,7 @@ window#waybar {
     padding: 0px 11px; /* no padding top & bottom; 11px padding left & right */
 
     /*border: 3px solid rgba(255, 0, 132, 0.8); */ /* bright pink border for testing */
+    border: 2px solid alpha(@color1, 0.8);
 }
 
 
@@ -100,6 +105,7 @@ window#waybar {
     padding-left: 5px;
 
     /*border: 3px solid rgba(255, 0, 132, 0.8); */ /* bright pink border for testing */
+    border: 2px solid alpha(@color1, 0.8);
 }
 
 /* WORKSPACE BUTTON SETTINGS */

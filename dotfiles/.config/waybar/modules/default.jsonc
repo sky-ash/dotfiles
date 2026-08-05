@@ -173,8 +173,8 @@
 
 "mpris": {
     "interval": 10,
-	"format": "{player_icon} ",
-	"format-paused": "{status_icon} <i>{dynamic}</i>",
+	"format": "{player_icon} {title} - {artist}",
+	"format-paused": "{status_icon} {title} - {artist}",
 	"on-click-middle": "playerctl play-pause",
     "on-click": "playerctl previous",
     "on-click-right": "playerctl next",

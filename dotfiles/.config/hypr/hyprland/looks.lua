@@ -2,6 +2,17 @@
         # LOOK AND FEEL #
         # ============= #       ]]
 
+local wal = require("hyprland/colors")
+
+
+local active_col   = 0x05ffffff   -- fallback if wal cache missing
+local inactive_col = 0x37373737
+
+if wal.raw then
+    active_col   = wal.rgba(wal.raw[1], "ee")  -- color4, ~85% opacity
+    inactive_col = wal.rgba(wal.raw[0], "aa")  -- color0 (bg), ~67% opacity
+end
+
 hl.config({
 
     -- ##################### --
@@ -9,14 +20,14 @@ hl.config({
     -- ##################### --
 
     general = {
-        gaps_in  = 5,
-        gaps_out = 9,
+        gaps_in  = 3,
+        gaps_out = 7,
 
-        border_size = 7,
+        border_size = 2,
         resize_on_border = false,           -- resize windows by clicking and dragging on borders and gaps (off, resizing done with SUPER key instead)
         col = {
-            active_border   = 0x05ffffff,
-            inactive_border = 0x37373737
+            active_border   = active_col,
+            inactive_border = inactive_col
         },
 
         allow_tearing = false,
@@ -30,7 +41,7 @@ hl.config({
     decoration = {
 
         -- ROUNDING
-        rounding       = 0,
+        rounding       = 13,
 
         -- OPACITY
         active_opacity   = 1.0,
@@ -41,7 +52,7 @@ hl.config({
         shadow = {
             enabled      = true,
             offset       = { 0, 0 },
-            range        = 17,
+            range        = 7,
             render_power = 4,
             color        = 0xff000000,
         },

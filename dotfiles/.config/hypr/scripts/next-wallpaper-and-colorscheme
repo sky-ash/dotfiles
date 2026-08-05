@@ -3,7 +3,8 @@
 
 # COLORS
 # wal
-wal -i "${HOME}/.wallpaper" --iterative -q -n
+#wal -i "${HOME}/.wallpaper" --iterative -q -n
+wal -i "${HOME}/.wallpaper/wallhaven-je866m-centered.jpg" -q -n # specific wallpaper selection
 
 # Read colors from file into an array
 mapfile -t colors < "${HOME}/.cache/wal/colors"
