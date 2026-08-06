@@ -33,19 +33,21 @@ for file in ${files[@]}; do
     fi
 done
 
-# reloading hyprland config
-echo -e "running 'hyprctl reload' to reevaluate hyprland.lua:\n"
-hyprctl reload
+# COPY WALLPAPER FOLDER (~/.local/wallpaper)
+local_folders=(wallpaper)
+local=$HOME/.local/
+dotfiles_local=$HOME/Desktop/dotfiles/dotfiles/.local/
 
-# restart waybar
-echo -e "restarting waybar:\n"
-killall waybar
-nohup waybar > /dev/null 2>&1 &
-echo -e "waybar running.\n"
+for folder in ${local_folders[@]}; do
+    echo "checking $folder:"
+    if [[ -d "$local/$folder" ]]; then
+        echo -e "'$folder' is a diretory. deleting and creating copy from dotfiles.\n"
+        rm -rf "$local/$folder"
+        cp -r "$dotfiles_local/$folder" "$local/$folder"
+    else
+        echo -e "skipping: '$folder' is not a directory.\n"
+    fi
+done
 
-# reload swaync config and css
-swaync-client -R
-swaync-client -rs
-
-# reload wallpaper (next in iteration) and update color-scheme
-~/.config/hypr/scripts/next-wallpaper-and-colorscheme
+# reload all configs
+~/.config/hypr/scripts/reload_all.sh

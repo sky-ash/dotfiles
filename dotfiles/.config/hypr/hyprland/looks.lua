@@ -9,7 +9,7 @@ local active_col   = 0x05ffffff   -- fallback if wal cache missing
 local inactive_col = 0x37373737
 
 if wal.raw then
-    active_col   = wal.rgba(wal.raw[1], "ee")  -- color4, ~85% opacity
+    active_col   = wal.rgba(wal.raw[1], "ee")  -- color1, ~85% opacity
     inactive_col = wal.rgba(wal.raw[0], "aa")  -- color0 (bg), ~67% opacity
 end
 
