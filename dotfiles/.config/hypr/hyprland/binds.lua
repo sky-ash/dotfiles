@@ -14,6 +14,8 @@ hl.bind("SUPER + L", hl.dsp.exec_cmd(lockscreen))
 hl.bind("SUPER + Space", hl.dsp.exec_cmd(rofi))
 hl.bind("CTRL + Space", hl.dsp.exec_cmd(screenshot_selected_region))
 hl.bind("SUPER + ALT + Space", hl.dsp.exec_cmd(next_keyboard_layout))
+hl.bind("SUPER + R", hl.dsp.exec_cmd(transcription_toggle))
+
 
 -- SCRIPTS
 hl.bind("CTRL + ALT + N", hl.dsp.exec_cmd(next_wallpaper))

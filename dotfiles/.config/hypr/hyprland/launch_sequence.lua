@@ -16,6 +16,7 @@ hl.on("hyprland.start", function ()
     hl.exec_cmd("waybar")
     hl.exec_cmd("hyprshade")
     hl.exec_cmd("mullvad connect")                          -- instead of launching mullvad-gui, establish a connection via cli command (turn on or off via waybar)
+    hl.exec_cmd("handy --start-hidden --no-tray")           -- autolaunch handy (transcription tool) in background 
 
     -- SET CURSOR THEME 
     hl.exec_cmd("hyprctl setcursor Vimix-cursors 36")       -- (maybe move to "env vars" section?)
