@@ -23,9 +23,9 @@ out vec4 fragColor;
  * @max 10.0
  */
 const vec3 Balance = vec3(
-    float({{#nc}}{{balance.red}} ? 1.0{{/nc}}),
-    float({{#nc}}{{balance.green}} ? 1.0{{/nc}}),
-    float({{#nc}}{{balance.blue}} ? 1.0{{/nc}})
+    float(1.0),
+    float(1.0),
+    float(1.0)
 );
 
 /**
@@ -35,7 +35,7 @@ const vec3 Balance = vec3(
  * @min -1.0
  * @max 1.0
  */
-const float Strength = float({{#nc}}{{strength}} ? 0.15{{/nc}});
+const float Strength = float(0.15);
 
 const vec3 VIB_coeffVibrance = Balance * -Strength;
 

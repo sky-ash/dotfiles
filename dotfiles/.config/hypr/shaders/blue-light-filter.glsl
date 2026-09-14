@@ -20,7 +20,7 @@ out vec4 fragColor;
  * @min 1000.0
  * @max 40000.0
  */
-const float Temperature = float({{#nc}}{{temperature}} ? 2600.0{{/nc}});
+const float Temperature = float(2600.0);
 
 /**
  * Strength of filter.
@@ -28,7 +28,7 @@ const float Temperature = float({{#nc}}{{temperature}} ? 2600.0{{/nc}});
  * @min 0.0
  * @max 1.0
  */
-const float Strength = float({{#nc}}{{strength}} ? 1.0{{/nc}});
+const float Strength = float(1.0);
 
 
 
@@ -43,7 +43,7 @@ const float LuminancePreservationFactor = 1.0;
 
 
 
-const float Brightness = float({{#nc}}{{brightness}} ? 0.5{{/nc}});
+const float Brightness = float(0.5);
 
 
 

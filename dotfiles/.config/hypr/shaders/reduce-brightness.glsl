@@ -19,7 +19,7 @@ out vec4 fragColor;
  * @min 0.0
  * @max 1.0
  */
-const float Brightness = float({{#nc}}{{brightness}} ? 0.5{{/nc}});
+const float Brightness = float(0.5);
 
 void main() {
     vec4 pixColor = texture(tex, v_texcoord);
