@@ -14,7 +14,7 @@ hl.on("hyprland.start", function ()
 
     -- AUTOSTART PROGRAMS
     hl.exec_cmd("waybar")
-    hl.exec_cmd("hyprshade")
+    hl.exec_cmd("hyprsunset -i")                            -- daemon for waybar module custom/nightlight, `-i` starts neutral
     hl.exec_cmd("mullvad connect")                          -- instead of launching mullvad-gui, establish a connection via cli command (turn on or off via waybar)
     hl.exec_cmd("handy --start-hidden --no-tray")           -- autolaunch handy (transcription tool) in background 
 

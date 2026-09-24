@@ -10,6 +10,19 @@
     "on-click": "~/.config/waybar/scripts/vpn_module.sh --toggle"
 },
 
+"custom/nightlight": {
+    "exec": "~/.config/waybar/scripts/hyprsunset_module.py",
+    "return-type": "json",
+    "interval": "once",
+    "signal": 8,        // refreshed by the script via 'pkill -RTMIN+8 waybar' (keep in sync with WAYBAR_SIGNAL)
+    // click: on/off | scroll: change value | right-click: switch mode warmth/darkness 
+    "on-click": "~/.config/waybar/scripts/hyprsunset_module.py --toggle",
+    "on-click-right": "~/.config/waybar/scripts/hyprsunset_module.py --switch-mode",
+    "on-scroll-up": "~/.config/waybar/scripts/hyprsunset_module.py --up",
+    "on-scroll-down": "~/.config/waybar/scripts/hyprsunset_module.py --down",
+    "smooth-scrolling-threshold": 1
+},
+
 "custom/nc": {
     "on-click": "swaync-client -t -sw",
     "icon": true,

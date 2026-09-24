@@ -29,7 +29,8 @@
     "modules-right": [
         "wireplumber",
         //"mpris",
-        "custom/vpn", 
+        "custom/nightlight",
+        "custom/vpn",
         "custom/nc"
     ],
 }

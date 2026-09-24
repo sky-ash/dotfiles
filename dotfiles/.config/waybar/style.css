@@ -65,6 +65,26 @@ window#waybar {
     border: 2px solid alpha(@color1, 0.8);
 }
 
+/* NIGHT LIGHT (HYPRSUNSET) */
+#custom-nightlight {
+    background: alpha(@background, 0.8);
+    padding: 0px 11px; /* no padding top & bottom; 11px padding left & right */
+
+    border: 2px solid alpha(@color1, 0.8);
+}
+
+#custom-nightlight.on {
+    color: #FFB347;
+}
+
+#custom-nightlight.off {
+    color: alpha(@foreground, 0.6);
+}
+
+#custom-nightlight:hover {
+    color: alpha(@foreground, 1);
+}
+
 /* VPN */
 #custom-vpn {
     background: alpha(@background, 0.8);
