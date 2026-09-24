@@ -16,8 +16,8 @@
     "on-click-middle": "",
     "on-click-right": "",
     "on-update": "",
-    "on-scroll-up": "~/.config/waybar/scripts/custom_reference/Brightness.sh --inc",
-    "on-scroll-down": "~/.config/waybar/scripts/custom_reference/Brightness.sh --dec",
+    //"on-scroll-up": "~/.config/waybar/scripts/custom_reference/Brightness.sh --inc",
+    //"on-scroll-down": "~/.config/waybar/scripts/custom_reference/Brightness.sh --dec",
     "smooth-scrolling-threshold": 1,
 },
 

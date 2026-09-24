@@ -25,10 +25,9 @@ window#waybar {
 /* WEATHER + CLOCK GROUP */
 #weatherclock {
     background: alpha(@background, 0.8);
-    padding: 0px 11px; /* no padding top & bottom; 11px padding left & right */
+    padding: 0px 11px;                                  /* no padding top & bottom; 11px padding left & right */
 
-    /* border: 3px solid rgba(255, 0, 132, 0.8); */ /* bright pink border for testing */
-    border: 2px solid alpha(@color1, 0.8);
+    border: 2px solid alpha(@color1, 0.85);
 }
 
 #weatherclock #custom-weather,
@@ -39,10 +38,9 @@ window#waybar {
 /* ACTIVE WINDOW NAME */
 #window {
     background: alpha(@background, 0.8);
-    padding: 0px 11px; /* no padding top & bottom; 11px padding left & right */
+    padding: 0px 11px;                                  /* no padding top & bottom; 11px padding left & right */
     
-    /* border: 3px solid rgba(255, 0, 132, 0.8); */
-    border: 2px solid alpha(@color1, 0.8);
+    border: 2px solid alpha(@color1, 0.85);
 }
 
 
@@ -51,26 +49,25 @@ window#waybar {
 /* VOLUME (WIREPLUMBER) */
 #wireplumber {
     background: alpha(@background, 0.8);
-    padding: 0px 11px; /* no padding top & bottom; 11px padding left & right */
+    padding: 0px 11px;                                  /* no padding top & bottom; 11px padding left & right */
 
-    /*border: 3px solid rgba(255, 0, 132, 0.8); */ /* bright pink border for testing */
-    border: 2px solid alpha(@color1, 0.8);
+    border: 2px solid alpha(@color1, 0.85);
 }
 
 /* MPRIS */
 #mpris {
     background: alpha(@background, 0.8);
-    padding: 0px 11px; /* no padding top & bottom; 11px padding left & right */
+    padding: 0px 11px;                                  /* no padding top & bottom; 11px padding left & right */
 
-    border: 2px solid alpha(@color1, 0.8);
+    border: 2px solid alpha(@color1, 0.85);
 }
 
 /* NIGHT LIGHT (HYPRSUNSET) */
 #custom-nightlight {
     background: alpha(@background, 0.8);
-    padding: 0px 11px; /* no padding top & bottom; 11px padding left & right */
+    padding: 0px 11px;                                  /* no padding top & bottom; 11px padding left & right */
 
-    border: 2px solid alpha(@color1, 0.8);
+    border: 2px solid alpha(@color1, 0.85);
 }
 
 #custom-nightlight.on {
@@ -88,10 +85,9 @@ window#waybar {
 /* VPN */
 #custom-vpn {
     background: alpha(@background, 0.8);
-    padding: 0px 11px; /* no padding top & bottom; 11px padding left & right */
+    padding: 0px 11px;                                  /* no padding top & bottom; 11px padding left & right */
 
-    /*border: 3px solid rgba(255, 0, 132, 0.8); */ /* bright pink border for testing */
-    border: 2px solid alpha(@color1, 0.8);
+    border: 2px solid alpha(@color1, 0.85);
 }
 
 #custom-vpn.connected {
@@ -109,10 +105,9 @@ window#waybar {
 /* SWAYNC MENU */
 #custom-nc {
     background: alpha(@background, 0.8);
-    padding: 0px 11px; /* no padding top & bottom; 11px padding left & right */
+    padding: 0px 11px;                                  /* no padding top & bottom; 11px padding left & right */
 
-    /*border: 3px solid rgba(255, 0, 132, 0.8); */ /* bright pink border for testing */
-    border: 2px solid alpha(@color1, 0.8);
+    border: 2px solid alpha(@color1, 0.85);
 }
 
 
@@ -124,8 +119,7 @@ window#waybar {
     padding-right: 5px;
     padding-left: 5px;
 
-    /*border: 3px solid rgba(255, 0, 132, 0.8); */ /* bright pink border for testing */
-    border: 2px solid alpha(@color1, 0.8);
+    border: 2px solid alpha(@color1, 0.85);
 }
 
 /* WORKSPACE BUTTON SETTINGS */

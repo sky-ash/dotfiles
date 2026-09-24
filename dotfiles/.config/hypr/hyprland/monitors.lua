@@ -16,7 +16,7 @@ hl.monitor({
     --output   = "HDMI-A-2",
     output   = "DP-2",
     mode     = "1920x1080@59.96", -- ? "1920x1080@60"
-    position = "3440x0",    -- RIGHT
-    --position = "-1920x0",   -- LEFT
+    --position = "3440x0",    -- RIGHT
+    position = "-1920x0",   -- LEFT
     scale    = "1",
 })
