@@ -17,7 +17,7 @@ $border_color       = $white
 $distroid           = ""                                                    ; Overwrite the distroid. Empty => Use autodetect
 $stats_margin_top   = 0                                                     ; Blank lines above the stat block. Useful with art_on_top or stats_on_top
 $graph_width        = 10                                                    ; Default bar width for graph stats (override per stat with graph_width=N)
-$location           = "Stuttgart"                                           ; City name for the weather stat. Leave empty to disable
+; $location           = "Stuttgart"                                           ; City name for the weather stat. Leave empty to disable
 
 
 ; == Stat list ============================================================
@@ -67,9 +67,9 @@ $stats = [
     @{
         id="uptime"         name="uptime"           icon=''
         color=$yellow                                                   }
-    @{
-        id="weather"        name="weather"          icon=''
-        color=$blue                                                     }   ; slow, needs curl and an emoji font
+;   @{
+;       id="weather"        name="weather"          icon=''
+;       color=$blue                                                     }   ; slow, needs curl and an emoji font
     @{
         id="colors"         name="colors"           icon=''
         color=$magenta      symbol='●'                                  }

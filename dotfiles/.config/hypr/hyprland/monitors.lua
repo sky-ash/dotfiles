@@ -8,7 +8,8 @@ hl.monitor({
     output   = "DP-1",
     mode     = "3440x1440@99.99", -- ? "3440x1440@144"
     position = "0x0",
-    scale    = "1",
+    scale    = 1,
+    transform = 2,
 })
 
 -- 16:9 MONITOR TO THE... 
@@ -18,5 +19,5 @@ hl.monitor({
     mode     = "1920x1080@59.96", -- ? "1920x1080@60"
     --position = "3440x0",    -- RIGHT
     position = "-1920x0",   -- LEFT
-    scale    = "1",
+    scale    = 1,
 })
