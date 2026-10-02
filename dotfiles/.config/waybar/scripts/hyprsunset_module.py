@@ -1,60 +1,58 @@
 #!/usr/bin/env python3
+
 from __future__ import annotations
 
-# Imports, Constants, Dataclasses
+
+# --- files ----------------------------------
+
 import os
 from pathlib import Path
-
 CACHE_DIR = Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache"))
 RUNTIME_DIR = Path(os.environ.get("XDG_RUNTIME_DIR", "/tmp"))
+
 STATE_FILE = CACHE_DIR / "nightlight.conf"
 ON_FLAG = RUNTIME_DIR / "nightlight.on"
 
-WAYBAR_SIGNAL = 8  # must match "signal" in custom.jsonc
-
-def refresh_waybar() -> None:
-    subprocess.run(["pkill", f"-RTMIN+{WAYBAR_SIGNAL}", "waybar"])
-
-ICON_OFF = "\U000F0594"       #  moon
-#ICON_WARMTH = "\U000F05A8"    #  sun
-#ICON_DARKNESS = "\U000F00DE"  #  brightness
-# ICONS = {Mode.WARMTH: "\U000F05A8", Mode.DARKNESS: "\U000F00DE"}  #  sun,  brightness
-
-import json
-import os
-import subprocess
-import sys
-import time
-from dataclasses import dataclass
 
 # --- temp & gamma -------------------------------------------------------
 
+ICONS = {
+    "off": "\U000F0594",
+    "temp": "\U000F05A8",
+    "gamma": "\U000F00DE"
+}
+
+from dataclasses import dataclass
 @dataclass(frozen=True)
 class Range:
-    lo: int
-    hi: int
+    low: int
+    high: int
     step: int
     default: int
     icon: str
     unit: str
+    mode: str
 
     def clamp(self, value: int) -> int:
-        return max(self.lo, min(self.hi, value))
+        return max(self.low, min(self.high, value))
 
-TEMP = Range(lo=2000, hi=5500, step=250, default=3500, icon="\U000F05A8", unit="K")
-GAMMA = Range(lo=20, hi=100, step=10, default=70, icon="\U000F00DE", unit="%")
+T = Range(low=2000, high=5500, 
+          step=250, default=3500, 
+          icon=ICONS["temp"], unit="K", mode="temp")
+
+G = Range(low=20, high=100, 
+          step=10, default=70, 
+          icon=ICONS["gamma"], unit="%", mode="gamma")
+
 
 # --- state --------------------------------------------------------------
 
-
-K = "warmth"
-D = "darkness"
-
+import json
 @dataclass
 class State:
-    temp: int = TEMP.default
-    gamma: int = GAMMA.default
-    mode: str = K
+    temp: int = T.default
+    gamma: int = G.default
+    mode: str = T.mode
 
     @classmethod
     def load(cls) -> State:
@@ -64,23 +62,23 @@ class State:
             return cls()
 
         mode_saved = saved.get("mode")
-        mode = f"{mode_saved}" if mode_saved in [K, D] else K
+        mode = f"{mode_saved}" if mode_saved in [T.mode, G.mode] else T.mode
 
-        temp_saved = int(saved.get("temp", TEMP.default))
-        gamma_saved = int(saved.get("gamma", GAMMA.default))
+        temp_saved = int(saved.get("temp", T.default))
+        gamma_saved = int(saved.get("gamma", G.default))
 
         return cls(
-            temp=TEMP.clamp(temp_saved),
-            gamma=GAMMA.clamp(gamma_saved),
+            temp=T.clamp(temp_saved),
+            gamma=G.clamp(gamma_saved),
             mode=mode,
         )
 
     def change(self, direction: int) -> None:
         """Nudge whichever value the active mode controls by one step."""
-        if self.mode == K:
-            self.temp = TEMP.clamp(self.temp + direction * TEMP.step)
+        if self.mode == T.mode:
+            self.temp = T.clamp(self.temp + direction * T.step)
         else:
-            self.gamma = GAMMA.clamp(self.gamma + direction * GAMMA.step)
+            self.gamma = G.clamp(self.gamma + direction * G.step)
             
     def save(self) -> None:
         STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
@@ -92,18 +90,14 @@ class State:
 
     @property
     def icon(self) -> str:
-        return TEMP.icon if self.mode == K else GAMMA.icon
+        return T.icon if self.mode == T.mode else G.icon
 
     @property
     def active_value(self) -> str:
-        return f"{self.temp}{TEMP.unit}" if self.mode == K else f"{self.gamma}{GAMMA.unit}"
-
-
+        return f"{self.temp}{T.unit}" if self.mode == T.mode else f"{self.gamma}{G.unit}"
 
 
 # --- on off state and toggle --------------------------------------
-
-
 
 def is_on() -> bool:
     return ON_FLAG.exists()
@@ -114,12 +108,19 @@ def toggle(turn_on: bool = False) -> None:
     elif is_on():
         ON_FLAG.unlink(missing_ok=True)
 
+
+# --- lock --------------------------------------
+
 LOCK_FILE = RUNTIME_DIR / "nightlight.lock"
 
+import fcntl
+import sys
+import time
 from contextlib import contextmanager
 @contextmanager
 def locked(timeout: float = 3):
-    """Hold a file lock so concurrent invocations can't race on the state file.
+    """(this function is ai-generated code)
+    Hold a file lock so concurrent invocations can't race on the state file.
 
     Fast scrolling fires many instances of this script at once; each one still
     reads state, updates it and writes it back, so without a lock two
@@ -141,13 +142,19 @@ def locked(timeout: float = 3):
         yield
 
 
+# --- refresh waybar ----------------------------------
+
+WAYBAR_SIGNAL = 8  # must match "signal" in custom.jsonc
+
+import subprocess
+def refresh_waybar() -> None:
+    subprocess.run(["pkill", f"-RTMIN+{WAYBAR_SIGNAL}", "waybar"])
 
 
-# --- talking to hyprsunset / waybar --------------------------------------
+# --- talking to hyprsunset --------------------------------------
 
 def run_hyprctl(*args: str) -> None:
     subprocess.run(["hyprctl", "hyprsunset", *args], stdout=subprocess.DEVNULL)
-
 
 def apply(state: State) -> None:
     """Push the current state to the running hyprsunset daemon."""
@@ -159,21 +166,12 @@ def apply(state: State) -> None:
         run_hyprctl("gamma", "100")
 
 
-# neutral output / json (render for tooltip and icons)
-
-"""
-def render(state: State) -> str:
-    on = is_on()
-    text = f"{state.icon} {state.active_value}" if on else ICON_OFF
-    return json.dumps({"text": text, "class": "on" if on else "off"}, ensure_ascii=False)
-"""
-
-
+# --- json output --------------------------------------
 
 def report(state: State) -> str:
     on = is_on()
-    text = f"{TEMP.icon} {state.temp}{TEMP.unit}" if on and state.mode == K else \
-           f"{GAMMA.icon} {state.gamma}{GAMMA.unit}" if on else ICON_OFF
+    text = f"{T.icon} {state.temp}{T.unit}" if on and state.mode == T.mode else \
+           f"{G.icon} {state.gamma}{G.unit}" if on else ICONS["off"]
 
     # tooltip text (optional)
     tooltip = "\n".join((
@@ -188,9 +186,7 @@ def report(state: State) -> str:
     return json.dumps({"text": text, "tooltip": tooltip, "class": "on" if on else "off"}, ensure_ascii=False)
 
 
-
-
-# SCRIPT EXECUTE
+# --- MAIN / SCRIPT EXEC --------------------------------------
 
 import argparse
 def parse_args() -> argparse.Namespace:
@@ -211,7 +207,7 @@ def main() -> None:
     state = State.load()
 
     if args.switch_mode:
-        state.mode = D if state.mode == K else K
+        state.mode = G.mode if state.mode == T.mode else T.mode
         state.save()
         refresh_waybar()
         return
@@ -228,14 +224,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
-
-
-
-
-
