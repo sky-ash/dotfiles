@@ -19,57 +19,40 @@ window#waybar {
     color: alpha(@foreground, 0);
 }
 
+/* SHARED STYLE */
+#weatherclock,
+#window,
+#language,
+#wireplumber,
+#mpris,
+#custom-nightlight,
+#custom-vpn,
+#custom-nc,
+#workspaces {
+    background: alpha(@background, 0.8);
+    padding: 3px 13px;
+    border: 2px solid alpha(@color1, 1);
+}
+
 
 /* === MODULES LEFT === */
 
 /* WEATHER + CLOCK GROUP */
-#weatherclock {
-    background: alpha(@background, 0.8);
-    padding: 0px 11px;                                  /* no padding top & bottom; 11px padding left & right */
-
-    border: 2px solid alpha(@color1, 0.85);
-}
-
 #weatherclock #custom-weather,
 #weatherclock #clock {
     padding: 0px;
 }
 
 /* ACTIVE WINDOW NAME */
-#window {
-    background: alpha(@background, 0.8);
-    padding: 0px 11px;                                  /* no padding top & bottom; 11px padding left & right */
-    
-    border: 2px solid alpha(@color1, 0.85);
-}
 
 
 /* === MODULES RIGHT === */
 
+/* KEYBOARD LANG */
 /* VOLUME (WIREPLUMBER) */
-#wireplumber {
-    background: alpha(@background, 0.8);
-    padding: 0px 11px;                                  /* no padding top & bottom; 11px padding left & right */
-
-    border: 2px solid alpha(@color1, 0.85);
-}
-
 /* MPRIS */
-#mpris {
-    background: alpha(@background, 0.8);
-    padding: 0px 11px;                                  /* no padding top & bottom; 11px padding left & right */
-
-    border: 2px solid alpha(@color1, 0.85);
-}
 
 /* NIGHT LIGHT (HYPRSUNSET) */
-#custom-nightlight {
-    background: alpha(@background, 0.8);
-    padding: 0px 11px;                                  /* no padding top & bottom; 11px padding left & right */
-
-    border: 2px solid alpha(@color1, 0.85);
-}
-
 #custom-nightlight.on {
     color: #FFB347;
 }
@@ -83,13 +66,6 @@ window#waybar {
 }
 
 /* VPN */
-#custom-vpn {
-    background: alpha(@background, 0.8);
-    padding: 0px 11px;                                  /* no padding top & bottom; 11px padding left & right */
-
-    border: 2px solid alpha(@color1, 0.85);
-}
-
 #custom-vpn.connected {
     color: #00CC66;
 }
@@ -103,41 +79,35 @@ window#waybar {
 }
 
 /* SWAYNC MENU */
-#custom-nc {
-    background: alpha(@background, 0.8);
-    padding: 0px 11px;                                  /* no padding top & bottom; 11px padding left & right */
-
-    border: 2px solid alpha(@color1, 0.85);
-}
 
 
 /* === MODULES CENTER === */
 
 /* WORKSPACES */
-#workspaces {
-    background: alpha(@background, 0.8);
-    padding-right: 5px;
-    padding-left: 5px;
-
-    border: 2px solid alpha(@color1, 0.85);
-}
 
 /* WORKSPACE BUTTON SETTINGS */
+#workspaces {
+    padding: 7px;
+}
 #workspaces button {
-    padding: 5px;
-    color: alpha(@foreground, 0.6);
+    padding: 0px 11px;
+    margin: 0px 3px;
+    border-radius: 11px;
+    color: alpha(@foreground, 1);
+    background: alpha(@color1, 0.37);
 }
 
 #workspaces button.active {
     color: alpha(@foreground, 1);
+    background: alpha(@color1, 1);
 }
 
 #workspaces button.focused {
-    color: alpha(@foreground, 0.1);
+    color: alpha(@foreground, 1);
 }
 
 #workspaces button.urgent {
-    color: alpha(@foreground, 0.75);
+    color: alpha(@foreground, 1);
 }
 
 #workspaces button:hover {

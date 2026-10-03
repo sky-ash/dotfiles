@@ -5,13 +5,43 @@
 // CIRCLES Style
 "hyprland/workspaces": {
 	"active-only": false,
-    "all-outputs": true, 
-    "format": "{icon}",
+    //"all-outputs": true, 
+    "separate-outputs": true,
+    "format": "{windows}",      //"{icon} {windows}",
+    
+    "format-window-separator": " ",
+	"window-rewrite-default": "",
+	"window-rewrite": {
+		"title<.*youtube.*>": "", // Windows whose titles contain "youtube"
+		"class<firefox>": "", // Windows whose classes are "firefox"
+		"class<firefox> title<.*github.*>": "", // Windows whose class is "firefox" and title contains "github". Note that "class" always comes first.
+		"foot": "", // Windows that contain "foot" in either class or title. For optimization reasons, it will only match against a title if at least one other window explicitly matches against a title.
+		"code": "󰨞",
+		"title<.* - (.*) - VSCodium>": "codium $1",  // captures part of the window title and formats it into output
+        "class<kitty>": "",
+        "class<Spotify>": "",
+        "class<mullvad-vpn>": "󰖂",
+        "class<kitty> title<btop>": "",
+        "class<org.gnome.Nautilus>": "󰉓", //󰉋
+        "class<discord>": "",
+        "class<blueberry.py>": "󰂯",
+        "class<md.obsidian.Obsidian>": "",
+        "class<signal>": "󰭹",
+        "class<org.pulseaudio.pavucontrol> title<Volume Control>": "",
+        "org.qbittorrent.qBittorrent": ""
+    },
+
+    //"workspace-taskbar": false,
     //"show-special": false,
-    "on-click": "activate",
-    "on-scroll-up": "hyprctl dispatch workspace e+1",
-    "on-scroll-down": "hyprctl dispatch workspace e-1",
+    //"on-click": "activate",
+    "move-to-monitor": false, // doesn't seem to work? 
+    "enable-bar-scroll": true, // <- needed for scroll-up and -down events 
+    "on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({workspace=\"e+1\"})' ",
+    "on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({workspace=\"e-1\"})' ",
+    "disable-scroll-wraparound": true, // doesn't seem to work?
     "persistent-workspaces": {
+        "*": 5, // 5 workspaces by default on every monitor
+        /*
         "1": [],
         "2": [],
         "3": [],
@@ -22,7 +52,9 @@
         "8": [],
         "9": [],
         "10": []
+        */
     },
+
     "format-icons": {
       "active": "",
       "default": "",
@@ -83,12 +115,14 @@
 
 // KEYBOARD LANGUAGE
 "hyprland/language": {
-    "format": "Lang: {}",
+    "format": "{}",
     "format-en": "US",
-    "format-tr": "Korea",
-    "keyboard-name": "at-translated-set-2-keyboard",
-    "on-click": "hyprctl switchxkblayout $SET_KB next"
+    "format-de": "DE",
+    //"keyboard-name": "at-translated-set-2-keyboard",
+    "on-click": "hyprctl switchxkblayout current next",
 },
+
+
 
 // ?
 "hyprland/submap": {

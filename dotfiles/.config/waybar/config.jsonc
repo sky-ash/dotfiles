@@ -27,6 +27,7 @@
     ], 
 
     "modules-right": [
+        "hyprland/language",
         "wireplumber",
         //"mpris",
         "custom/nightlight",
