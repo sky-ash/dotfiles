@@ -48,10 +48,6 @@ hl.bind("SHIFT + SUPER + down",     hl.dsp.window.resize({ x = 0, y = -10, relat
 hl.bind("SUPER + mouse:272", hl.dsp.window.drag(),   { mouse = true })
 hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
--- MOVE AND RESIZE WINDOWS WITH ARROW KEYS
-hl.bind("SHIFT + SUPER + right",    hl.dsp.window.resize({ x = 10, y = 0, relative = true}), { repeating = true })
-hl.bind("SHIFT + SUPER + left",     hl.dsp.window.resize({ x = -10, y = 0, relative = true}), { repeating = true })
-
 -- SWITCH WORKSPACE AND MOVE WINDOW TO WORKSPACE (1-10)
 for i = 1, 10 do
     local key = i % 10 -- 10 maps to key 0

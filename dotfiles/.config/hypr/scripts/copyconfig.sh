@@ -3,7 +3,7 @@ dotfiles=$HOME/Desktop/dotfiles/dotfiles/
 dotfiles_config=$HOME/Desktop/dotfiles/dotfiles/.config/
 
 
-config_folders=(btop catnap cava era hypr kitty nwg-look rofi swaync waybar)
+config_folders=(btop catnap cava era fish hypr kitty nwg-look rofi swaync wal waybar)
 #config_folders=(hypr)
 
 # delete config folders in home/.config and copy folders from dotfiles/.config/ to ~/.config/
@@ -34,7 +34,7 @@ for file in ${files[@]}; do
 done
 
 # COPY WALLPAPER FOLDER (~/.local/wallpaper)
-local_folders=(wallpaper)
+local_folders=(colors wallpaper)
 local=$HOME/.local/
 dotfiles_local=$HOME/Desktop/dotfiles/dotfiles/.local/
 

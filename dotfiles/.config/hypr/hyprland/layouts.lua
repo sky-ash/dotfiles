@@ -6,7 +6,8 @@
 hl.config({
     dwindle = {
         preserve_split = true,      -- You probably want this
-        smart_split = true,         -- (experimental, maybe turn off again)
+        --smart_split = true,         -- (experimental, maybe turn off again)
+        smart_resizing = false,
     },
 })
 

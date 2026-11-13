@@ -17,7 +17,8 @@ hl.on("hyprland.start", function ()
     hl.exec_cmd("waybar")
     hl.exec_cmd("hyprsunset -i")                            -- daemon for waybar module custom/nightlight, `-i` starts neutral
     hl.exec_cmd("mullvad connect")                          -- instead of launching mullvad-gui, establish a connection via cli command (turn on or off via waybar)
-    hl.exec_cmd("handy --start-hidden --no-tray")           -- autolaunch handy (transcription tool) in background 
+    --hl.exec_cmd("handy")                                    -- autolaunch handy (transcription tool) in background 
+    hl.exec_cmd("handy --start-hidden")
 
     -- SET CURSOR THEME 
     hl.exec_cmd("hyprctl setcursor Vimix-cursors 36")       -- (maybe move to "env vars" section?)

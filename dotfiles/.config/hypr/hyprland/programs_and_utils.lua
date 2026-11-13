@@ -7,14 +7,14 @@ global term      = "kitty"
 global files     = "nautilus"
 global browser   = "firefox"
 global code      = "code"
-global pw        = "bitwarden-desktop"
+global pw        = "keyguard" --"bitwarden-desktop"
 
 -- UTILS
 global lockscreen                    = "hyprlock"
 global rofi                          = "killall rofi || rofi -show drun -theme ~/.config/rofi/rofi.conf"
 global screenshot_selected_region    = "mkdir -p ~/Pictures/Screenshots && hyprshot -m region -o ~/Pictures/Screenshots -f 'screenshot-'$(date +%Y%m%d-%H%M%S).png"
 global next_keyboard_layout          = "hyprctl switchxkblayout current next"
-global transcription_toggle          = "pkill -USR2 -x handy" 
+global transcription_toggle          = "handy --toggle-transcription"   -- "pkill -USR1 -x handy" 
 -- global transcription_with_postprocessing = "pkill -USR1 -x handy"
 
 -- SCRIPTS
