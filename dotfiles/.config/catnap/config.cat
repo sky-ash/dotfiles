@@ -34,10 +34,10 @@ $stats = [
         id="disk_0"         name="disk"             icon=''    
         color=$green        graph_color_fg=$green    
         graph=true          graph_style="thin"      graph_width=16      }
-    @{  
-        id="disk_1"         name="disk"             icon=''    
-        color=$yellow       graph_color_fg=$yellow    
-        graph=true          graph_style="thin"      graph_width=16      }
+;    @{  
+;        id="disk_1"         name="disk"             icon=''    
+;        color=$yellow       graph_color_fg=$yellow    
+;        graph=true          graph_style="thin"      graph_width=16      }
     @{  
         id="memory"         name="memory"           icon=''    
         color=$blue         graph_color_fg=$blue    
