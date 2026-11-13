@@ -138,7 +138,6 @@
     "tooltip-format": "{used} used out of {total} on {path} ({percentage_used}%)",
 },
     
-
 "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
@@ -315,10 +314,26 @@
     "on-click": "kitty --title nvtop sh -c 'nvtop'"
 },
 
-// CopyQ Tray
+// System Tray
+"custom/tray-icon": {
+    "format": "󰍻 ",
+    "tooltip": false,
+    "rotate": 180   
+},
+
+"group/traymodule": {
+    "orientation": "inherit",
+    "drawer": {
+        "transition-duration": 500,
+        "transition-left-to-right": true,
+        "children-class": "tray-element"
+    },
+    "modules": ["custom/tray-icon", "tray"]
+},
+
 "tray": {
-    "icon-size": 16,
-    "spacing": 8,
+    "icon-size": 14,
+    "spacing": 10
 },
       
 "wireplumber": {

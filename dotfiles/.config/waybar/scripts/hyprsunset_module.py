@@ -3,101 +3,13 @@
 from __future__ import annotations
 
 
-# --- files ----------------------------------
+# --- on off state and toggle --------------------------------------
 
 import os
 from pathlib import Path
-CACHE_DIR = Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache"))
+
 RUNTIME_DIR = Path(os.environ.get("XDG_RUNTIME_DIR", "/tmp"))
-
-STATE_FILE = CACHE_DIR / "nightlight.conf"
 ON_FLAG = RUNTIME_DIR / "nightlight.on"
-
-
-# --- temp & gamma -------------------------------------------------------
-
-ICONS = {
-    "off": "\U000F0594",
-    "temp": "\U000F05A8",
-    "gamma": "\U000F00DE"
-}
-
-from dataclasses import dataclass
-@dataclass(frozen=True)
-class Range:
-    low: int
-    high: int
-    step: int
-    default: int
-    icon: str
-    unit: str
-    mode: str
-
-    def clamp(self, value: int) -> int:
-        return max(self.low, min(self.high, value))
-
-T = Range(low=2000, high=5500, 
-          step=250, default=3500, 
-          icon=ICONS["temp"], unit="K", mode="temp")
-
-G = Range(low=20, high=100, 
-          step=10, default=70, 
-          icon=ICONS["gamma"], unit="%", mode="gamma")
-
-
-# --- state --------------------------------------------------------------
-
-import json
-@dataclass
-class State:
-    temp: int = T.default
-    gamma: int = G.default
-    mode: str = T.mode
-
-    @classmethod
-    def load(cls) -> State:
-        try:
-            saved = json.loads(STATE_FILE.read_text())
-        except:
-            return cls()
-
-        mode_saved = saved.get("mode")
-        mode = f"{mode_saved}" if mode_saved in [T.mode, G.mode] else T.mode
-
-        temp_saved = int(saved.get("temp", T.default))
-        gamma_saved = int(saved.get("gamma", G.default))
-
-        return cls(
-            temp=T.clamp(temp_saved),
-            gamma=G.clamp(gamma_saved),
-            mode=mode,
-        )
-
-    def change(self, direction: int) -> None:
-        """Nudge whichever value the active mode controls by one step."""
-        if self.mode == T.mode:
-            self.temp = T.clamp(self.temp + direction * T.step)
-        else:
-            self.gamma = G.clamp(self.gamma + direction * G.step)
-            
-    def save(self) -> None:
-        STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
-        STATE_FILE.write_text(json.dumps({
-            "temp": self.temp, 
-            "gamma": self.gamma, 
-            "mode": self.mode
-        }))
-
-    @property
-    def icon(self) -> str:
-        return T.icon if self.mode == T.mode else G.icon
-
-    @property
-    def active_value(self) -> str:
-        return f"{self.temp}{T.unit}" if self.mode == T.mode else f"{self.gamma}{G.unit}"
-
-
-# --- on off state and toggle --------------------------------------
 
 def is_on() -> bool:
     return ON_FLAG.exists()
@@ -142,28 +54,146 @@ def locked(timeout: float = 3):
         yield
 
 
-# --- refresh waybar ----------------------------------
+# --- temp & gamma -------------------------------------------------------
 
-WAYBAR_SIGNAL = 8  # must match "signal" in custom.jsonc
+ICONS = {
+    "off": "\U000F0594",
+    "temp": "\U000F05A8",
+    "gamma": "\U000F00DE"
+}
 
-import subprocess
-def refresh_waybar() -> None:
-    subprocess.run(["pkill", f"-RTMIN+{WAYBAR_SIGNAL}", "waybar"])
+from dataclasses import dataclass
+@dataclass(frozen=True)
+class Range:
+    low: int
+    high: int
+    step: int
+    default: int
+    icon: str
+    unit: str
+    mode: str
+
+    def clamp(self, value: int) -> int:
+        return max(self.low, min(self.high, value))
+
+T = Range(low=2000, high=5500, step=250, default=3500, 
+          icon=ICONS["temp"], unit="K", mode="temp")
+
+G = Range(low=20, high=100, step=10, default=70, 
+          icon=ICONS["gamma"], unit="%", mode="gamma")
 
 
 # --- talking to hyprsunset --------------------------------------
 
+import subprocess
 def run_hyprctl(*args: str) -> None:
     subprocess.run(["hyprctl", "hyprsunset", *args], stdout=subprocess.DEVNULL)
 
-def apply(state: State) -> None:
-    """Push the current state to the running hyprsunset daemon."""
-    if is_on():
-        run_hyprctl("temperature", str(state.temp))
-        run_hyprctl("gamma", str(state.gamma))
-    else:
-        run_hyprctl("identity")
-        run_hyprctl("gamma", "100")
+def apply_defaults() -> None:
+    run_hyprctl("identity")         # turn off blue-light filter (temp)
+    run_hyprctl("gamma", "100")     # set brightness to 100% (gamma)
+
+def set_gamma(value: int) -> None:
+    """set the gamma value manually, bypassing the state file (for example, for dimming the screen when idle)"""
+    run_hyprctl("gamma", str(value))
+
+# def restore_gamma() -> None:
+#     """for after another program tampered with active gamma:
+#     restore laste state (meaning the gamma value from file if night light was on, or 100% if it was off)
+#     (basically has the effect of a 'double toogle')"""
+#     if is_on():
+#         run_hyprctl("gamma", str(State.load().gamma))
+#     else:
+#         run_hyprctl("gamma", "100")
+
+
+# --- state --------------------------------------------------------------
+
+CACHE_DIR = Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache"))
+STATE_FILE = CACHE_DIR / "nightlight.conf"
+
+import json
+@dataclass
+class State:
+    temp: int = T.default
+    gamma: int = G.default
+    mode: str = T.mode
+
+    @classmethod
+    def load(cls) -> State:
+        """load a state class object from save-file"""
+        try:
+            saved = json.loads(STATE_FILE.read_text())
+        except:
+            return cls()
+
+        mode_saved = saved.get("mode")
+        mode = f"{mode_saved}" if mode_saved in [T.mode, G.mode] else T.mode
+
+        temp_saved = int(saved.get("temp", T.default))
+        gamma_saved = int(saved.get("gamma", G.default))
+
+        return cls(
+            temp=T.clamp(temp_saved),
+            gamma=G.clamp(gamma_saved),
+            mode=mode,
+        )
+
+    def change(self, direction: int) -> None:
+        """nudge active mode's value one step-size up or down"""
+        if self.mode == T.mode:
+            self.temp = T.clamp(self.temp + T.step * direction)
+        else:
+            self.gamma = G.clamp(self.gamma + G.step * direction)
+            
+    def save(self) -> None:
+        """save the current state to a file"""
+        STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+        STATE_FILE.write_text(json.dumps({
+            "temp": self.temp, 
+            "gamma": self.gamma, 
+            "mode": self.mode
+        }))
+
+    #def set_value(self, which: str, value: int) -> None:
+    #    """overwrite a value"""
+    #    if which == "temp":
+    #        self.temp = T.clamp(value)
+    #    elif which == "gamma":
+    #        self.gamma = G.clamp(value)
+    #    #self.save()
+
+    def apply(self) -> None:
+        """push the current state to hyprsunset"""
+        if is_on():
+            run_hyprctl("temperature", str(self.temp))
+            run_hyprctl("gamma", str(self.gamma))
+        else:
+            apply_defaults()
+    
+
+    # def set(self, which: str, value: int) -> None:
+    #     if which == "temp":
+    #         self.temp = T.clamp(value)
+    #     elif which == "gamma":
+    #         self.gamma = G.clamp(value)
+        
+        
+
+    @property
+    def icon(self) -> str:
+        return T.icon if self.mode == T.mode else G.icon
+
+    @property
+    def active_value(self) -> str:
+        return f"{self.temp}{T.unit}" if self.mode == T.mode else f"{self.gamma}{G.unit}"
+
+
+# --- refresh waybar ----------------------------------
+
+WAYBAR_SIGNAL = 8  # must match "signal" in custom.jsonc
+def refresh_waybar() -> None:
+    subprocess.run(["pkill", f"-RTMIN+{WAYBAR_SIGNAL}", "waybar"])
 
 
 # --- json output --------------------------------------
@@ -196,15 +226,30 @@ def parse_args() -> argparse.Namespace:
     action.add_argument("--up", action="store_true", help="increase the active value (turns on if off)")
     action.add_argument("--down", action="store_true", help="decrease the active value (turns on if off)")
     action.add_argument("--switch-mode", action="store_true", help="scroll controls warmth <-> darkness")
+    action.add_argument("--restore", "-r", action="store_true", help="restore previously-saved state")
+    action.add_argument("--idle", action="store_true", help="dim the screen (set gamma to 10%)")
     return parser.parse_args()
 
 def main() -> None:
-    args = parse_args()
-    if not (args.toggle or args.up or args.down or args.switch_mode):
+    if len(sys.argv) == 1:
         print(report(State.load()))
         return
-
+    
+    args = parse_args()
     state = State.load()
+
+    if args.restore:
+        state.apply()
+        #refresh_waybar()
+        return
+
+    if args.idle:
+        current = state.gamma
+        if current <= 50:
+            set_gamma(10)
+        else:
+            set_gamma(25)
+        return
 
     if args.switch_mode:
         state.mode = G.mode if state.mode == T.mode else T.mode
@@ -215,11 +260,11 @@ def main() -> None:
     if args.toggle:
         toggle()
     else:
-        state.change(+1 if args.up else -1)
         toggle(turn_on=True)
+        state.change(+1 if args.up else -1)
         state.save()
 
-    apply(state)
+    state.apply()
     refresh_waybar()
 
 if __name__ == "__main__":

@@ -1,11 +1,12 @@
-@import "../../.cache/wal/colors-waybar.css";
+/* @import "../../.local/colors/waybar.css"; */
 
+@import "../../.cache/wal/colors-waybar.css";
 
 /* GENERAL */
 
 * {
-    font-family: JetBrains Mono Nerd Font;
-    font-size: 101%;
+    font-family: "JetBrains Mono Nerd Font"; /* , "Font Awesome 6 Free Solid", "Font Awesome 6 Free Regular", "Font Awesome 6 Brands Regular", "Symbols Nerd Font Mono", "Symbols Nerd Font"; */
+    font-size: 100%;
     font-weight: bold;
     font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
     padding: 1px;
@@ -22,6 +23,7 @@ window#waybar {
 /* SHARED STYLE */
 #weatherclock,
 #window,
+#traymodule,
 #language,
 #wireplumber,
 #mpris,
@@ -89,10 +91,12 @@ window#waybar {
 #workspaces {
     padding: 7px;
 }
+
 #workspaces button {
-    padding: 0px 11px;
+    padding-left: 13px;
+    padding-right: 13px;
     margin: 0px 3px;
-    border-radius: 11px;
+    border-radius: 13px;
     color: alpha(@foreground, 1);
     background: alpha(@color1, 0.37);
 }

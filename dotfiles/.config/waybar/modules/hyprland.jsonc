@@ -6,7 +6,7 @@
 "hyprland/workspaces": {
 	"active-only": false,
     //"all-outputs": true, 
-    "separate-outputs": true,
+    //"separate-outputs": true,     // isn't even a parameter of workspaces, belongs to hyprland/windowcount
     "format": "{windows}",      //"{icon} {windows}",
     
     "format-window-separator": " ",
@@ -28,19 +28,25 @@
         "class<md.obsidian.Obsidian>": "",
         "class<signal>": "󰭹",
         "class<org.pulseaudio.pavucontrol> title<Volume Control>": "",
-        "org.qbittorrent.qBittorrent": ""
+        "org.qbittorrent.qBittorrent": "", // // //
+        "class<steam.*>": "",
+        "class<steam_app_1325860>": "", 
+        "class<com.obsproject.Studio>": "󰑋"
     },
+    "active-window-position": "first",
 
     //"workspace-taskbar": false,
     //"show-special": false,
     //"on-click": "activate",
-    "move-to-monitor": false, // doesn't seem to work? 
-    "enable-bar-scroll": true, // <- needed for scroll-up and -down events 
+    "move-to-monitor": false,           // doesn't seem to work? 
+    "enable-bar-scroll": true,          // <- needed for scroll-up and -down events 
     "on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({workspace=\"e+1\"})' ",
     "on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({workspace=\"e-1\"})' ",
-    "disable-scroll-wraparound": true, // doesn't seem to work?
+    "disable-scroll-wraparound": true,  // doesn't seem to work?
     "persistent-workspaces": {
-        "*": 5, // 5 workspaces by default on every monitor
+        //"*": 5, // 5 workspaces by default on every monitor
+        "DP-1": [ 1,2,3,4,5 ],
+        "DP-2": [ 6,7,8,9 ],
         /*
         "1": [],
         "2": [],
@@ -55,10 +61,21 @@
         */
     },
 
+    /*
     "format-icons": {
       "active": "",
       "default": "",
 	},  
+    */ /*
+    "tooltip": true,
+    "tooltips": {
+        "default": "{name}: {windows}",
+		"1": "This is the first workspace",
+		"2": "This is the second",
+		"3": "And this is the third"
+        "empty": "" // Will result in no tooltip
+	}
+    */
 },
 
 // ROMAN Numerals style
@@ -121,8 +138,6 @@
     //"keyboard-name": "at-translated-set-2-keyboard",
     "on-click": "hyprctl switchxkblayout current next",
 },
-
-
 
 // ?
 "hyprland/submap": {

@@ -18,20 +18,22 @@
     "margin-bottom": -3,
 
     "modules-left": [ 
-        "group/weatherclock",
-        "hyprland/window"
+        // (power menu)
+        "hyprland/workspaces",  // workspaces
+        "mpris",                // music player
+        "group/traymodule"            // system tray
     ],
 
     "modules-center": [
-        "hyprland/workspaces"
+        "hyprland/window"       // active window's title
     ], 
 
     "modules-right": [
-        "hyprland/language",
-        "wireplumber",
-        //"mpris",
-        "custom/nightlight",
-        "custom/vpn",
-        "custom/nc"
+        "custom/vpn",           // custom vpn status module
+        "custom/nightlight",    // custom hyprsunset module
+        "hyprland/language",    // keyboard layout indicator
+        "wireplumber",          // volume
+        "group/weatherclock",   // clock + weather
+        "custom/nc"             // notification center (swaync)
     ],
 }

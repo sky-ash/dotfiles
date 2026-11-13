@@ -5,9 +5,9 @@
 "group/weatherclock": {
     "orientation": "horizontal",
     "modules": [
-        "custom/weather",
+        "clock",
         "custom/separator#blank_2",
-        "clock"
+        "custom/weather",
     ]
 },
 
