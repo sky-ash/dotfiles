@@ -7,7 +7,6 @@ hl.bind("SUPER + Q", hl.dsp.exec_cmd(term))
 hl.bind("SUPER + W", hl.dsp.exec_cmd(browser))
 hl.bind("SUPER + E", hl.dsp.exec_cmd(files))
 hl.bind("SUPER + C", hl.dsp.exec_cmd(code))
-hl.bind("SUPER + B", hl.dsp.exec_cmd(pw))
 
 -- UTILS
 hl.bind("SUPER + L", hl.dsp.exec_cmd(lockscreen))
@@ -16,11 +15,12 @@ hl.bind("CTRL + Space", hl.dsp.exec_cmd(screenshot_selected_region))
 hl.bind("SUPER + ALT + Space", hl.dsp.exec_cmd(next_keyboard_layout))
 hl.bind("SUPER + R", hl.dsp.exec_cmd(transcription_toggle))
 
-
 -- SCRIPTS
 hl.bind("CTRL + ALT + N", hl.dsp.exec_cmd(next_wallpaper))
 hl.bind("CTRL + ALT + U", hl.dsp.exec_cmd(copy_config))
 
+-- VIBECODED SCRIPTS
+hl.bind("SUPER + B", hl.dsp.exec_cmd(bt_rofimenu_vibecoded))
 
 
 --[[    # ===================================== #

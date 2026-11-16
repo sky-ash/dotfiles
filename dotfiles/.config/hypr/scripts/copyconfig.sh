@@ -1,12 +1,10 @@
-config=$HOME/.config/
 dotfiles=$HOME/Desktop/dotfiles/dotfiles/
+
+# delete config folders in ~/.config and copy folders from dotfiles/.config/ to ~/.config/
+config_folders=(btop catnap cava era fish hypr kitty nwg-look rofi swaync wal waybar)
+config=$HOME/.config/
 dotfiles_config=$HOME/Desktop/dotfiles/dotfiles/.config/
 
-
-config_folders=(btop catnap cava era fish hypr kitty nwg-look rofi swaync wal waybar)
-#config_folders=(hypr)
-
-# delete config folders in home/.config and copy folders from dotfiles/.config/ to ~/.config/
 for folder in ${config_folders[@]}; do
     echo "checking $folder:"
     if [[ -d "$config/$folder" ]]; then
@@ -21,7 +19,6 @@ done
 # delete files in ~/ and copy files from dotfiles/ to ~/
 files=(.bashrc .bash_profile .gitconfig .xinitrc)
 
-# delete files in home and create symlinks from the dotfiles to home
 for file in ${files[@]}; do
     echo "checking $file:"
     if [[ -f "$HOME/$file" ]]; then
@@ -33,8 +30,8 @@ for file in ${files[@]}; do
     fi
 done
 
-# COPY WALLPAPER FOLDER (~/.local/wallpaper)
-local_folders=(colors wallpaper)
+# delete folders in ~/.local and copy folders from dotfiles/.local/ to ~/.local/
+local_folders=(colors wallpaper scripts)
 local=$HOME/.local/
 dotfiles_local=$HOME/Desktop/dotfiles/dotfiles/.local/
 
